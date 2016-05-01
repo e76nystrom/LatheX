@@ -25,8 +25,6 @@ void lclcmd(int ch);
 
 
 
-
-
 EXT int16_t addr;
 
 #if !defined(INCLUDE)
