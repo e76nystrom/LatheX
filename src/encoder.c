@@ -9,6 +9,7 @@
 
 #define ENCTEST 1
 #define ENCMAX (2540 * 8)
+#define FCY 42000000
 
 EXT int encRunCount;
 EXT int16_t encTmr;
@@ -65,6 +66,11 @@ void encStart(int tEna)
  initABit();			/* init encoder outputs */
  initBBit();
  initSync();			/* init sync output */
+
+ encMax = ENCMAX;		/* set encoder maximum */
+
+ encPreScaler = 0;		/* prescale 1 */
+ encTmr = FCY / ENCMAX;		/* one rev per second */
 
  encTmrStop();			/* disable timer */
  encTmrClrIF();			/* clear interrupt flag */
