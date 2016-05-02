@@ -41,9 +41,9 @@ void encStop();
 #define encTmrMax(x)  TIM9->ARR = (x - 1)
 #define encTmrMaxRead() TIM9->ARR
 
-#define ENC_A_BIT (1 << 13) 
+#define ENC_A_BIT (1 << 15) 
 #define ENC_B_BIT (1 << 14) 
-#define SYNC_BIT  (1 << 15) 
+#define SYNC_BIT  (1 << 13) 
 
 #define initABit()
 #define setABit() GPIOB->BSRR = ENC_A_BIT
