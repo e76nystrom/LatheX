@@ -68,9 +68,8 @@ void encStart(int tEna)
  initSync();			/* init sync output */
 
  encMax = ENCMAX;		/* set encoder maximum */
-
  encPreScaler = 0;		/* prescale 1 */
- encTmr = FCY / ENCMAX;		/* one rev per second */
+ encTmr = FCY / ENCMAX;		/* one rev per second 60 rpm*/
 
  encTmrStop();			/* disable timer */
  encTmrClrIF();			/* clear interrupt flag */
