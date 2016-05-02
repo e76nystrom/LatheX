@@ -12,14 +12,13 @@
 #define FCY 42000000
 
 EXT int encRunCount;
-EXT int16_t encTmr;
-EXT int16_t encPreScaler;
-EXT int synCount;
-EXT int encCounter;
-EXT int revCounter;
-EXT int16_t encState;
-EXT char encRun;
-EXT char synp;
+EXT int16_t encTmr;		/* hardware timer value */
+EXT int16_t encPreScaler;	/* hardware timer prescaler */
+EXT int encMax;			/* encoder maximum */
+EXT int encCounter;		/* encoder position count */
+EXT int revCounter;		/* number of revolutions */
+EXT int16_t encState;		/* state of encoder */
+EXT char encRun;		/* encoder running */
 
 void encStart(int tEna);
 void encStop();
@@ -109,10 +108,6 @@ void encTmrISR(void)
    {
     encStop();			/* stop encoder */
    }
-  }
-  if (synp)			/* if running synchronized */
-  {
-   synCount += 1;		/* count total encoder pulses */
   }
 
   encCounter += 1;		/* update counter */
