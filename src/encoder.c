@@ -111,7 +111,7 @@ void encTmrISR(void)
   }
 
   encCounter += 1;		/* update counter */
-  if (encCounter >= ENCMAX)	/* if at maximum */
+  if (encCounter >= encMax)	/* if at maximum */
   {
    encCounter = 0;		/* reset */
    revCounter += 1;		/* count a revolution */
