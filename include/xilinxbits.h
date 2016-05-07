@@ -55,3 +55,12 @@
 #define DBG_INIT      (1 << 4)  /* init z modules */
 #define DBG_RSYN      (1 << 5)  /* running in sync mode */
 #define DBG_MOVE      (1 << 6)  /* used debug clock for move */
+
+// status register
+
+#define Z_DONE_INT    (1 << 0)  /* z done interrrupt */
+#define X_DONE_INT    (1 << 1)  /* x done interrupt */
+#define DBG_DONE      (1 << 2)  /* debug done */
+#define Z_START       (1 << 3)  /* z start */
+#define X_START       (1 << 4)  /* x start */
+#define ENC_DIR_IN    (1 << 5)  /* encoder direction in */
