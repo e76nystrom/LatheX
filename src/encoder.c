@@ -12,11 +12,6 @@
 #define ENCMAX (2540 * 8)
 #define FCY 42000000
 
-EXT int16_t encTmr;		/* hardware timer value */
-EXT int16_t encPreScaler;	/* hardware timer prescaler */
-EXT int encMax;			/* encoder maximum */
-EXT int encCounter;		/* encoder position count */
-EXT int revCounter;		/* number of revolutions */
 EXT int16_t encState;		/* state of encoder */
 EXT char encRun;		/* encoder running */
 
@@ -61,6 +56,7 @@ void encInit()
 {
  encMax = ENCMAX;		/* set encoder maximum */
  encPreScaler = 0;		/* prescale 1 */
+ encTimer = FCY / encMax;	/* timer for one sync per second */
 }
 
 void encStart(int tEna)
@@ -73,16 +69,14 @@ void encStart(int tEna)
  initBBit();
  initSync();			/* init sync output */
 
- encTmr = FCY / encMax;		/* calculate timer count value */
-
  encTmrStop();			/* disable timer */
  encTmrClrIF();			/* clear interrupt flag */
  encTmrClr();			/* clear counter register */
  encTmrScl(encPreScaler);	/* load prescaler */
- encTmrMax(encTmr);		/* set timer period */
+ encTmrMax(encTimer);		/* set timer period */
  encState = 0;
  encCounter = 0;
- revCounter = 0;
+ encRevCounter = 0;
  encRun = true;
 
  if (tEna)
@@ -119,7 +113,7 @@ void encTmrISR(void)
   if (encCounter >= encMax)	/* if at maximum */
   {
    encCounter = 0;		/* reset */
-   revCounter += 1;		/* count a revolution */
+   encRevCounter += 1;		/* count a revolution */
    setSync();			/* set the sync bit */
   }
   else				/* if not at maximum */
