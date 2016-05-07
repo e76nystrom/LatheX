@@ -12,6 +12,7 @@
 #include "serialio.h"
 #include "spi.h"
 #include "lathe.h"
+#include "encoder.h"
 #endif
 #include "runctl.h"
 #define EXT
@@ -252,11 +253,6 @@ void remcmd()
   SNDHEX1(readval);		/* return the parameter */
   break;
 
- case READLOC:
-  getnum1();
-  sndhex1((unsigned char *) (int32_t) val,sizeof(int16_t));
-  break;
-
  case SENDMOVE:
   gethex1();			/* save op code and flag */
   parm = val;			/* save input value */
@@ -273,6 +269,11 @@ void remcmd()
  case MOVEQUESTATUS:
   parm = MAX_CMDS - moveQue.count; /* calculate amount empty */
   sndhex1((unsigned char *) &parm, sizeof(parm)); /* send it back */
+  break;
+
+ case READLOC:
+  getnum1();
+  sndhex1((unsigned char *) (int32_t) val,sizeof(int16_t));
   break;
 
  case READDBG:
@@ -305,6 +306,14 @@ void remcmd()
   }
 #endif
   break;
+
+ case ENCSTART:
+  encStart();
+  break;
+
+ case ENCSTOP:
+  encStop();
+  break
  }
  putx1('*');
 }
