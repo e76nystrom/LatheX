@@ -73,7 +73,8 @@ void encStart(int tEna)
  encTmrStop();			/* disable timer */
  encTmrClrIF();			/* clear interrupt flag */
  encTmrClr();			/* clear counter register */
- encTmrScl(encPreScaler);	/* load prescaler */
+ if (encPreScaler != 0)		/* if prescaler non zero */
+  encTmrScl(encPreScaler);	/* load prescaler */
  encTmrMax(encTimer);		/* set timer period */
  tmrInfo(TIM9);
  encState = 0;
