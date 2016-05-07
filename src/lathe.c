@@ -168,19 +168,8 @@ void zMoveRel(int32_t dist, char cmd);
 void xJMove(int dir);
 void xMove(int32_t pos, char cmd);
 void xMoveRel(int32_t dist, char cmd);
-#if 0
-int cmdStop;
-int cmdPause;
-
-typedef struct
-{
- int fil;
- int emp;
- int count;
- T_MOVECMD cmd[MAX_CMDS];
-} T_MOVEQUE, *P_MOVEQUE;
-#endif
-
+char cmdStop;
+char cmdPause;
 T_MOVEQUE moveQue;
 
 #endif
