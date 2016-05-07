@@ -159,6 +159,30 @@ EXT char xflag;
 
 #if !defined(INCLUDE)
 
+#ifdef WIN32
+
+void stopMove(){}
+void zMove(){}
+void zJMove(){}
+void zMoveRel(){}
+void xMove(){}
+void xJMove(){}
+void xMoveRel(){}
+int cmdStop;
+int cmdPause;
+
+typedef struct
+{
+ int fil;
+ int emp;
+ int count;
+ T_MOVECMD cmd[MAX_CMDS];
+} T_MOVEQUE, *P_MOVEQUE;
+
+T_MOVEQUE moveQue;
+
+#endif
+
 int tmp(int x)
 {
  return(x);
