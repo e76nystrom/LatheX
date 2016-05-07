@@ -308,12 +308,12 @@ void remcmd()
   break;
 
  case ENCSTART:
-  encStart();
+  encStart(true);
   break;
 
  case ENCSTOP:
   encStop();
-  break
+  break;
  }
  putx1('*');
 }
