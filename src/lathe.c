@@ -162,12 +162,12 @@ EXT char xflag;
 #ifdef WIN32
 
 void stopMove(){}
-void zMove(){}
-void zJMove(){}
-void zMoveRel(){}
-void xMove(){}
-void xJMove(){}
-void xMoveRel(){}
+void zJMove(int dir);
+void zMove(int32_t pos, char cmd);
+void zMoveRel(int32_t dist, char cmd);
+void xJMove(int dir);
+void xMove(int32_t pos, char cmd);
+void xMoveRel(int32_t dist, char cmd);
 #if 0
 int cmdStop;
 int cmdPause;
