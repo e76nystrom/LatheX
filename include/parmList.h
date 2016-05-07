@@ -240,7 +240,8 @@ enum PARM
  ENC_TIMER,                     /* 0x93 encoder timer counts */
  ENC_MAX,                       /* 0x94 encoder counts per revolution */
  ENC_RUN_COUNT,                 /* 0x95 encoder run count */
- ENC_COUNTER,                   /* 0x96 encoder count in rev */
- ENC_REV_COUNTER,               /* 0x97 encoder revolution counter */
- MAX_PARM,                      /* 0x98 maximum parameter */
+ ENC_RUN,                       /* 0x96 encoder running flag */
+ ENC_COUNTER,                   /* 0x97 encoder count in rev */
+ ENC_REV_COUNTER,               /* 0x98 encoder revolution counter */
+ MAX_PARM,                      /* 0x99 maximum parameter */
 };
