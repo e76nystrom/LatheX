@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "remvar.h"
+#include "lclcmd.h"
 #if !defined(EXT)
 #define EXT
 #endif
@@ -74,6 +75,7 @@ void encStart(int tEna)
  encTmrClr();			/* clear counter register */
  encTmrScl(encPreScaler);	/* load prescaler */
  encTmrMax(encTimer);		/* set timer period */
+ tmrInfo(TIM9);
  encState = 0;
  encCounter = 0;
  encRevCounter = 0;
