@@ -240,7 +240,8 @@ T_PARM remparm[] =
  PARM(encTimer),                /* 0x93 encoder timer counts */
  PARM(encMax),                  /* 0x94 encoder counts per revolution */
  PARM(encRunCount),             /* 0x95 encoder run count */
- PARM(encCounter),              /* 0x96 encoder count in rev */
- PARM(encRevCounter),           /* 0x97 encoder revolution counter */
- PARM(maxParm),                 /* 0x98 maximum parameter */
+ PARM(encRun),                  /* 0x96 encoder running flag */
+ PARM(encCounter),              /* 0x97 encoder count in rev */
+ PARM(encRevCounter),           /* 0x98 encoder revolution counter */
+ PARM(maxParm),                 /* 0x99 maximum parameter */
 };
