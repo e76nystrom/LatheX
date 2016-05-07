@@ -168,6 +168,7 @@ void zMoveRel(){}
 void xMove(){}
 void xJMove(){}
 void xMoveRel(){}
+#if 0
 int cmdStop;
 int cmdPause;
 
@@ -178,6 +179,7 @@ typedef struct
  int count;
  T_MOVECMD cmd[MAX_CMDS];
 } T_MOVEQUE, *P_MOVEQUE;
+#endif
 
 T_MOVEQUE moveQue;
 
