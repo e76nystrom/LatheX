@@ -58,9 +58,9 @@
 
 // status register
 
-#define Z_DONE_INT    (1 << 0)  /* z done interrrupt */
-#define X_DONE_INT    (1 << 1)  /* x done interrupt */
-#define DBG_DONE      (1 << 2)  /* debug done */
-#define Z_START       (1 << 3)  /* z start */
-#define X_START       (1 << 4)  /* x start */
-#define ENC_DIR_IN    (1 << 5)  /* encoder direction in */
+#define S_Z_DONE_INT  (1 << 0)  /* z done interrrupt */
+#define S_X_DONE_INT  (1 << 1)  /* x done interrupt */
+#define S_DBG_DONE    (1 << 2)  /* debug done */
+#define S_Z_START     (1 << 3)  /* z start */
+#define S_X_START     (1 << 4)  /* x start */
+#define S_ENC_DIR_IN  (1 << 5)  /* encoder direction in */
