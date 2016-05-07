@@ -18,6 +18,9 @@
 #endif
 
 void lclcmd(int ch);
+void gpioInfo(GPIO_TypeDef *gpio);
+void usartInfo(USART_TypeDef *usart);
+void tmrInfo(TIM_TypeDef *tmr);
 
 EXT int16_t addr;
 
@@ -87,6 +90,31 @@ void usartInfo(USART_TypeDef *usart)
  printf("CR2  %8x ",(unsigned int) usart->CR2);
  printf("CR3  %8x\n",(unsigned int) usart->CR3);
  printf("GTPR %8x\n",(unsigned int) usart->GTPR);
+}
+
+void tmrInfo(TIM_TypeDef *tmr)
+{
+ printf("tmr %x\n",(unsigned int) tmr);
+ printf("CR1   %8x ",(unsigned int) tmr->CR1);
+ printf("CR2   %8x\n",(unsigned int) tmr->CR2);
+ printf("SMCR  %8x ",(unsigned int) tmr->SMCR);
+ printf("DIER  %8x\n",(unsigned int) tmr->DIER);
+ printf("SR    %8x ",(unsigned int) tmr->SR);
+ printf("EGR   %8x\n",(unsigned int) tmr->EGR);
+ printf("CCMR1 %8x ",(unsigned int) tmr->CCMR1);
+ printf("CCMR2 %8x\n",(unsigned int) tmr->CCMR2);
+ printf("CCER  %8x ",(unsigned int) tmr->CCER);
+ printf("CNT   %8x\n",(unsigned int) tmr->CNT);
+ printf("PSC   %8x ",(unsigned int) tmr->PSC);
+ printf("ARR   %8x\n",(unsigned int) tmr->ARR);
+ printf("RCR   %8x ",(unsigned int) tmr->RCR);
+ printf("CCR1  %8x\n",(unsigned int) tmr->CCR1);
+ printf("CCR2  %8x ",(unsigned int) tmr->CCR2);
+ printf("CCR3  %8x\n",(unsigned int) tmr->CCR3);
+ printf("CCR4  %8x ",(unsigned int) tmr->CCR4);
+ printf("BDTR  %8x\n",(unsigned int) tmr->BDTR);
+ printf("DCR   %8x ",(unsigned int) tmr->DCR);
+ printf("OR    %8x\n",(unsigned int) tmr->OR);
 }
 
 void lclcmd(int ch)
