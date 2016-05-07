@@ -234,4 +234,10 @@
  EXT float threadAngle;         /* 0x8f thread angle */
  EXT int indexPreScaler;        /* 0x90 index prescaler */
  EXT int indexPeriod;           /* 0x91 index period */
- EXT int16_t maxParm;           /* 0x92 maximum parameter */
+ EXT int16_t encPreScaler;      /* 0x92 encoder prescaler */
+ EXT int16_t encTimer;          /* 0x93 encoder timer counts */
+ EXT int16_t encMax;            /* 0x94 encoder counts per revolution */
+ EXT int encRunCount;           /* 0x95 encoder run count */
+ EXT int16_t encCounter;        /* 0x96 encoder count in rev */
+ EXT int32_t encRevCounter;     /* 0x97 encoder revolution counter */
+ EXT int16_t maxParm;           /* 0x98 maximum parameter */
