@@ -2,6 +2,7 @@
 #include "stm32f4xx_hal.h"
 #include <stdbool.h>
 #include <stdint.h>
+#include "remvar.h"
 #if !defined(EXT)
 #define EXT
 #endif
@@ -11,7 +12,6 @@
 #define ENCMAX (2540 * 8)
 #define FCY 42000000
 
-EXT int encRunCount;
 EXT int16_t encTmr;		/* hardware timer value */
 EXT int16_t encPreScaler;	/* hardware timer prescaler */
 EXT int encMax;			/* encoder maximum */
@@ -20,6 +20,7 @@ EXT int revCounter;		/* number of revolutions */
 EXT int16_t encState;		/* state of encoder */
 EXT char encRun;		/* encoder running */
 
+void encInit();
 void encStart(int tEna);
 void encStop();
 
@@ -56,6 +57,12 @@ void encStop();
 #define setSync() GPIOB->BSRR = SYNC_BIT
 #define clrSync() GPIOB->BSRR = (SYNC_BIT << 16)
 
+void encInit()
+{
+ encMax = ENCMAX;		/* set encoder maximum */
+ encPreScaler = 0;		/* prescale 1 */
+}
+
 void encStart(int tEna)
 {
  clrABit();			/* clear outputs */
@@ -66,9 +73,7 @@ void encStart(int tEna)
  initBBit();
  initSync();			/* init sync output */
 
- encMax = ENCMAX;		/* set encoder maximum */
- encPreScaler = 0;		/* prescale 1 */
- encTmr = FCY / ENCMAX;		/* one rev per second 60 rpm*/
+ encTmr = FCY / encMax;		/* calculate timer count value */
 
  encTmrStop();			/* disable timer */
  encTmrClrIF();			/* clear interrupt flag */
