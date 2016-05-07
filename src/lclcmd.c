@@ -113,6 +113,7 @@ void lclcmd(int ch)
   fflush(stdout);
   if (getnum())
   {
+   encInit();
    encRunCount = val;
    encStart(true);
   }
