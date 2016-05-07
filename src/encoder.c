@@ -14,7 +14,6 @@
 #define FCY 84000000
 
 EXT int16_t encState;		/* state of encoder */
-EXT char encRun;		/* encoder running */
 
 void encInit();
 void encStart(int tEna);
