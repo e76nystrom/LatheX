@@ -94,8 +94,10 @@ void encStop()
  encTmrClrIE();			/* disable interrupt */
  encTmrStop();			/* stop timer */
  encTmrClrIF();			/* clear interrupt flag */
+#if 0
  clrABit();			/* clear outputs */
  clrBBit();
+#endif
 }
 
 void encTmrISR(void)
