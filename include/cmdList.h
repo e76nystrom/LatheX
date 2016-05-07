@@ -64,10 +64,15 @@ enum COMMANDS
  READLOC,                       /* 0x22 read location */
  READDBG,                       /* 0x23 read debug message */
 
+// encoder commands
+
+ ENCSTART,                      /* 0x24 encoder start */
+ ENCSTOP,                       /* 0x25 encoder stop */
+
 // load operation parameters
 
- LOADZPRM,                      /* 0x24 call load xilinx z parameters */
- LOADXPRM,                      /* 0x25 call load xilinx x parameters */
- LOADSPRM,                      /* 0x26 call load xilinx sync parameters */
- LOADTPRM,                      /* 0x27 call load xilinx taper parameters */
+ LOADZPRM,                      /* 0x26 call load xilinx z parameters */
+ LOADXPRM,                      /* 0x27 call load xilinx x parameters */
+ LOADSPRM,                      /* 0x28 call load xilinx sync parameters */
+ LOADTPRM,                      /* 0x29 call load xilinx taper parameters */
 };
