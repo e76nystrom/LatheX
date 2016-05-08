@@ -63,5 +63,4 @@
 #define S_DBG_DONE    (1 << 2)  /* debug done */
 #define S_Z_START     (1 << 3)  /* z start */
 #define S_X_START     (1 << 4)  /* x start */
-#define S_FREQ_READY  (1 << 5)  /* frequency reading ready */
-#define S_ENC_DIR_IN  (1 << 6)  /* encoder direction in */
+#define S_ENC_DIR_IN  (1 << 5)  /* encoder direction in */
