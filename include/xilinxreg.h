@@ -71,20 +71,21 @@ enum XILINX
 // read frequency and state
 
  XRDFREQ,                       /* 0x28 read encoder freq */
- XRDSTATE,                      /* 0x29 read state info */
+ XCLRFREQ,                      /* 0x29 clear freq register */
+ XRDSTATE,                      /* 0x2a read state info */
 
 // read phase
 
- XRDPSYN,                       /* 0x2a read sync phase val */
- XRDTPHS,                       /* 0x2b read tot phase val */
+ XRDPSYN,                       /* 0x2b read sync phase val */
+ XRDTPHS,                       /* 0x2c read tot phase val */
 
 // phase limit info
 
- XLDZLIM,                       /* 0x2c load z limit */
- XRDZPOS,                       /* 0x2d read z position */
+ XLDZLIM,                       /* 0x2d load z limit */
+ XRDZPOS,                       /* 0x2e read z position */
 
 // test info
 
- XLDTFREQ,                      /* 0x2e load test freq */
- XLDTCOUNT,                     /* 0x2f load test count */
+ XLDTFREQ,                      /* 0x2f load test freq */
+ XLDTCOUNT,                     /* 0x30 load test count */
 };
