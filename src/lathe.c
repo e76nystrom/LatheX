@@ -328,6 +328,23 @@ void zMoveSetup()
 
 void zSynSetup()
 {
+ if (DBG_SETUP)
+  printf("\nz sync accel\n");
+ P_ACCEL ac = &zTA;
+ ac->stepsInch = zAxis.stepsInch;
+ switch (feedType)
+ {
+ case FEED_PITCH:
+  turnPitch(ac, feed);
+  break;
+ case FEED_TPI:
+  threadTPI(ac, feed);
+  break;
+ case FEED_METRIC:
+  threadMetric(ac, feed);
+  break;
+ }
+ turnAccel(ac, zAccel);
 }
 
 void zTaperSetup()
@@ -430,34 +447,74 @@ void xMoveSetup()
 
 void xSynSetup()
 {
+ if (DBG_SETUP)
+  printf("\nx sync accel\n");
+ P_ACCEL ac = &xTA;
+ ac->stepsInch = xAxis.stepsInch;
+ switch (feedType)
+ {
+ case FEED_PITCH:
+  turnPitch(ac, feed);
+  break;
+ case FEED_TPI:
+  threadTPI(ac, feed);
+  break;
+ case FEED_METRIC:
+  threadMetric(ac, feed);
+  break;
+ }
+ turnAccel(ac, xAccel);
 }
 
 void xTaperSetup()
 {
 }
 
+/* calculate acceleration for move */
+
+void accelCalc(P_ACCEL accel)
+{
+}
+
 void turnPitch(P_ACCEL ac, float pitch)
 {
+ if (DBG_P)
+  printf("\nturnPitch\n");
+ ac->pitch = pitch;
+ turnCalc(ac);
 }
 
 void threadTPI(P_ACCEL ac, float tpi)
 {
+ if (DBG_P)
+  printf("\nturnTPI\n");
+ ac->pitch = 1.0 / tpi;
+ turnCalc(ac);
 }
 
 void threadMetric(P_ACCEL ac, float pitch)
 {
+ if (DBG_P)
+  printf("\nturnMetric\n");
+ ac->pitch = pitch / 25.4;
+ turnCalc(ac);
 }
 
 void turnCalc(P_ACCEL ac)
 {
+ int dx = (int) (encoder / ac.pitch);
+ int dy = ac->stespInch;
+ ac->incr1 = 2 * dy;
+ ac->incr2 = ac->incr1 - 2 * dx;
+ ac->d = ac->incr1 - dx;
+ if (DBG_P)
+  printf("incr1 %d incr2 %d d %d\n",
+	 ac->incr1, ac->incr2, ac->d);
 }
+
+/* calculate acceleration for turn */
 
 void turnAccel(P_ACCEL ac, float accel)
-{
-}
-
-
-void accelCalc(P_ACCEL accel)
 {
 }
 
