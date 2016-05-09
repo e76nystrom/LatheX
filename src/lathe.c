@@ -303,8 +303,8 @@ void zMoveSetup()
 
  P_ACCEL ac = &zMA;
 
- ac->minSpeed = zMoveMin;
- ac->maxSpeed = zMoveMax;
+ ac->minFeed = zMoveMin;
+ ac->maxFeed = zMoveMax;
  ac->accel = zAxis.accel;
  ac->stepsInch = zAxis.stepsInch;
 
@@ -314,8 +314,8 @@ void zMoveSetup()
 
  ac = &zJA;
 
- ac->minSpeed = zJogMin;
- ac->maxSpeed = zJogMax;
+ ac->minFeed = zJogMin;
+ ac->maxFeed = zJogMax;
  ac->accel = zAxis.accel;
  ac->stepsInch = zAxis.stepsInch;
 
@@ -583,7 +583,7 @@ void accelSetup(P_ACCEL ac, int dxBase, int dyMaxBase, int dyMinBase)
   int bits = bitSize(ac->dx) + 1;
   if (DBG_SETUP)
    printf("dyIni %d dyMax %d dyDelta %d incPerClock %6.2f "
-	  "err %d bits %d" %
+	  "err %d bits %d",
 	  ac->dyIni, ac->dyMax, dyDelta, incPerClock, err, bits);
   if ((bits >= 30)
   ||  (err == 0))
