@@ -52,6 +52,10 @@ typedef struct
  float accelTime;
  int accelSteps;
 
+ int steps;
+ int stepsSec;
+ int time;
+
  /* intermediate value for hardware setup */
  int scale;
  int dx;
