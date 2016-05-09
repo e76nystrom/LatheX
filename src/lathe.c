@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <math.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include "remvar.h"
 #include "runctl.h"
 #include "zcontrol.h"
@@ -553,10 +554,11 @@ void accelSetup(P_ACCEL ac, int clockRate)
  float stepsSec2 = (float) (ac->accel * ac->stepsInch);
  int accelMinStep = (int) (((stepsSecMin / stepsSec2) * stepsSecMin) / 2.0);
  int accelMaxStep = (int) (((stepsSecMax / stepsSec2) * stepsSecMax) / 2.0);
- if (DBG_SETUP)
-  printf("accelMinStep %d accelMaxStep\n", accelMinStep, accelMaxStep);
-
  ac->accelSteps = accelMinStep - accelMaxStep;
+ if (DBG_SETUP)
+  printf("accelSteps %d accelMinStep %d accelMaxStep %d\n", 
+	 accelSteps, accelMinStep, accelMaxStep);
+
  int dxBase = ac->encPerInch;
  int dyMaxBase = ac->stepsInch;
  int dyMinBase = (int) ((dyMaxBase * ac->minFeed) / ac->maxFeed);
