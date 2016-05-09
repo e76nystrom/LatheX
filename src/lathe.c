@@ -10,7 +10,7 @@
 #include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#if not defined(WIN32)
+#if !defined(WIN32)
 #include <inttypes.h>
 #endif
 #include "remvar.h"
