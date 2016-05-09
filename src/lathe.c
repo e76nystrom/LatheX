@@ -672,7 +672,7 @@ char *i64toa(long long val, char *buf, int buflen)
   minus = true;
   val = -val;
  }
- p = buf + buflen;
+ char *p = buf + buflen;
  while (val != 0)
  {
   --p;
