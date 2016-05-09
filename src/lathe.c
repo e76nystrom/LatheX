@@ -551,7 +551,6 @@ void accelSetup(P_ACCEL ac)
   printf("stepsSecMin %d stepsSecMax %d\n", stepsSecMin, stepsSecMax);
 
  float stepsSec2 = (float) (ac->accel * ac->stepsInch);
-// ac->accelTime = (float) ((ac->maxFeed - ac->minFeed) / (60 * ac->accel));
  ac->accelTime = (float) ((stepsSecMax - stepsSecMin) / stepsSec2);
  ac->accelClocks = (int) (ac->clockFreq * ac->accelTime);
  if (DBG_SETUP)
@@ -593,9 +592,11 @@ void accelSetup(P_ACCEL ac)
   int dyDeltaC = intIncPerClock * accelClocks;
   int err = (int) (abs(dyDelta - dyDeltaC)) >> scale;
   ac->dyIni = ac->dyMax - intIncPerClock * accelClocks;
+#if 0
   if (DBG_SETUP)
    printf("dyIni %d dyMax %d intIncPerClock %d accelClocks %d\n",
 	  ac->dyIni, ac->dyMax, intIncPerClock, accelClocks);
+#endif
 
   int bits = bitSize(ac->dx) + 1;
   if (DBG_SETUP)
