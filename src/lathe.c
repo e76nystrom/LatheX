@@ -532,8 +532,8 @@ void turnAccel(P_ACCEL ac, float accel)
   int stepsSecMax = (int) (feedRate / 60.0) * ac->stepsInch;
   int stepsSecMin = (int) (ac->minFeed / 60.0) * ac->stepsInch;
   float stepsSec2 = (float) (ac->accel * ac->stepsInch);
-  int accelMinStep = (int) ((stepsSecMin / stepsSec2) * stepsSecMin) / 2.0;
-  int accelMaxStep = (int) ((stepsSecMax / stepsSec2) * stepsSecMax) / 2.0;
+  int accelMinStep = (int) (((stepsSecMin / stepsSec2) * stepsSecMin) / 2.0);
+  int accelMaxStep = (int) (((stepsSecMax / stepsSec2) * stepsSecMax) / 2.0);
   ac->accelSteps = accelMinStep - accelMaxStep;
   int dxBase = ac->encPerInch;
   int dyMaxBase = ac->stepsInch;
