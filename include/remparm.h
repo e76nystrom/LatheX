@@ -257,7 +257,7 @@ T_PARM remparm[] =
 
  PARM(rpm),                     /* 0x99 current rpm */
 
-// measured spindle speed
+// xilinx frequency variables
 
  PARM(xFrequency),              /* 0x9a xilinx clock frequency */
  PARM(freqMult),                /* 0x9b frequency multiplier */
