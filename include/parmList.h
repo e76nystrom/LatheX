@@ -259,7 +259,10 @@ enum PARM
 
 // measured spindle speed
 
- xFrequency,                    /* 0x9a xilinx clock frequency */
- freqMult,                      /* 0x9b frequency multiplier */
+ X_FREQUENCY,                   /* 0x9a xilinx clock frequency */
+ FREQ_MULT,                     /* 0x9b frequency multiplier */
+
+// max parameter number
+
  MAX_PARM,                      /* 0x9c maximum parameter */
 };
