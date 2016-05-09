@@ -556,7 +556,7 @@ void accelSetup(P_ACCEL ac)
  float stepsSec2 = (float) (ac->accel * ac->stepsInch);
  int accelMinStep = (int) (((stepsSecMin / stepsSec2) * stepsSecMin) / 2.0);
  int accelMaxStep = (int) (((stepsSecMax / stepsSec2) * stepsSecMax) / 2.0);
- ac->accelSteps = accelMinStep - accelMaxStep;
+ ac->accelSteps = accelMaxStep - accelMinStep;
  if (DBG_SETUP)
   printf("accelSteps %d accelMinStep %d accelMaxStep %d\n", 
 	 ac->accelSteps, accelMinStep, accelMaxStep);
