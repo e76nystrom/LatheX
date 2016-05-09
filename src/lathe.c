@@ -581,7 +581,7 @@ void accelSetup(P_ACCEL ac, int dxBase, int dyMaxBase, int dyMinBase)
   err = (int) (abs(dyDelta - dyDeltaC)) >> scale;
   ac->dyIni = ac->dyMax - intIncPerClock * accelClocks;
   int bits = bitSize(ac->dx) + 1;
-  if (DEBUG_SETUP)
+  if (DBG_SETUP)
    printf("dyIni %d dyMax %d dyDelta %d incPerClock %6.2f "
 	  "err %d bits %d" %
 	  ac->dyIni, ac->dyMax, dyDelta, incPerClock, err, bits);
