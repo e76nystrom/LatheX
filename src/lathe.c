@@ -538,7 +538,7 @@ void turnAccel(P_ACCEL ac, float accel)
   int dxBase = ac->encPerInch;
   int dyMaxBase = ac->stepsInch;
   int dyMinBase = (int) (dyMaxBase * ac->minFeed) / feedRate;
-  accelSetup(ac, dxBase, dyMaxBase, dyMinbase);
+  accelSetup(ac, dxBase, dyMaxBase, dyMinBase);
  }
 }
 
@@ -570,7 +570,7 @@ void accelSetup(P_ACCEL ac, int dxBase, int dyMaxBase, int dyMinBase)
   int dyDelta = ac->dyMax - dyMin;
   if (DBG_SETUP)
    printf("scale %d dx %d dyMin %d dyMax %d dyDelta %d",
-	  scale, accel.dx, dyMin, accel.dyMax, dyDelta);
+	  scale, ac->dx, dyMin, ac->dyMax, dyDelta);
 
   float incPerClock = (float) dyDelta / accelClocks;
   int intIncPerClock = (int) (incPerClock + 0.5);
