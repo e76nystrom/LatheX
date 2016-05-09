@@ -557,7 +557,7 @@ void accelSetup(P_ACCEL ac, int clockRate)
  ac->accelSteps = accelMinStep - accelMaxStep;
  if (DBG_SETUP)
   printf("accelSteps %d accelMinStep %d accelMaxStep %d\n", 
-	 accelSteps, accelMinStep, accelMaxStep);
+	 ac->accelSteps, accelMinStep, accelMaxStep);
 
  int dxBase = ac->encPerInch;
  int dyMaxBase = ac->stepsInch;
