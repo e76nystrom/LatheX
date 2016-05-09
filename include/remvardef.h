@@ -234,11 +234,24 @@
  EXT float threadAngle;         /* 0x8f thread angle */
  EXT int indexPreScaler;        /* 0x90 index prescaler */
  EXT int indexPeriod;           /* 0x91 index period */
- EXT uint16_t encPreScaler;     /* 0x92 encoder prescaler */
- EXT uint16_t encTimer;         /* 0x93 encoder timer counts */
- EXT uint16_t encMax;           /* 0x94 encoder counts per revolution */
+
+// encoder counts per revolution
+
+ EXT uint16_t encMax;           /* 0x92 encoder counts per revolution */
+
+// test encoder setup variables
+
+ EXT uint16_t encPreScaler;     /* 0x93 encoder prescaler */
+ EXT uint16_t encTimer;         /* 0x94 encoder timer counts */
  EXT int encRunCount;           /* 0x95 encoder run count */
+
+// test encoder status variables
+
  EXT char encRun;               /* 0x96 encoder running flag */
  EXT int16_t encCounter;        /* 0x97 encoder count in rev */
  EXT int32_t encRevCounter;     /* 0x98 encoder revolution counter */
- EXT int16_t maxParm;           /* 0x99 maximum parameter */
+
+// measured spindle speed
+
+ EXT int16_t rpm;               /* 0x99 current rpm */
+ EXT int16_t maxParm;           /* 0x9a maximum parameter */
