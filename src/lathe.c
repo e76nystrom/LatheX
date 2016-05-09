@@ -50,7 +50,6 @@ typedef struct
  int encPerSec;
  int endPerInch;
  float accelTime;
- int accelClocks;
  int accelSteps;
 
  /* intermediate value for hardware setup */
@@ -562,20 +561,21 @@ int bitSize(val)
 void accelSetup(P_accel ac, int dxBase, int dyMaxBase, int dyMinBase)
 {
  int scale;
+ int accelClocks = ac->accelClocks;
  for (scale = 0; scale < MAX_SCALE; scale++)
  {
   ac->dx = dxBase << scale;
   ac->dyMax = dyMaxBase << scale;
   int dyMin = dyMinBase << scale;
   int dyDelta = ac->dyMax - dyMin;
-  float incPerClock = (float) dyDelta / ac->accelClocks;
+  float incPerClock = (float) dyDelta / accelClocks;
   int intIncPerClock = (int) (incPerClock + 0.5);
   if (intIncPerClock == 0)
    continue;
   ac->intIncPerClock = intIncPerClock;
-  int dyDeltaC = intIncPerClock * ac->accelClocks;
+  int dyDeltaC = intIncPerClock * accelClocks;
   err = (int) (abs(dyDelta - dyDeltaC)) >> scale;
-  ac->dyIni = ac->dyMax - intIncPerClock * ac->accelClocks;
+  ac->dyIni = ac->dyMax - intIncPerClock * accelClocks;
   int bits = bitSize(ac->dx) + 1;
   if ((bits >= 30)
   ||  (err == 0))
@@ -585,6 +585,22 @@ void accelSetup(P_accel ac, int dxBase, int dyMaxBase, int dyMinBase)
  ac->incr1 = 2 * ac->dyIni;
  ac->sum = ac->incr1 - ac->dx
  ac->incr2 = ac->sum - ac->dx;
+ ac->intAccel = 2 * intIncPerClock;
+ 
+ if (intIncPerClock != 0)
+ {
+  int64_t totalSum = (int64_t) accelClocks * ac->incr1 + ac->sum;
+  int64_t totalInc = ((int64_t) accelClocks * (accelClocks - 1) * 
+		      ac->intAccel) / 2;
+  ac->accelSteps = (int) ((totalSum + totalInc) / (2 * ac->dx));
+  if (DBG_SETUP)
+   printf ("accelClocks %d totalSum %lld totalInc %lld accelSteps %d\n", 
+	   ac->accelClocks, totalSum, totalInc, ac->accelSteps))
+ }
+ else
+ {
+  ac->accelSteps = 0;
+ }
 }
 
 void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper)
