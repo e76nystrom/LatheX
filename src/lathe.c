@@ -524,7 +524,7 @@ void turnAccel(P_ACCEL ac, float accel)
 
 #define MAX_SCALE 12
 
-int bitSize(val)
+int bitSize(int val)
 {
  int bits = 1;
  int mask = 1;
