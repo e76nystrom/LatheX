@@ -544,8 +544,8 @@ void accelSetup(P_ACCEL ac)
 {
  if (DBG_SETUP)
   printf("minFeed %6.2f feedRate %6.2f ipm\n", ac->minFeed, ac->maxFeed);
- int stepsSecMax = (int) (ac->maxFeed / 60.0) * ac->stepsInch;
- int stepsSecMin = (int) (ac->minFeed / 60.0) * ac->stepsInch;
+ int stepsSecMax = (int) ((ac->maxFeed / 60.0) * ac->stepsInch);
+ int stepsSecMin = (int) ((ac->minFeed / 60.0) * ac->stepsInch);
  if (DBG_SETUP)
   printf("stepsSecMin %d stepsSecMax %d\n", stepsSecMin, stepsSecMax);
 
