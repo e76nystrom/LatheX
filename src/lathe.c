@@ -477,7 +477,7 @@ void xTaperSetup()
 
 void accelCalc(P_ACCEL ac)
 {
- int stepsSecMax = (int) (ac->maxFeed / 60.0) * ac->stepsInch;
+ int stepsSecMax = (int) ((ac->maxFeed / 60.0) * ac->stepsInch);
  ac->clockFreq = stepsSecMax * freqMult;
  ac->clocksPerInch = ac->clockFreq;
  ac->freqDivider = (xFrequency / ac->clockFreq) - 1;
