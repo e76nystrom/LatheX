@@ -236,12 +236,25 @@ T_PARM remparm[] =
  PARM(threadAngle),             /* 0x8f thread angle */
  PARM(indexPreScaler),          /* 0x90 index prescaler */
  PARM(indexPeriod),             /* 0x91 index period */
- PARM(encPreScaler),            /* 0x92 encoder prescaler */
- PARM(encTimer),                /* 0x93 encoder timer counts */
- PARM(encMax),                  /* 0x94 encoder counts per revolution */
+
+// encoder counts per revolution
+
+ PARM(encMax),                  /* 0x92 encoder counts per revolution */
+
+// test encoder setup variables
+
+ PARM(encPreScaler),            /* 0x93 encoder prescaler */
+ PARM(encTimer),                /* 0x94 encoder timer counts */
  PARM(encRunCount),             /* 0x95 encoder run count */
+
+// test encoder status variables
+
  PARM(encRun),                  /* 0x96 encoder running flag */
  PARM(encCounter),              /* 0x97 encoder count in rev */
  PARM(encRevCounter),           /* 0x98 encoder revolution counter */
- PARM(maxParm),                 /* 0x99 maximum parameter */
+
+// measured spindle speed
+
+ PARM(rpm),                     /* 0x99 current rpm */
+ PARM(maxParm),                 /* 0x9a maximum parameter */
 };
