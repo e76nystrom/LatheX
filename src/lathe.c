@@ -481,6 +481,8 @@ void accelCalc(P_ACCEL ac)
  ac->clockFreq = stepsSecMax * freqMult;
  ac->clocksPerInch = ac->clockFreq;
  ac->freqDivider = (xFrequency / ac->clockFreq) - 1;
+ if (DBG_P)
+  printf("freqGenMax %d freqDivider %d\n", ac->clockFreq, ac->freqDivider);
 
  accelSetup(ac);
 }
