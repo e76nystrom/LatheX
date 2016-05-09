@@ -236,12 +236,25 @@ enum PARM
  THREAD_ANGLE,                  /* 0x8f thread angle */
  INDEX_PRE_SCALER,              /* 0x90 index prescaler */
  INDEX_PERIOD,                  /* 0x91 index period */
- ENC_PRE_SCALER,                /* 0x92 encoder prescaler */
- ENC_TIMER,                     /* 0x93 encoder timer counts */
- ENC_MAX,                       /* 0x94 encoder counts per revolution */
+
+// encoder counts per revolution
+
+ ENC_MAX,                       /* 0x92 encoder counts per revolution */
+
+// test encoder setup variables
+
+ ENC_PRE_SCALER,                /* 0x93 encoder prescaler */
+ ENC_TIMER,                     /* 0x94 encoder timer counts */
  ENC_RUN_COUNT,                 /* 0x95 encoder run count */
+
+// test encoder status variables
+
  ENC_RUN,                       /* 0x96 encoder running flag */
  ENC_COUNTER,                   /* 0x97 encoder count in rev */
  ENC_REV_COUNTER,               /* 0x98 encoder revolution counter */
- MAX_PARM,                      /* 0x99 maximum parameter */
+
+// measured spindle speed
+
+ RPM,                           /* 0x99 current rpm */
+ MAX_PARM,                      /* 0x9a maximum parameter */
 };
