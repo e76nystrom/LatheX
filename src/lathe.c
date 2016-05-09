@@ -11,7 +11,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 //#if !defined(WIN32)
-#include <inttypes.h>
+//#include <inttypes.h>
 //#endif
 #include "remvar.h"
 #include "runctl.h"
