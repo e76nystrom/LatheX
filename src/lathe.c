@@ -520,7 +520,6 @@ void turnAccel(P_ACCEL ac, float accel)
  ac->encPerSec = (int) (rpm / 60.0) * encMax;
  if (feedRate < ac->minFeed)	/* if below minimum */
  {
-  ac->accel = 0.0;
   ac->intAccel = 0;
   ac->accelClocks = 0;
  }
