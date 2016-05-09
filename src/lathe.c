@@ -421,8 +421,8 @@ void xMoveSetup()
 {
  P_ACCEL ac = &xMA;
 
- ac->minSpeed = xMoveMin;
- ac->maxSpeed = xMoveMax;
+ ac->minFeed = xMoveMin;
+ ac->maxFeed = xMoveMax;
  ac->accel = xAxis.accel;
  ac->stepsInch = xAxis.stepsInch;
 
@@ -432,8 +432,8 @@ void xMoveSetup()
 
  ac = &xJA;
 
- ac->minSpeed = xJogMin;
- ac->maxSpeed = xJogMax;
+ ac->minFeed = xJogMin;
+ ac->maxFeed = xJogMax;
  ac->accel = xAxis.accel;
  ac->stepsInch = xAxis.stepsInch;
 
