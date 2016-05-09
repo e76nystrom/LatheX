@@ -188,6 +188,8 @@ int tmp(int x)
 
 void stopCmd()
 {
+ if (DBG_SETUP)
+  printf("\nstop\n");
  stopMove();
  spindleStop();
  zStop();
@@ -200,42 +202,60 @@ void stopCmd()
 
 void clearCmd()
 {
+ if (DBG_SETUP)
+  printf("\nclear\n");
  allStop();
  clearAll();
 }
 
 void pauseCmd()
 {
+ if (DBG_SETUP)
+  printf("\npause\n");
  cmdPause = 1;
 }
 
 void resumeCmd()
 {
+ if (DBG_SETUP)
+  printf("\nresume\n");
  cmdPause = 0;
 }
 
 void allStop()
 {
+ if (DBG_SETUP)
+  printf("\nall stop\n");
 }
 
 void clearAll()
 {
+ if (DBG_SETUP)
+  printf("\nall clear\n");
 }
 
 void setup()
 {
+ if (DBG_SETUP)
+  printf("\nsetup\n");
 }
 
 void spindleStart()
 {
+ if (DBG_SETUP)
+  printf("\nspindle start\n");
 }
 
 void spindleStop()
 {
+ if (DBG_SETUP)
+  printf("\nspindle stop\n");
 }
 
 void spindleSetup()
 {
+ if (DBG_SETUP)
+  printf("\nspindle setup\n");
 }
 
 void zMoveCmd()
