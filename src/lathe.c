@@ -48,7 +48,7 @@ typedef struct
 
  /* calculated values */
  int encPerSec;
- int endPerInch;
+ int encPerInch;
  float accelTime;
  int accelSteps;
 
@@ -514,10 +514,10 @@ void turnCalc(P_ACCEL ac)
 
 void turnAccel(P_ACCEL ac, float accel)
 {
- float feedRate = RPM * ac->pitch;
+ float feedRate = rpm * ac->pitch;
  ac->maxFeed = feedRate;
- ac->encPerInch = (int) (encMax * pitch);
- ac->encPerSec = (int) (RPM / 60.0) * encMax;
+ ac->encPerInch = (int) (encMax * ac->pitch);
+ ac->encPerSec = (int) (rpm / 60.0) * encMax;
  if (feedRate < ac->minFeed)	/* if below minimum */
  {
   ac->accel = 0.0;
