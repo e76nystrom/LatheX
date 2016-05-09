@@ -578,7 +578,7 @@ void accelSetup(P_ACCEL ac, int dxBase, int dyMaxBase, int dyMinBase)
    continue;
   ac->intIncPerClock = intIncPerClock;
   int dyDeltaC = intIncPerClock * accelClocks;
-  err = (int) (abs(dyDelta - dyDeltaC)) >> scale;
+  int err = (int) (abs(dyDelta - dyDeltaC)) >> scale;
   ac->dyIni = ac->dyMax - intIncPerClock * accelClocks;
   int bits = bitSize(ac->dx) + 1;
   if (DBG_SETUP)
