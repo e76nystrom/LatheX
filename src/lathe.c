@@ -10,7 +10,9 @@
 #include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#if not defined(WIN32)
 #include <inttypes.h>
+#endif
 #include "remvar.h"
 #include "runctl.h"
 #include "zcontrol.h"
@@ -627,7 +629,8 @@ void accelSetup(P_ACCEL ac)
    printf("accelClocks %d totalSum %lld totalInc %lld accelSteps %d\n", 
 	  ac->accelClocks, totalSum, totalInc, ac->accelSteps);
 #else
-   printf("accelClocks %d totalSum %" PRId64 " totalInc %" PRId64 " accelSteps %d\n", 
+   printf("accelClocks %d "
+	  "totalSum %" PRId64 " totalInc %" PRId64 " accelSteps %d\n", 
 	  ac->accelClocks, totalSum, totalInc, ac->accelSteps);
 #endif
  }
