@@ -257,6 +257,9 @@
 
 // measured spindle speed
 
- EXT int32_t xfrequency;        /* 0x9a xilinx clock frequency */
- EXT int16_t freqmult;          /* 0x9b frequency multiplier */
+ EXT int32_t xFrequency;        /* 0x9a xilinx clock frequency */
+ EXT int16_t freqMult;          /* 0x9b frequency multiplier */
+
+// max parameter number
+
  EXT int16_t maxParm;           /* 0x9c maximum parameter */
