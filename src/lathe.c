@@ -574,7 +574,7 @@ void accelSetup(P_ACCEL ac)
   int dyMin = dyMinBase << scale;
   int dyDelta = ac->dyMax - dyMin;
   if (DBG_SETUP)
-   printf("scale %d dx %d dyMin %d dyMax %d dyDelta %d",
+   printf("\nscale %d dx %d dyMin %d dyMax %d dyDelta %d\n",
 	  scale, ac->dx, dyMin, ac->dyMax, dyDelta);
 
   float incPerClock = (float) dyDelta / accelClocks;
@@ -588,7 +588,7 @@ void accelSetup(P_ACCEL ac)
   int bits = bitSize(ac->dx) + 1;
   if (DBG_SETUP)
    printf("dyIni %d dyMax %d dyDelta %d incPerClock %6.2f "
-	  "err %d bits %d",
+	  "err %d bits %d\n",
 	  ac->dyIni, ac->dyMax, dyDelta, incPerClock, err, bits);
   if ((bits >= 30)
   ||  (err == 0))
@@ -600,7 +600,7 @@ void accelSetup(P_ACCEL ac)
  ac->incr2 = ac->sum - ac->dx;
  ac->intAccel = 2 * intIncPerClock;
  if (DBG_SETUP)
-  printf("incr1 %d incr2 %d sum %d\n", ac->incr1, ac->incr2, ac->sum);
+  printf("\nincr1 %d incr2 %d sum %d\n", ac->incr1, ac->incr2, ac->sum);
  
  if (intIncPerClock != 0)
  {
