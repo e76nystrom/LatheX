@@ -142,7 +142,6 @@ void accelCalc(P_ACCEL accel);
 void turnPitch(P_ACCEL ac, float pitch);
 void threadTPI(P_ACCEL ac, float tpi);
 void threadMetric(P_ACCEL ac, float pitch);
-void turnCalc(P_ACCEL ac);
 void turnAccel(P_ACCEL ac, float accel);
 void accelSetup(P_ACCEL ac, int clockRate);
 
@@ -484,7 +483,6 @@ void turnPitch(P_ACCEL ac, float pitch)
  if (DBG_P)
   printf("\nturnPitch\n");
  ac->pitch = pitch;
- turnCalc(ac);
 }
 
 void threadTPI(P_ACCEL ac, float tpi)
@@ -492,7 +490,6 @@ void threadTPI(P_ACCEL ac, float tpi)
  if (DBG_P)
   printf("\nturnTPI\n");
  ac->pitch = (float) (1.0 / tpi);
- turnCalc(ac);
 }
 
 void threadMetric(P_ACCEL ac, float pitch)
@@ -500,19 +497,6 @@ void threadMetric(P_ACCEL ac, float pitch)
  if (DBG_P)
   printf("\nturnMetric\n");
  ac->pitch = (float) (pitch / 25.4);
- turnCalc(ac);
-}
-
-void turnCalc(P_ACCEL ac)
-{
- int dx = (int) (encMax / ac->pitch);
- int dy = ac->stepsInch;
- ac->incr1 = 2 * dy;
- ac->incr2 = ac->incr1 - 2 * dx;
- ac->sum = ac->incr1 - dx;
- if (DBG_P)
-  printf("incr1 %d incr2 %d d %d\n",
-	 ac->incr1, ac->incr2, ac->sum);
 }
 
 /* calculate acceleration for turn */
@@ -607,6 +591,8 @@ void accelSetup(P_ACCEL ac, int clockRate)
  ac->sum = ac->incr1 - ac->dx;
  ac->incr2 = ac->sum - ac->dx;
  ac->intAccel = 2 * intIncPerClock;
+ if (DBG_SETUP)
+  printf("incr1 %d incr2 %d sum %d\n", ac->incr1, ac->incr2, ac->sum);
  
  if (intIncPerClock != 0)
  {
