@@ -528,7 +528,7 @@ void turnAccel(P_ACCEL ac, float accel)
  {
   ac->accelTime = (float) ((feedRate - ac->minFeed) / (60 * ac->accel));
   ac->accelClocks = (int) (ac->encPerSec * ac->accelTime);
-  int stepsPerRev = (int) ac->stepsInch * ac->pitch;
+  int stepsPerRev = (int) (ac->stepsInch * ac->pitch);
   int stepsSecMax = (int) (feedRate / 60.0) * ac->stepsInch;
   int stepsSecMin = (int) (ac->minFeed / 60.0) * ac->stepsInch;
   float stepsSec2 = (float) (ac->accel * ac->stepsInch);
@@ -537,7 +537,7 @@ void turnAccel(P_ACCEL ac, float accel)
   ac->accelSteps = accelMinStep - accelMaxStep;
   int dxBase = ac->encPerInch;
   int dyMaxBase = ac->stepsInch;
-  int dyMinBase = (int) (dyMaxBase * ac->minFeed) / feedRate;
+  int dyMinBase = (int) ((dyMaxBase * ac->minFeed) / feedRate);
   accelSetup(ac, dxBase, dyMaxBase, dyMinBase);
  }
 }
