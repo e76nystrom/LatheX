@@ -257,7 +257,7 @@ enum PARM
 
  RPM,                           /* 0x99 current rpm */
 
-// measured spindle speed
+// xilinx frequency variables
 
  X_FREQUENCY,                   /* 0x9a xilinx clock frequency */
  FREQ_MULT,                     /* 0x9b frequency multiplier */
