@@ -256,5 +256,10 @@ T_PARM remparm[] =
 // measured spindle speed
 
  PARM(rpm),                     /* 0x99 current rpm */
- PARM(maxParm),                 /* 0x9a maximum parameter */
+
+// measured spindle speed
+
+ PARM(xfrequency),              /* 0x9a xilinx clock frequency */
+ PARM(freqmult),                /* 0x9b frequency multiplier */
+ PARM(maxParm),                 /* 0x9c maximum parameter */
 };
