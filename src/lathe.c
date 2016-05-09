@@ -529,12 +529,11 @@ void turnAccel(P_ACCEL ac, float accel)
 int bitSize(int val)
 {
  int bits = 1;
- int mask = 1;
  while (bits < 32)
  {
-  if ((mask & val) == 0)
+  val >>= 1;
+  if (val == 0)
    break;
-  mask <<= 1;
   bits += 1;
  }
  return(bits);
