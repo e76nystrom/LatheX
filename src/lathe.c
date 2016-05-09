@@ -634,9 +634,10 @@ void accelSetup(P_ACCEL ac)
   {
    char buf[32];
    printf("accelClocks %d ", ac->accelClocks);
-   printf("totalSum %s ", i64toa(totalSum, buf, sizeof(buf));
-   printf("totalInc %s ", i64toa(totalIum, buf, sizeof(buf));
+   printf("totalSum %s ", i64toa(totalSum, buf, sizeof(buf)));
+   printf("totalInc %s ", i64toa(totalInc, buf, sizeof(buf)));
    printf("accelSteps %d\n",  ac->accelSteps);
+  }
 #endif
  }
  else
