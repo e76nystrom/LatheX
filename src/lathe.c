@@ -48,8 +48,8 @@ typedef struct
  float taperInch;		/* taper per inch */
 
  /* calculated values */
- int encPerSec;
- int encPerInch;
+ int clockFreq;
+ int clocksPerInch;
  float accelTime;
  int accelSteps;
 
@@ -148,7 +148,7 @@ void turnPitch(P_ACCEL ac, float pitch);
 void threadTPI(P_ACCEL ac, float tpi);
 void threadMetric(P_ACCEL ac, float pitch);
 void turnAccel(P_ACCEL ac, float accel);
-void accelSetup(P_ACCEL ac, int clockRate);
+void accelSetup(P_ACCEL ac);
 
 void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper);
 
@@ -478,10 +478,11 @@ void xTaperSetup()
 void accelCalc(P_ACCEL ac)
 {
  int stepsSecMax = (int) (ac->maxFeed / 60.0) * ac->stepsInch;
- int freqGenMax = stepsSecMax * freqMult;
- ac->freqDivider = (xFrequency / freqGenMax) - 1;
+ ac->clockFreq = stepsSecMax * freqMult;
+ ac->clocksPerInch = ac->clockFreq;
+ ac->freqDivider = (xFrequency / ac->clockFreq) - 1;
 
- accelSetup(ac, freqGenMax);
+ accelSetup(ac);
 }
 
 void turnPitch(P_ACCEL ac, float pitch)
@@ -510,8 +511,8 @@ void threadMetric(P_ACCEL ac, float pitch)
 void turnAccel(P_ACCEL ac, float accel)
 {
  ac->maxFeed = rpm * ac->pitch;
- ac->encPerInch = (int) (encMax * ac->pitch);
- ac->encPerSec = (int) (rpm / 60.0) * encMax;
+ ac->clocksPerInch = (int) (encMax * ac->pitch);
+ ac->clockFreq = (int) (rpm / 60.0) * encMax;
  if (ac->maxFeed < ac->minFeed)	/* if below minimum */
  {
   ac->intAccel = 0;
@@ -519,7 +520,7 @@ void turnAccel(P_ACCEL ac, float accel)
  }
  else
  {
-  accelSetup(ac, ac->encPerSec);
+  accelSetup(ac)
  }
 }
 
@@ -559,7 +560,7 @@ void accelSetup(P_ACCEL ac, int clockRate)
   printf("accelSteps %d accelMinStep %d accelMaxStep %d\n", 
 	 ac->accelSteps, accelMinStep, accelMaxStep);
 
- int dxBase = ac->encPerInch;
+ int dxBase = ac->clocksPerInch
  int dyMaxBase = ac->stepsInch;
  int dyMinBase = (int) ((dyMaxBase * ac->minFeed) / ac->maxFeed);
 
