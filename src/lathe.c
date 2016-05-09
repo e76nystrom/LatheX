@@ -562,6 +562,7 @@ void accelSetup(P_ACCEL ac, int dxBase, int dyMaxBase, int dyMinBase)
 {
  int scale;
  int accelClocks = ac->accelClocks;
+ int intIncPerClock = 0;
  for (scale = 0; scale < MAX_SCALE; scale++)
  {
   ac->dx = dxBase << scale;
@@ -573,7 +574,7 @@ void accelSetup(P_ACCEL ac, int dxBase, int dyMaxBase, int dyMinBase)
 	  scale, ac->dx, dyMin, ac->dyMax, dyDelta);
 
   float incPerClock = (float) dyDelta / accelClocks;
-  int intIncPerClock = (int) (incPerClock + 0.5);
+  intIncPerClock = (int) (incPerClock + 0.5);
   if (intIncPerClock == 0)
    continue;
   ac->intIncPerClock = intIncPerClock;
