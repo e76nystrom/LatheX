@@ -504,10 +504,10 @@ void turnCalc(P_ACCEL ac)
  int dy = ac->stepsInch;
  ac->incr1 = 2 * dy;
  ac->incr2 = ac->incr1 - 2 * dx;
- ac->d = ac->incr1 - dx;
+ ac->sum = ac->incr1 - dx;
  if (DBG_P)
   printf("incr1 %d incr2 %d d %d\n",
-	 ac->incr1, ac->incr2, ac->d);
+	 ac->incr1, ac->incr2, ac->sum);
 }
 
 /* calculate acceleration for turn */
