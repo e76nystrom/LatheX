@@ -156,6 +156,8 @@ void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper);
 void zTaperInit(P_ACCEL ac, char dir);
 void xTaperInit(P_ACCEL ac, char dir);
 
+char *i64toa(int64_t val, char *buf, int buflen);
+
 int tmp(int x);
 
 EXT char zflag;
@@ -660,6 +662,34 @@ void xTaperInit(P_ACCEL ac, char dir)
 {
  printf("xtaperInit\n");
  fflush(stdout);
+}
+
+char *i64toa(int64_t val, char *buf, int buflen)
+{
+ char minus = false;
+ if (val < 0)
+ {
+  minus = true;
+  val = -val;
+ }
+ p = buf + buflen;
+ while (val != 0)
+ {
+  --p;
+  --buflen;
+  if (buflen <= 0)
+   break;
+  *p = (val % 10) + '0';
+  val /= 10;
+ }
+ if (minus)
+ {
+  --p;
+  --buflen;
+  if (buflen > 0)
+   *p = '-';
+ }
+ return(p);
 }
 
 #endif
