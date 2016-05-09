@@ -589,6 +589,10 @@ void accelSetup(P_ACCEL ac)
   int dyDeltaC = intIncPerClock * accelClocks;
   int err = (int) (abs(dyDelta - dyDeltaC)) >> scale;
   ac->dyIni = ac->dyMax - intIncPerClock * accelClocks;
+  if (DBG_SETUP)
+   printf("dyIni %d dyMax %d intIncPerClock %d accelClocks %d\n",
+	  ac->dyIni, ac->dyMax, intIncPerClock, accelClocks);
+
   int bits = bitSize(ac->dx) + 1;
   if (DBG_SETUP)
    printf("dyIni %d dyMax %d dyDelta %d incPerClock %6.2f "
