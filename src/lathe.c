@@ -38,8 +38,8 @@ typedef struct
 typedef struct
 {
  /* initial parameters */
- float minSpeed;		/* minimum speed */
- float maxSpeed;		/* maximum speed */
+ float minFeed;			/* minimum feed rate */
+ float maxFeed;			/* maximum feed rate */
  float accel;			/* acceleration rate */
  float pitch;			/* pitch for threading or feed */
  int stepsInch;			/* axis steps per inch */
@@ -143,7 +143,7 @@ void threadTPI(P_ACCEL ac, float tpi);
 void threadMetric(P_ACCEL ac, float pitch);
 void turnCalc(P_ACCEL ac);
 void turnAccel(P_ACCEL ac, float accel);
-void accelSetup(P_accel ac, int dxBase, int dyMaxBase, int dyMinBase);
+void accelSetup(P_ACCEL ac, int dxBase, int dyMaxBase, int dyMinBase);
 
 void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper);
 
@@ -558,7 +558,7 @@ int bitSize(val)
  return(bits);
 }
 
-void accelSetup(P_accel ac, int dxBase, int dyMaxBase, int dyMinBase)
+void accelSetup(P_ACCEL ac, int dxBase, int dyMaxBase, int dyMinBase)
 {
  int scale;
  int accelClocks = ac->accelClocks;
@@ -568,6 +568,10 @@ void accelSetup(P_accel ac, int dxBase, int dyMaxBase, int dyMinBase)
   ac->dyMax = dyMaxBase << scale;
   int dyMin = dyMinBase << scale;
   int dyDelta = ac->dyMax - dyMin;
+  if (DBG_SETUP)
+   printf("scale %d dx %d dyMin %d dyMax %d dyDelta %d",
+	  scale, accel.dx, dyMin, accel.dyMax, dyDelta);
+
   float incPerClock = (float) dyDelta / accelClocks;
   int intIncPerClock = (int) (incPerClock + 0.5);
   if (intIncPerClock == 0)
@@ -577,6 +581,10 @@ void accelSetup(P_accel ac, int dxBase, int dyMaxBase, int dyMinBase)
   err = (int) (abs(dyDelta - dyDeltaC)) >> scale;
   ac->dyIni = ac->dyMax - intIncPerClock * accelClocks;
   int bits = bitSize(ac->dx) + 1;
+  if (DEBUG_SETUP)
+   printf("dyIni %d dyMax %d dyDelta %d incPerClock %6.2f "
+	  "err %d bits %d" %
+	  ac->dyIni, ac->dyMax, dyDelta, incPerClock, err, bits);
   if ((bits >= 30)
   ||  (err == 0))
    break;
@@ -594,8 +602,8 @@ void accelSetup(P_accel ac, int dxBase, int dyMaxBase, int dyMinBase)
 		      ac->intAccel) / 2;
   ac->accelSteps = (int) ((totalSum + totalInc) / (2 * ac->dx));
   if (DBG_SETUP)
-   printf ("accelClocks %d totalSum %lld totalInc %lld accelSteps %d\n", 
-	   ac->accelClocks, totalSum, totalInc, ac->accelSteps))
+   printf("accelClocks %d totalSum %lld totalInc %lld accelSteps %d\n", 
+	  ac->accelClocks, totalSum, totalInc, ac->accelSteps);
  }
  else
  {
