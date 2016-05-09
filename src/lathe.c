@@ -10,9 +10,9 @@
 #include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#if !defined(WIN32)
+//#if !defined(WIN32)
 #include <inttypes.h>
-#endif
+//#endif
 #include "remvar.h"
 #include "runctl.h"
 #include "zcontrol.h"
@@ -625,14 +625,14 @@ void accelSetup(P_ACCEL ac)
 		      ac->intAccel) / 2;
   ac->accelSteps = (int) ((totalSum + totalInc) / (2 * ac->dx));
   if (DBG_SETUP)
-#ifdef WIN32
+//#ifdef WIN32
    printf("accelClocks %d totalSum %lld totalInc %lld accelSteps %d\n", 
 	  ac->accelClocks, totalSum, totalInc, ac->accelSteps);
-#else
-   printf("accelClocks %d "
-	  "totalSum %" PRId64 " totalInc %" PRId64 " accelSteps %d\n", 
-	  ac->accelClocks, totalSum, totalInc, ac->accelSteps);
-#endif
+//#else
+//   printf("accelClocks %d "
+//	  "totalSum %" PRId64 " totalInc %" PRId64 " accelSteps %d\n", 
+//	  ac->accelClocks, totalSum, totalInc, ac->accelSteps);
+//#endif
  }
  else
  {
