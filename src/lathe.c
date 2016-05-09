@@ -488,7 +488,7 @@ void threadTPI(P_ACCEL ac, float tpi)
 {
  if (DBG_P)
   printf("\nturnTPI\n");
- ac->pitch = 1.0 / tpi;
+ ac->pitch = (float) (1.0 / tpi);
  turnCalc(ac);
 }
 
@@ -496,14 +496,14 @@ void threadMetric(P_ACCEL ac, float pitch)
 {
  if (DBG_P)
   printf("\nturnMetric\n");
- ac->pitch = pitch / 25.4;
+ ac->pitch = (float) (pitch / 25.4);
  turnCalc(ac);
 }
 
 void turnCalc(P_ACCEL ac)
 {
- int dx = (int) (encoder / ac.pitch);
- int dy = ac->stespInch;
+ int dx = (int) (encMax / ac->pitch);
+ int dy = ac->stepsInch;
  ac->incr1 = 2 * dy;
  ac->incr2 = ac->incr1 - 2 * dx;
  ac->d = ac->incr1 - dx;
