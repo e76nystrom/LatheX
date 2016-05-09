@@ -47,28 +47,25 @@ typedef struct
  float taperInch;		/* taper per inch */
 
  /* calculated values */
- int stepsSec;			/* steps per second */
- float stepsSec2;		/* acceleration in steps per sec^2 */
- float time;			/* acceleration time */
- int steps;			/* acceleration steps */
- int clocks;			/* acceleration clocks */
- float dist;			/* acceleration distance */
- int remainder;			/* remainder of spindle cyc div z cyc */
- int initialCount;		/* clocks for first accel step */
- int finalCount;		/* clocks for last accel step */
- int isrCount;			/* clocks for isr initial + final*/
- int spindleSteps;		/* spindle steps during acceleration */
- int spindleRem;		/* spindle steps remainder */
+ int encPerSec;
+ int endPerInch;
+ float accelTime;
+ int accelClocks;
+ int accelSteps;
 
- /* control variables for isr */
- float cFactor;			/* factor to get clocks to next step */
- int clocksStep;		/* clocks per step after acceleration */
- int initialStep;		/* initial accel step number */
- int finalStep;			/* final accel step number */
- int d;				/* sum initial value */
+ /* intermediate value for hardware setup */
+ int scale;
+ int dx;
+ int dyIni;
+ int dyMax;
+ int intIncPerClock;
+
+ /* values for hardware setup */
+ int sum;			/* sum initial value */
  int incr1;			/* incr 1 value */
  int incr2;			/* incr 2 value */
- int stepsCycle;		/* steps in a cycle */
+ int intAccel;			/* acceleration adder */
+ int accelClocks;		/* acceleration clocks */
 } T_ACCEL, *P_ACCEL;
 
 EXT T_AXIS zAxis;		/* z axis info */
@@ -140,13 +137,15 @@ void xMoveSetup();
 void xSynSetup();
 void xTaperSetup();
 
+void accelCalc(P_ACCEL accel);
+
 void turnPitch(P_ACCEL ac, float pitch);
 void threadTPI(P_ACCEL ac, float tpi);
 void threadMetric(P_ACCEL ac, float pitch);
 void turnCalc(P_ACCEL ac);
 void turnAccel(P_ACCEL ac, float accel);
+void accelSetup(P_accel ac, int dxBase, int dyMaxBase, int dyMinBase);
 
-void accelCalc(P_ACCEL accel);
 void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper);
 
 void zTaperInit(P_ACCEL ac, char dir);
@@ -332,6 +331,7 @@ void zSynSetup()
   printf("\nz sync accel\n");
  P_ACCEL ac = &zTA;
  ac->stepsInch = zAxis.stepsInch;
+ ac->minFeed = zMA.minFeed;	/* set minimum */
  switch (feedType)
  {
  case FEED_PITCH:
@@ -420,8 +420,6 @@ void xSetup()
 
 void xMoveSetup()
 {
- xTA.stepsInch = xAxis.stepsInch;
-
  P_ACCEL ac = &xMA;
 
  ac->minSpeed = xMoveMin;
@@ -451,6 +449,7 @@ void xSynSetup()
   printf("\nx sync accel\n");
  P_ACCEL ac = &xTA;
  ac->stepsInch = xAxis.stepsInch;
+ ac->minFeed = xMA.minFeed;	/* set minimum */
  switch (feedType)
  {
  case FEED_PITCH:
@@ -516,6 +515,76 @@ void turnCalc(P_ACCEL ac)
 
 void turnAccel(P_ACCEL ac, float accel)
 {
+ float feedRate = RPM * ac->pitch;
+ ac->maxFeed = feedRate;
+ ac->encPerInch = (int) (encMax * pitch);
+ ac->encPerSec = (int) (RPM / 60.0) * encMax;
+ if (feedRate < ac->minFeed)	/* if below minimum */
+ {
+  ac->accel = 0.0;
+  ac->intAccel = 0;
+  ac->accelClocks = 0;
+ }
+ else
+ {
+  ac->accelTime = (float) ((feedRate - ac->minFeed) / (60 * ac->accel));
+  ac->accelClocks = (int) (ac->encPerSec * ac->accelTime);
+  int stepsPerRev = (int) ac->stepsInch * ac->pitch;
+  int stepsSecMax = (int) (feedRate / 60.0) * ac->stepsInch;
+  int stepsSecMin = (int) (ac->minFeed / 60.0) * ac->stepsInch;
+  float stepsSec2 = (float) (ac->accel * ac->stepsInch);
+  int accelMinStep = (int) ((stepsSecMin / stepsSec2) * stepsSecMin) / 2.0;
+  int accelMaxStep = (int) ((stepsSecMax / stepsSec2) * stepsSecMax) / 2.0;
+  ac->accelSteps = accelMinStep - accelMaxStep;
+  int dxBase = ac->encPerInch;
+  int dyMaxBase = ac->stepsInch;
+  int dyMinBase = (int) (dyMaxBase * ac->minFeed) / feedRate;
+  accelSetup(ac, dxBase, dyMaxBase, dyMinbase);
+ }
+}
+
+#define MAX_SCALE 12
+
+int bitSize(val)
+{
+ int bits = 1;
+ int mask = 1;
+ while (bits < 32)
+ {
+  if ((mask & val) == 0)
+   break;
+  mask <<= 1;
+  bits += 1;
+ }
+ return(bits);
+}
+
+void accelSetup(P_accel ac, int dxBase, int dyMaxBase, int dyMinBase)
+{
+ int scale;
+ for (scale = 0; scale < MAX_SCALE; scale++)
+ {
+  ac->dx = dxBase << scale;
+  ac->dyMax = dyMaxBase << scale;
+  int dyMin = dyMinBase << scale;
+  int dyDelta = ac->dyMax - dyMin;
+  float incPerClock = (float) dyDelta / ac->accelClocks;
+  int intIncPerClock = (int) (incPerClock + 0.5);
+  if (intIncPerClock == 0)
+   continue;
+  ac->intIncPerClock = intIncPerClock;
+  int dyDeltaC = intIncPerClock * ac->accelClocks;
+  err = (int) (abs(dyDelta - dyDeltaC)) >> scale;
+  ac->dyIni = ac->dyMax - intIncPerClock * ac->accelClocks;
+  int bits = bitSize(ac->dx) + 1;
+  if ((bits >= 30)
+  ||  (err == 0))
+   break;
+ }
+ ac->scale = scale;
+ ac->incr1 = 2 * ac->dyIni;
+ ac->sum = ac->incr1 - ac->dx
+ ac->incr2 = ac->sum - ac->dx;
 }
 
 void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper)
