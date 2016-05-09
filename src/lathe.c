@@ -591,7 +591,7 @@ void accelSetup(P_ACCEL ac, int dxBase, int dyMaxBase, int dyMinBase)
  }
  ac->scale = scale;
  ac->incr1 = 2 * ac->dyIni;
- ac->sum = ac->incr1 - ac->dx
+ ac->sum = ac->incr1 - ac->dx;
  ac->incr2 = ac->sum - ac->dx;
  ac->intAccel = 2 * intIncPerClock;
  
