@@ -624,7 +624,7 @@ void accelSetup(P_ACCEL ac)
   int64_t totalInc = ((int64_t) accelClocks * (accelClocks - 1) * 
 		      ac->intAccel) / 2;
   ac->accelSteps = (int) ((totalSum + totalInc) / (2 * ac->dx));
-#ifdef 0
+#ifdef xxx
   if (DBG_SETUP)
    printf("accelClocks %d "
 	  "totalSum %" PRId64 " totalInc %" PRId64 " accelSteps %d\n", 
