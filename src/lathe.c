@@ -472,6 +472,7 @@ void xTaperSetup()
 
 void accelCalc(P_ACCEL accel)
 {
+ int stepsSecMax = (int) (ac->maxFeed / 60.0) * ac->stepsInch;
  int freqGenMax = stepsSecMax * freqMult;
  ac->freqDivider = (xFrequency / freqGenMax) - 1;
 
@@ -536,7 +537,7 @@ int bitSize(val)
 void accelSetup(P_ACCEL ac, int clockRate)
 {
  if (DBG_SETUP)
-  printf("minFeed %6.2f feedRate %6.2f ipm\n", self.minFeed, self.feedRate);
+  printf("minFeed %6.2f feedRate %6.2f ipm\n", ac->minFeed, ac->feedRate);
  int stepsSecMax = (int) (ac->maxFeed / 60.0) * ac->stepsInch;
  int stepsSecMin = (int) (ac->minFeed / 60.0) * ac->stepsInch;
  if (DBG_SETUP)
