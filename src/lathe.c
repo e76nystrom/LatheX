@@ -65,6 +65,7 @@ typedef struct
  int incr2;			/* incr 2 value */
  int intAccel;			/* acceleration adder */
  int accelClocks;		/* acceleration clocks */
+ int freqDivider;		/* frequency divider for move */
 } T_ACCEL, *P_ACCEL;
 
 EXT T_AXIS zAxis;		/* z axis info */
@@ -143,7 +144,7 @@ void threadTPI(P_ACCEL ac, float tpi);
 void threadMetric(P_ACCEL ac, float pitch);
 void turnCalc(P_ACCEL ac);
 void turnAccel(P_ACCEL ac, float accel);
-void accelSetup(P_ACCEL ac, int dxBase, int dyMaxBase, int dyMinBase);
+void accelSetup(P_ACCEL ac, int clockRate);
 
 void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper);
 
@@ -472,6 +473,10 @@ void xTaperSetup()
 
 void accelCalc(P_ACCEL accel)
 {
+ int freqGenMax = stepsSecMax * freqMult;
+ ac->freqDivider = (xFrequency / freqGenMax) - 1;
+
+ accelSetup(ac, freqGenMax);
 }
 
 void turnPitch(P_ACCEL ac, float pitch)
@@ -514,30 +519,17 @@ void turnCalc(P_ACCEL ac)
 
 void turnAccel(P_ACCEL ac, float accel)
 {
- float feedRate = rpm * ac->pitch;
- ac->maxFeed = feedRate;
+ ac->maxFeed = rpm * ac->pitch;
  ac->encPerInch = (int) (encMax * ac->pitch);
  ac->encPerSec = (int) (rpm / 60.0) * encMax;
- if (feedRate < ac->minFeed)	/* if below minimum */
+ if (ac->maxFeed < ac->minFeed)	/* if below minimum */
  {
   ac->intAccel = 0;
   ac->accelClocks = 0;
  }
  else
  {
-  ac->accelTime = (float) ((feedRate - ac->minFeed) / (60 * ac->accel));
-  ac->accelClocks = (int) (ac->encPerSec * ac->accelTime);
-  int stepsPerRev = (int) (ac->stepsInch * ac->pitch);
-  int stepsSecMax = (int) (feedRate / 60.0) * ac->stepsInch;
-  int stepsSecMin = (int) (ac->minFeed / 60.0) * ac->stepsInch;
-  float stepsSec2 = (float) (ac->accel * ac->stepsInch);
-  int accelMinStep = (int) (((stepsSecMin / stepsSec2) * stepsSecMin) / 2.0);
-  int accelMaxStep = (int) (((stepsSecMax / stepsSec2) * stepsSecMax) / 2.0);
-  ac->accelSteps = accelMinStep - accelMaxStep;
-  int dxBase = ac->encPerInch;
-  int dyMaxBase = ac->stepsInch;
-  int dyMinBase = (int) ((dyMaxBase * ac->minFeed) / feedRate);
-  accelSetup(ac, dxBase, dyMaxBase, dyMinBase);
+  accelSetup(ac, ac->encPerSec)
  }
 }
 
@@ -557,8 +549,29 @@ int bitSize(val)
  return(bits);
 }
 
-void accelSetup(P_ACCEL ac, int dxBase, int dyMaxBase, int dyMinBase)
+void accelSetup(P_ACCEL ac, int clockRate)
 {
+ if (DBG_SETUP)
+  printf("minFeed %6.2f feedRate %6.2f ipm\n", self.minFeed, self.feedRate);
+ int stepsSecMax = (int) (ac->maxFeed / 60.0) * ac->stepsInch;
+ int stepsSecMin = (int) (ac->minFeed / 60.0) * ac->stepsInch;
+ if (DBG_SETUP)
+  printf("stepsSecMin %5.2f stepsSecMax %5.2f\n", stepsSecMin, stepsSecMax);
+
+ ac->accelTime = (float) ((ac->maxFeed - ac->minFeed) / (60 * ac->accel));
+ ac->accelClocks = (int) (clockRate * ac->accelTime);
+
+ float stepsSec2 = (float) (ac->accel * ac->stepsInch);
+ int accelMinStep = (int) (((stepsSecMin / stepsSec2) * stepsSecMin) / 2.0);
+ int accelMaxStep = (int) (((stepsSecMax / stepsSec2) * stepsSecMax) / 2.0);
+ if (DBG_SETUP)
+  printf("stepsSecMin %5.2f stepsSecMax %5.2f\n", stepsSecMin, stepsSecMax);
+
+ ac->accelSteps = accelMinStep - accelMaxStep;
+ int dxBase = ac->encPerInch;
+ int dyMaxBase = ac->stepsInch;
+ int dyMinBase = (int) ((dyMaxBase * ac->minFeed) / ac->maxFeed);
+
  int scale;
  int accelClocks = ac->accelClocks;
  int intIncPerClock = 0;
