@@ -673,21 +673,21 @@ char *i64toa(long long val, char *buf, int buflen)
   val = -val;
  }
  char *p = buf + buflen;
+ --buflen;
+ *--p = 0;
  while (val != 0)
  {
-  --p;
   --buflen;
   if (buflen <= 0)
    break;
-  *p = (val % 10) + '0';
+  *--p = (val % 10) + '0';
   val /= 10;
  }
  if (minus)
  {
-  --p;
   --buflen;
   if (buflen > 0)
-   *p = '-';
+   *--p = '-';
  }
  return(p);
 }
