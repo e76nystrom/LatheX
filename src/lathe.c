@@ -137,7 +137,7 @@ void xMoveSetup();
 void xSynSetup();
 void xTaperSetup();
 
-void accelCalc(P_ACCEL accel);
+void accelCalc(P_ACCEL ac);
 
 void turnPitch(P_ACCEL ac, float pitch);
 void threadTPI(P_ACCEL ac, float tpi);
@@ -470,7 +470,7 @@ void xTaperSetup()
 
 /* calculate acceleration for move */
 
-void accelCalc(P_ACCEL accel)
+void accelCalc(P_ACCEL ac)
 {
  int stepsSecMax = (int) (ac->maxFeed / 60.0) * ac->stepsInch;
  int freqGenMax = stepsSecMax * freqMult;
