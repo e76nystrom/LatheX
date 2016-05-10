@@ -243,26 +243,27 @@ T_PARM remparm[] =
 
 // test encoder setup variables
 
- PARM(encPreScaler),            /* 0x93 encoder prescaler */
- PARM(encTimer),                /* 0x94 encoder timer counts */
- PARM(encRunCount),             /* 0x95 encoder run count */
+ PARM(encEnable),               /* 0x93 encoder enable flag */
+ PARM(encPreScaler),            /* 0x94 encoder prescaler */
+ PARM(encTimer),                /* 0x95 encoder timer counts */
+ PARM(encRunCount),             /* 0x96 encoder run count */
 
 // test encoder status variables
 
- PARM(encRun),                  /* 0x96 encoder running flag */
- PARM(encCounter),              /* 0x97 encoder count in rev */
- PARM(encRevCounter),           /* 0x98 encoder revolution counter */
+ PARM(encRun),                  /* 0x97 encoder running flag */
+ PARM(encCounter),              /* 0x98 encoder count in rev */
+ PARM(encRevCounter),           /* 0x99 encoder revolution counter */
 
 // measured spindle speed
 
- PARM(rpm),                     /* 0x99 current rpm */
+ PARM(rpm),                     /* 0x9a current rpm */
 
 // xilinx frequency variables
 
- PARM(xFrequency),              /* 0x9a xilinx clock frequency */
- PARM(freqMult),                /* 0x9b frequency multiplier */
+ PARM(xFrequency),              /* 0x9b xilinx clock frequency */
+ PARM(freqMult),                /* 0x9c frequency multiplier */
 
 // max parameter number
 
- PARM(maxParm),                 /* 0x9c maximum parameter */
+ PARM(maxParm),                 /* 0x9d maximum parameter */
 };
