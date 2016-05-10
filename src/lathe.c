@@ -504,7 +504,7 @@ void accelCalc(P_ACCEL ac)
  ac->clockFreq = stepsSecMax * freqMult;
  ac->clocksPerInch = ac->clockFreq;
  ac->freqDivider = (xFrequency / ac->clockFreq) - 1;
- if (DBG_P)
+ if (DBG_SETUP)
   printf("freqGenMax %d freqDivider %d\n", ac->clockFreq, ac->freqDivider);
 
  accelSetup(ac);
@@ -512,21 +512,21 @@ void accelCalc(P_ACCEL ac)
 
 void turnPitch(P_ACCEL ac, float pitch)
 {
- if (DBG_P)
+ if (DBG_SETUP)
   printf("\nturnPitch\n");
  ac->pitch = pitch;
 }
 
 void threadTPI(P_ACCEL ac, float tpi)
 {
- if (DBG_P)
+ if (DBG_SETUP)
   printf("\nturnTPI\n");
  ac->pitch = (float) (1.0 / tpi);
 }
 
 void threadMetric(P_ACCEL ac, float pitch)
 {
- if (DBG_P)
+ if (DBG_SETUP)
   printf("\nturnMetric\n");
  ac->pitch = (float) (pitch / 25.4);
 }
