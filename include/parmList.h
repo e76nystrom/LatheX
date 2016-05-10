@@ -243,26 +243,27 @@ enum PARM
 
 // test encoder setup variables
 
- ENC_PRE_SCALER,                /* 0x93 encoder prescaler */
- ENC_TIMER,                     /* 0x94 encoder timer counts */
- ENC_RUN_COUNT,                 /* 0x95 encoder run count */
+ ENC_ENABLE,                    /* 0x93 encoder enable flag */
+ ENC_PRE_SCALER,                /* 0x94 encoder prescaler */
+ ENC_TIMER,                     /* 0x95 encoder timer counts */
+ ENC_RUN_COUNT,                 /* 0x96 encoder run count */
 
 // test encoder status variables
 
- ENC_RUN,                       /* 0x96 encoder running flag */
- ENC_COUNTER,                   /* 0x97 encoder count in rev */
- ENC_REV_COUNTER,               /* 0x98 encoder revolution counter */
+ ENC_RUN,                       /* 0x97 encoder running flag */
+ ENC_COUNTER,                   /* 0x98 encoder count in rev */
+ ENC_REV_COUNTER,               /* 0x99 encoder revolution counter */
 
 // measured spindle speed
 
- RPM,                           /* 0x99 current rpm */
+ RPM,                           /* 0x9a current rpm */
 
 // xilinx frequency variables
 
- X_FREQUENCY,                   /* 0x9a xilinx clock frequency */
- FREQ_MULT,                     /* 0x9b frequency multiplier */
+ X_FREQUENCY,                   /* 0x9b xilinx clock frequency */
+ FREQ_MULT,                     /* 0x9c frequency multiplier */
 
 // max parameter number
 
- MAX_PARM,                      /* 0x9c maximum parameter */
+ MAX_PARM,                      /* 0x9d maximum parameter */
 };
