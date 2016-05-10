@@ -244,12 +244,19 @@ void spindleStart()
 {
  if (DBG_SETUP)
   printf("\nspindle start\n");
+ if (encEnable)
+  encStart(true);
 }
 
 void spindleStop()
 {
  if (DBG_SETUP)
   printf("\nspindle stop\n");
+ if (encEnable)
+ {
+  encStop(true);
+  endEnable = 0;
+ }
 }
 
 void spindleSetup()
