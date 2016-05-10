@@ -10,7 +10,6 @@
 #include "lathe.h"
 #endif
 
-void xLoad();
 void xSynLoad();
 void xJMove(int dir);
 void xMove(int32_t pos, char cmd);
@@ -19,33 +18,17 @@ void xControl();
 
 #if !defined(INCLUDE)
 
-void xLoad()
-{
- dbgmsg("ldx ",0);
- LOAD(XLDXCTL,0);		/* reset control register */
- LOAD(XLDXFREQ,xfreq);
- xincr1 = (2 * xdyini);
- xincr2 = (2 * (xdyini - xdx));
- xd = (xincr1 - xdx);
- LOAD(XLDXD,xd);
- LOAD(XLDXINCR1,xincr1);
- LOAD(XLDXINCR2,xincr2);
- LOAD(XLDXACCEL,xaccel);
- LOAD(XLDXACLCNT,xaclmax);
-}
+void xLoad(P_ACCEL ac);
 
-void xSynLoad()
+void xLoad(P_ACCEL ac)
 {
- dbgmsg("ldxs",0);
- LOAD(XLDZFREQ,zfreq);
- sincr1 = (2 * sdy);
- sincr2 = (2 * (sdy - sdx));
- sd = (sincr1 - sdx);
- LOAD(XLDZD,sd);
- LOAD(XLDZINCR1,sincr1);
- LOAD(XLDZINCR2,sincr2);
- LOAD(XLDZACCEL,saccel);
- LOAD(XLDZACLCNT,saclclks);
+ if (ac->freqDivider != 0)
+  LOAD(XLDXFREQ, ac->freqDivider);
+ LOAD(XLDXD, ac->sum);
+ LOAD(XLDXINCR1, ac->incr1);
+ LOAD(XLDXINCR2, ac->incr2);
+ LOAD(XLDXACCEL, ac->intAccel);
+ LOAD(XLDXACLCNT, ac->accelClocks);
 }
 
 void xJMove(int dir)
@@ -77,11 +60,8 @@ void xJMove(int dir)
 void xMove(long pos, char cmd)
 {
  P_MOVECTL mov = &xMoveCtl;
-#if DBGMSG
-// if (print & 4)
-//  printf("x %ld\n\r",pos);
- dbgmsg("x mv",pos);
-#endif
+ if (DBGMSG)
+  dbgmsg("x mv",pos);
  read1(XRDXLOC);		/* read x location */
  mov->loc = readval.i;		/* save result */
  xMoveRel(pos - mov->loc, cmd);	/* calculate move distance */
@@ -96,7 +76,8 @@ void xMoveRel(long dist, char cmd)
 
  xLoad();			/* load parameters for move */
 
- dbgmsg("x ds",dist);
+ if (DBGMSG)
+  dbgmsg("x ds",dist);
  mov->cmd = cmd;		/* save command */
  if (dist != 0)			/* if distance non zero */
  {
@@ -115,6 +96,7 @@ void xMoveRel(long dist, char cmd)
 
   if (mov->state == XWAITBKLS)	/* if backlash move needed */
   {
+   xLoad(&xMA);			/* load move parameters */
    mov->ctlreg = XSTART | XBACKLASH; /* initialize ctl reg */
    if (mov->dir == XPOS)	/* if positive direction */
     mov->ctlreg |= XDIR_POS;	/* set direction flag */
@@ -132,17 +114,14 @@ void xControl()
  if (mov->stop)			/* if stop */
   mov->state = XDONE;		/* clean up in done state */
 
-#if DBGMSG
-// if (print & 2)
+ if (DBGMSG)
  {
   if (mov->state != mov->prev)
   {
-//   printf("x %2d to %2d\n\r",mov->prev,mov->state);
    dbgmsg("x st",mov->state);
    mov->prev = mov->state;
   }
  }
-#endif
 
  switch(mov->state)		/* dispatch on state */
  {
@@ -162,23 +141,24 @@ void xControl()
   char ch = mov->cmd & XMSK;	/* get type of move */
   if (ch == XSYN)		/* if synchronized move */
   {
-   xSynLoad();			/* load sync parameters */
+   xLoad(&xTA);			/* load turn parameters */
    mov->ctlreg |= XSRC_SYN;	/* set sync flags */
   }
   else				/* if not synchronized */
   {
    if (ch == XJOG)		/* if jog */
-    LOAD(XLDXACLCNT,xacljog);	/* load jog accelerate time */
+    xLoad(&xMA);		/* load jog parameters */
    else if (ch == XMAX)		/* if max */
-    LOAD(XLDXACLCNT,xaclmax);	/* load time for max */
+    xLoad(&xMA);		/* load move parameters */
    else				/* else */
-    LOAD(XLDXACLCNT,xaclrun);	/* load time for run */
+    xLoad(&xTA);		/* load turn parameters */
   }
   if (mov->dir == XPOS)		/* if moving positive */
    mov->ctlreg |= XDIR_POS;	/* set direction flag */
   LOAD(XLDXDIST,mov->dist);	/* set distance to move */
   LOAD(XLDXCTL,mov->ctlreg);	/* start move */
-  dbgmsg("ctlx",mov->ctlreg);
+  if (DBGMSG)
+   dbgmsg("ctlx",mov->ctlreg);
   mov->state = XWAITMOVE;	/* wait for move to complete */
   break;
 
@@ -195,11 +175,11 @@ void xControl()
   mov->cmd = 0;			/* clear command */
   read1(XRDXLOC);		/* read current location */
   mov->loc = readval.i;		/* save it */
-  dbgmsg("xloc",mov->loc);
+  if (DBGMSG)
+   dbgmsg("xloc",mov->loc);
   mov->state = XIDLE;		/* set state to idle */
-#if DBGMSG
-  dbgmsg("x st",mov->state);
-#endif
+  if (DBGMSG)
+   dbgmsg("x st",mov->state);
   break;
  }
 }
