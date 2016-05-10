@@ -10,7 +10,6 @@
 #include "lathe.h"
 #endif
 
-void zLoad(P_ACCEL ac);
 void zSynLoad();
 void zJMove(int dir);
 void zMove(int32_t pos, char cmd);
@@ -18,6 +17,8 @@ void zMoveRel(int32_t dist, char cmd);
 void zControl();
 
 #if !defined(INCLUDE)
+
+void zLoad(P_ACCEL ac);
 
 void zLoad(P_ACCEL ac)
 {
