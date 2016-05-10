@@ -178,7 +178,6 @@ void zControl()
   mov->state = ZIDLE;		/* set state to idle */
   if (DBGMSG)
    dbgmsg("z st", mov->state);
-#endif
   break;
  }
 }
