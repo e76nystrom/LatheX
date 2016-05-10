@@ -15,6 +15,7 @@
 #include "runctl.h"
 #include "zcontrol.h"
 #include "xcontrol.h"
+#include "encoder.h"
 #define EXT
 #endif
 
