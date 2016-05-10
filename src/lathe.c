@@ -257,7 +257,7 @@ void spindleStop()
  if (encEnable)
  {
   encStop(true);
-  endEnable = 0;
+  encEnable = 0;
  }
 }
 
