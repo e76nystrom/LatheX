@@ -369,6 +369,7 @@ void zSynSetup()
  P_ACCEL ac = &zTA;
  ac->stepsInch = zAxis.stepsInch;
  ac->minFeed = zMA.minFeed;	/* set minimum */
+ ac->accel = zAxis.accel
  switch (feedType)
  {
  case FEED_PITCH:
@@ -487,6 +488,7 @@ void xSynSetup()
  P_ACCEL ac = &xTA;
  ac->stepsInch = xAxis.stepsInch;
  ac->minFeed = xMA.minFeed;	/* set minimum */
+ ac->accel = xAxis.accel
  switch (feedType)
  {
  case FEED_PITCH:
