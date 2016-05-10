@@ -580,7 +580,8 @@ void accelSetup(P_ACCEL ac)
 {
  if (DBG_SETUP)
   printf("clocksPerInch %d clockFreq %d\n", ac->clocksPerInch, ac->clockFreq);
-  printf("minFeed %6.2f feedRate %6.2f ipm\n", ac->minFeed, ac->maxFeed);
+  printf("accel %0.2f minFeed %0.2f feedRate %0.2f ipm\n",
+	 ac->accel, ac->minFeed, ac->maxFeed);
 
  int stepsSecMax = (int) ((ac->maxFeed * ac->stepsInch) / 60.0);
  int stepsSecMin = (int) ((ac->minFeed * ac->stepsInch) / 60.0);
