@@ -22,8 +22,6 @@ void zLoad(P_ACCEL ac);
 
 void zLoad(P_ACCEL ac)
 {
- if (DBGMSG)
-  dbgmsg("ldz ", 0);
  if (ac->freqDivider != 0)
   LOAD(XLDZFREQ, ac->freqDivider);
  LOAD(XLDZD, ac->sum);
