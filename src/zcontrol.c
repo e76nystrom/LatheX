@@ -146,9 +146,9 @@ void zControl()
   else
   {
    if (ch == ZJOG)		/* if jog */
-    LOAD(&zJA);			/* load jog parameters */
+    zLoad(&zJA);		/* load jog parameters */
    else if (ch == ZMAX)		/* if max */
-    LOAD(&zMA);			/* load move parameters */
+    zLoad(&zMA);		/* load move parameters */
    else				/* else */
     zLoad(&zTA);		/* load turn parameters */
   }
