@@ -74,8 +74,6 @@ void xMoveRel(long dist, char cmd)
  if (mov->state != XIDLE)	/* if not in idle state */
   return;			/* exit now */
 
- xLoad();			/* load parameters for move */
-
  if (DBGMSG)
   dbgmsg("x ds",dist);
  mov->cmd = cmd;		/* save command */
