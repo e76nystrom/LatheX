@@ -68,11 +68,4 @@ enum COMMANDS
 
  ENCSTART,                      /* 0x24 encoder start */
  ENCSTOP,                       /* 0x25 encoder stop */
-
-// load operation parameters
-
- LOADZPRM,                      /* 0x26 call load xilinx z parameters */
- LOADXPRM,                      /* 0x27 call load xilinx x parameters */
- LOADSPRM,                      /* 0x28 call load xilinx sync parameters */
- LOADTPRM,                      /* 0x29 call load xilinx taper parameters */
 };
