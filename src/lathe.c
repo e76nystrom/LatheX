@@ -549,7 +549,7 @@ void turnAccel(P_ACCEL ac, float accel)
 {
  ac->maxFeed = rpm * ac->pitch;
  ac->clocksPerInch = (int) (encMax / ac->pitch);
- ac->clockFreq = (int) ((rpm / 60.0) * encMax);
+ ac->clockFreq = (int) ((rpm * encMax) / 60.0);
  if (ac->maxFeed < ac->minFeed)	/* if below minimum */
  {
   ac->intAccel = 0;
@@ -582,8 +582,8 @@ void accelSetup(P_ACCEL ac)
   printf("clocksPerInch %d clockFreq %d\n", ac->clocksPerInch, ac->clockFreq);
   printf("minFeed %6.2f feedRate %6.2f ipm\n", ac->minFeed, ac->maxFeed);
 
- int stepsSecMax = (int) ((ac->maxFeed / 60.0) * ac->stepsInch);
- int stepsSecMin = (int) ((ac->minFeed / 60.0) * ac->stepsInch);
+ int stepsSecMax = (int) ((ac->maxFeed * ac->stepsInch) / 60.0);
+ int stepsSecMin = (int) ((ac->minFeed * ac->stepsInch) / 60.0);
  if (DBG_SETUP)
   printf("stepsSecMin %d stepsSecMax %d\n", stepsSecMin, stepsSecMax);
 
