@@ -579,7 +579,9 @@ int bitSize(int val)
 void accelSetup(P_ACCEL ac)
 {
  if (DBG_SETUP)
+  printf("clocksPerInch %d clockFreq %d\n", ac->clocksPerInch, ac->clockFreq);
   printf("minFeed %6.2f feedRate %6.2f ipm\n", ac->minFeed, ac->maxFeed);
+
  int stepsSecMax = (int) ((ac->maxFeed / 60.0) * ac->stepsInch);
  int stepsSecMin = (int) ((ac->minFeed / 60.0) * ac->stepsInch);
  if (DBG_SETUP)
@@ -603,7 +605,7 @@ void accelSetup(P_ACCEL ac)
  int dyMaxBase = stepsSecMax;
  int dyMinBase = stepsSecMin;
  if (DBG_SETUP)
-  printf("dxBase %d dyMaxBase %d dyMinBase %d",
+  printf("\ndxBase %d dyMaxBase %d dyMinBase %d\n",
 	 dxBase, dyMaxBase, dyMinBase);
 
  int scale;
