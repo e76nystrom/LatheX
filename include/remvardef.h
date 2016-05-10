@@ -241,25 +241,26 @@
 
 // test encoder setup variables
 
- EXT uint16_t encPreScaler;     /* 0x93 encoder prescaler */
- EXT uint16_t encTimer;         /* 0x94 encoder timer counts */
- EXT int encRunCount;           /* 0x95 encoder run count */
+ EXT char encEnable;            /* 0x93 encoder enable flag */
+ EXT uint16_t encPreScaler;     /* 0x94 encoder prescaler */
+ EXT uint16_t encTimer;         /* 0x95 encoder timer counts */
+ EXT int encRunCount;           /* 0x96 encoder run count */
 
 // test encoder status variables
 
- EXT char encRun;               /* 0x96 encoder running flag */
- EXT int16_t encCounter;        /* 0x97 encoder count in rev */
- EXT int32_t encRevCounter;     /* 0x98 encoder revolution counter */
+ EXT char encRun;               /* 0x97 encoder running flag */
+ EXT int16_t encCounter;        /* 0x98 encoder count in rev */
+ EXT int32_t encRevCounter;     /* 0x99 encoder revolution counter */
 
 // measured spindle speed
 
- EXT int16_t rpm;               /* 0x99 current rpm */
+ EXT int16_t rpm;               /* 0x9a current rpm */
 
 // xilinx frequency variables
 
- EXT int32_t xFrequency;        /* 0x9a xilinx clock frequency */
- EXT int16_t freqMult;          /* 0x9b frequency multiplier */
+ EXT int32_t xFrequency;        /* 0x9b xilinx clock frequency */
+ EXT int16_t freqMult;          /* 0x9c frequency multiplier */
 
 // max parameter number
 
- EXT int16_t maxParm;           /* 0x9c maximum parameter */
+ EXT int16_t maxParm;           /* 0x9d maximum parameter */
