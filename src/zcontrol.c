@@ -97,6 +97,7 @@ void zMoveRel(int32_t dist, char cmd)
    mov->ctlreg = ZSTART | ZBACKLASH; /* initialize ctl reg */
    if (mov->dir == ZPOS)	/* if positive direction */
     mov->ctlreg |= ZDIR_POS;	/* set direction flag */
+   LOAD(XLDXDIST,  zAxis.backlashSteps); /* load backlash */
    LOAD(XLDZCTL, mov->ctlreg);	/* start move */
   }
   mov->done = 0;		/* clear done flag */
