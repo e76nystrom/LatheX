@@ -174,6 +174,8 @@ void zMoveRel(int32_t dist, char cmd){}
 void xJMove(int dir){}
 void xMove(int32_t pos, char cmd){}
 void xMoveRel(int32_t dist, char cmd){}
+void encStart(int tEna){}
+void encStop(){}
 
 char cmdStop;
 char cmdPause;
