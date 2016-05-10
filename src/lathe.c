@@ -547,7 +547,7 @@ void turnAccel(P_ACCEL ac, float accel)
 {
  ac->maxFeed = rpm * ac->pitch;
  ac->clocksPerInch = (int) (encMax * ac->pitch);
- ac->clockFreq = (int) (rpm / 60.0) * encMax;
+ ac->clockFreq = (int) ((rpm / 60.0) * encMax);
  if (ac->maxFeed < ac->minFeed)	/* if below minimum */
  {
   ac->intAccel = 0;
