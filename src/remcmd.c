@@ -317,3 +317,5 @@ void remcmd()
  }
  putx1('*');
 }
+
+#endif
