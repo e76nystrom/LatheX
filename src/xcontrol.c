@@ -45,7 +45,7 @@ void xJMove(int dir)
   mov->stop = 0;		/* clear stop flag */
   mov->jogInc = (int) (JTIMEINC * ac->stepsSec); /* save increment */
   mov->maxDist = (int) (JTIMEMAX * ac->stepsSec); /* save maximum */
-  printf("xJMove dist %5d xLoc %5d inc %5d max %5d\n",
+  printf("xJMove dist %5d xLoc %5d inc %5d max %5d\n",  
 	 d, xLoc, mov->jogInc, mov->maxDist);
   xMoveRel(d, XJOG);		/* start movement */
  }
@@ -61,7 +61,7 @@ void xMove(long pos, char cmd)
 {
  P_MOVECTL mov = &xMoveCtl;
  if (DBGMSG)
-  dbgmsg("x mv",pos);
+  dbgmsg("x mv",  pos);
  read1(XRDXLOC);		/* read x location */
  mov->loc = readval.i;		/* save result */
  xMoveRel(pos - mov->loc, cmd);	/* calculate move distance */
@@ -75,7 +75,7 @@ void xMoveRel(long dist, char cmd)
   return;			/* exit now */
 
  if (DBGMSG)
-  dbgmsg("x ds",dist);
+  dbgmsg("x ds",  dist);
  mov->cmd = cmd;		/* save command */
  if (dist != 0)			/* if distance non zero */
  {
@@ -98,8 +98,8 @@ void xMoveRel(long dist, char cmd)
    mov->ctlreg = XSTART | XBACKLASH; /* initialize ctl reg */
    if (mov->dir == XPOS)	/* if positive direction */
     mov->ctlreg |= XDIR_POS;	/* set direction flag */
-   LOAD(XLDXDIST,xbacklash);	/* load backlash */
-   LOAD(XLDXCTL,mov->ctlreg);	/* start move */
+   LOAD(XLDXDIST,  xAxis.backlashSteps); /* load backlash */
+   LOAD(XLDXCTL,  mov->ctlreg);	/* start move */
   }
   mov->done = 0;		/* clear done flag */
   mov->stop = 0;		/* clear stop flag */
@@ -116,7 +116,7 @@ void xControl()
  {
   if (mov->state != mov->prev)
   {
-   dbgmsg("x st",mov->state);
+   dbgmsg("x st",  mov->state);
    mov->prev = mov->state;
   }
  }
@@ -153,10 +153,10 @@ void xControl()
   }
   if (mov->dir == XPOS)		/* if moving positive */
    mov->ctlreg |= XDIR_POS;	/* set direction flag */
-  LOAD(XLDXDIST,mov->dist);	/* set distance to move */
-  LOAD(XLDXCTL,mov->ctlreg);	/* start move */
+  LOAD(XLDXDIST,  mov->dist);	/* set distance to move */
+  LOAD(XLDXCTL,  mov->ctlreg);	/* start move */
   if (DBGMSG)
-   dbgmsg("ctlx",mov->ctlreg);
+   dbgmsg("ctlx",  mov->ctlreg);
   mov->state = XWAITMOVE;	/* wait for move to complete */
   break;
 
@@ -167,17 +167,17 @@ void xControl()
 
  case XDONE:			/* 0x04 done state */
  default:			/* all others */
-  LOAD(XLDXCTL,0);		/* stop move */
+  LOAD(XLDXCTL,  0);		/* stop move */
   mov->stop = 0;		/* clear stop flag */
   mov->done = 0;		/* clear done flag */
   mov->cmd = 0;			/* clear command */
   read1(XRDXLOC);		/* read current location */
   mov->loc = readval.i;		/* save it */
   if (DBGMSG)
-   dbgmsg("xloc",mov->loc);
+   dbgmsg("xloc",  mov->loc);
   mov->state = XIDLE;		/* set state to idle */
   if (DBGMSG)
-   dbgmsg("x st",mov->state);
+   dbgmsg("x st",  mov->state);
   break;
  }
 }
