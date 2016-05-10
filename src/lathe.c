@@ -579,7 +579,8 @@ int bitSize(int val)
 void accelSetup(P_ACCEL ac)
 {
  if (DBG_SETUP)
-  printf("clocksPerInch %d clockFreq %d\n", ac->clocksPerInch, ac->clockFreq);
+  printf("clocksPerInch %d clockFreq %d stepsInch %d\n",
+	 ac->clocksPerInch, ac->clockFreq, ac->stepsInch);
   printf("accel %0.2f minFeed %0.2f feedRate %0.2f ipm\n",
 	 ac->accel, ac->minFeed, ac->maxFeed);
 
