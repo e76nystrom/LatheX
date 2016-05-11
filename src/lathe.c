@@ -605,7 +605,7 @@ void accelSetup(P_ACCEL ac)
 
  int dxBase = ac->clocksPerInch;
  int dyMaxBase = ac->stepsInch;
- int dyMinBase = (int) ((ac->stepsInch * ac->minFeed) / ac->maxFeed)
+ int dyMinBase = (int) ((ac->stepsInch * ac->minFeed) / ac->maxFeed);
  if (DBG_SETUP)
   printf("\ndxBase %d dyMaxBase %d dyMinBase %d\n",
 	 dxBase, dyMaxBase, dyMinBase);
