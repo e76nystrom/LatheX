@@ -33,23 +33,29 @@ void mainLoop(void)
     procMove();			/* process move command */
    }
 
-   if (zflag)			/* if z done flag from xilinx set */
-   {
-    LOAD(XLDZCTL,0);		/* clear z control register */
-    zMoveCtl.done = 1;		/* signal done */
-   }
-
    if (zMoveCtl.state != ZIDLE)	/* if z axis active */
-    zControl();			/* run z axis state machine */
-
-   if (xflag)			/* if x done flag from xilinx set */
    {
-    LOAD(XLDXCTL,0);		/* clear x control register */
-    xMoveCtl.done = 1;		/* set done flag */
+    int status = read1(XRDSR);	/* read status register */
+    if ((status & S_Z_DONE_INT)	/* if done bit set */
+    ||  (zflag))		/* if z done flag from xilinx set */
+    {
+     LOAD(XLDZCTL,0);		/* clear z control register */
+     zMoveCtl.done = 1;		/* signal done */
+    }
+    zControl();			/* run z axis state machine */
    }
 
    if (xMoveCtl.state != XIDLE)	/* if x axis active */
+   {
+    int status = read1(XRDSR);	/* read status register */
+    if ((status & S_X_DONE_INT)	/* if done bit set */
+    ||  (xflag))		/* if x done flag from xilinx set */
+    {
+     LOAD(XLDXCTL,0);		/* clear x control register */
+     xMoveCtl.done = 1;		/* set done flag */
+    }
     xControl();			/* run x axis state machine */
+   }
 
    if (chRdy())			/* if character available */
    {
