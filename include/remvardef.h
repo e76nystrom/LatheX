@@ -125,6 +125,10 @@
  EXT int32_t xFrequency;        /* 0x43 xilinx clock frequency */
  EXT int16_t freqMult;          /* 0x44 frequency multiplier */
 
+// xilinx configuration register
+
+ EXT int16_t xCfgReg;           /* 0x45 xilinx configuration register */
+
 // max parameter number
 
- EXT int16_t maxParm;           /* 0x45 maximum parameter */
+ EXT int16_t maxParm;           /* 0x46 maximum parameter */
