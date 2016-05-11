@@ -274,8 +274,10 @@ void clearAll()
  clr(zMoveCtl);
  clr(xMoveCtl);
 
+#if !defined(WIN32)
  clr(moveCtl);
  clr(moveQue);
+#endif
 
 #if WIN32
  fflush(stdout);
