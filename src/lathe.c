@@ -333,6 +333,7 @@ void zSetup()
  axis->backlashSteps = (int) rint(axis->backlash * axis->stepsInch);
 
  zMoveSetup();
+ fflush(stdout);
 }
 
 void zMoveSetup()
