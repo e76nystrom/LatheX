@@ -127,7 +127,11 @@ T_PARM remparm[] =
  PARM(xFrequency),              /* 0x43 xilinx clock frequency */
  PARM(freqMult),                /* 0x44 frequency multiplier */
 
+// xilinx configuration register
+
+ PARM(xCfgReg),                 /* 0x45 xilinx configuration register */
+
 // max parameter number
 
- PARM(maxParm),                 /* 0x45 maximum parameter */
+ PARM(maxParm),                 /* 0x46 maximum parameter */
 };
