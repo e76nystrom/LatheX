@@ -127,7 +127,11 @@ enum PARM
  X_FREQUENCY,                   /* 0x43 xilinx clock frequency */
  FREQ_MULT,                     /* 0x44 frequency multiplier */
 
+// xilinx configuration register
+
+ X_CFG_REG,                     /* 0x45 xilinx configuration register */
+
 // max parameter number
 
- MAX_PARM,                      /* 0x45 maximum parameter */
+ MAX_PARM,                      /* 0x46 maximum parameter */
 };
