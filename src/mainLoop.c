@@ -36,7 +36,7 @@ void mainLoop(void)
    if (zMoveCtl.state != ZIDLE)	/* if z axis active */
    {
     read1(XRDSR);		/* read status register */
-    if ((readval.l & S_Z_DONE_INT) /* if done bit set */
+    if ((readval.i & S_Z_DONE_INT) /* if done bit set */
     ||  (zflag))		/* if z done flag from xilinx set */
     {
      LOAD(XLDZCTL,0);		/* clear z control register */
@@ -48,7 +48,7 @@ void mainLoop(void)
    if (xMoveCtl.state != XIDLE)	/* if x axis active */
    {
     read1(XRDSR);		/* read status register */
-    if ((readval.l & S_X_DONE_INT) /* if done bit set */
+    if ((readval.i & S_X_DONE_INT) /* if done bit set */
     ||  (xflag))		/* if x done flag from xilinx set */
     {
      LOAD(XLDXCTL,0);		/* clear x control register */
