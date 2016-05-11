@@ -187,9 +187,9 @@ char cmdStop;
 char cmdPause;
 T_MOVEQUE moveQue;
 
-#define clr(x) memset(&x, 0, sizeof(x))
-
 #endif
+
+#define clr(x) memset(&x, 0, sizeof(x))
 
 int tmp(int x)
 {
