@@ -119,7 +119,29 @@ void tmrInfo(TIM_TypeDef *tmr)
 
 void lclcmd(int ch)
 {
- if (ch == 'd')			/* dump memory */
+ if (ch == 'D')			/* dump dbg buffer */
+ {
+  newline();
+  int empty = dbgemp;
+  for (int i = 0; i < dbgcnt; i++)
+  {
+   P_DBGMSG p = &dbgdata[empty];
+   float t = (float) p->time / 1000;
+   printf("%8.3f %8s %6d\n", t, p->str, (int) p->val);
+   empty++;
+   if (empty >= MAXDBGMSG)
+    empty = 0;
+  }
+  printf("z %d x %d\n", zLoc, xLoc);
+ }
+ else if (ch == 'E')		/* clear debug buffer */
+ {
+  memset(&dbgdata, 0, sizeof(dbgdata));
+  dbgcnt = 0;
+  dbgfil = 0;
+  dbgemp = 0;
+ }
+ else if (ch == 'd')		/* dump memory */
  {
   putx(' ');
   if (gethex())
