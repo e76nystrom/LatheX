@@ -6,13 +6,11 @@
 
 #include <stdio.h>
 #include <string.h>
-//#include <math.h>
 #include <stdint.h>
 #include "remvar.h"
 #include "lathe.h"
 #include "zcontrol.h"
 #include "xcontrol.h"
-//#include "serialio.h"
 #define EXT
 
 #define DBG_MOVE  1		/* move operation */
@@ -237,12 +235,12 @@ void procMove()
  break;
 
  case M_WAIT_Z:
-  if (zMoveCtl.state == ZIDLE)	/* if opeartion complete */
+  if (zMoveCtl.state == ZIDLE)	/* if operation complete */
    mv->state = M_IDLE;
   break;
 
  case M_WAIT_X:
-  if (xMoveCtl.state == XIDLE)	/* if opeartion complete */
+  if (xMoveCtl.state == XIDLE)	/* if operation complete */
    mv->state = M_IDLE;
   break;
 
