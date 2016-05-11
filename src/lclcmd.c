@@ -127,7 +127,7 @@ void lclcmd(int ch)
   {
    P_DBGMSG p = &dbgdata[empty];
    float t = (float) p->time / 1000;
-   printf("%8.3f %8s %8x %10d\n", t, p->str, (unsigned int) p->val, (int) p->val);
+   printf("%8.3f %8s %8x %12d\n", t, p->str, (unsigned int) p->val, (int) p->val);
    empty++;
    if (empty >= MAXDBGMSG)
     empty = 0;
