@@ -201,6 +201,9 @@ void stopCmd()
  zMoveCtl.stop = 1;
  cmdStop = 1;
  cmdPause = 0;
+#if WIN32
+ fflush(stdout);
+#endif
 }
 
 void clearCmd()
@@ -209,6 +212,9 @@ void clearCmd()
   printf("\nclear\n");
  allStop();
  clearAll();
+#if WIN32
+ fflush(stdout);
+#endif
 }
 
 void pauseCmd()
@@ -216,6 +222,9 @@ void pauseCmd()
  if (DBG_SETUP)
   printf("\npause\n");
  cmdPause = 1;
+#if WIN32
+ fflush(stdout);
+#endif
 }
 
 void resumeCmd()
@@ -223,24 +232,36 @@ void resumeCmd()
  if (DBG_SETUP)
   printf("\nresume\n");
  cmdPause = 0;
+#if WIN32
+ fflush(stdout);
+#endif
 }
 
 void allStop()
 {
  if (DBG_SETUP)
   printf("\nall stop\n");
+#if WIN32
+ fflush(stdout);
+#endif
 }
 
 void clearAll()
 {
  if (DBG_SETUP)
   printf("\nall clear\n");
+#if WIN32
+ fflush(stdout);
+#endif
 }
 
 void setup()
 {
  if (DBG_SETUP)
   printf("\nsetup\n");
+#if WIN32
+ fflush(stdout);
+#endif
 }
 
 void spindleStart()
@@ -249,6 +270,9 @@ void spindleStart()
   printf("\nspindle start\n");
  if (encEnable)
   encStart(true);
+#if WIN32
+ fflush(stdout);
+#endif
 }
 
 void spindleStop()
@@ -260,12 +284,18 @@ void spindleStop()
   encStop(true);
   encEnable = 0;
  }
+#if WIN32
+ fflush(stdout);
+#endif
 }
 
 void spindleSetup()
 {
  if (DBG_SETUP)
   printf("\nspindle setup\n");
+#if WIN32
+ fflush(stdout);
+#endif
 }
 
 void zMoveCmd()
@@ -333,7 +363,9 @@ void zSetup()
  axis->backlashSteps = (int) rint(axis->backlash * axis->stepsInch);
 
  zMoveSetup();
+#if WIN32
  fflush(stdout);
+#endif
 }
 
 void zMoveSetup()
@@ -384,6 +416,9 @@ void zSynSetup()
   break;
  }
  turnAccel(ac, zAccel);
+#if WIN32
+ fflush(stdout);
+#endif
 }
 
 void zTaperSetup()
@@ -455,6 +490,9 @@ void xSetup()
  axis->backlashSteps = (int) rint(axis->backlash * axis->stepsInch);
 
  xMoveSetup();
+#if WIN32
+ fflush(stdout);
+#endif
 }
 
 void xMoveSetup()
@@ -503,6 +541,9 @@ void xSynSetup()
   break;
  }
  turnAccel(ac, xAccel);
+#if WIN32
+ fflush(stdout);
+#endif
 }
 
 void xTaperSetup()
