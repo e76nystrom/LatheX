@@ -323,7 +323,7 @@ void spindleSetup()
  if (DBG_SETUP)
   printf("\nspindle setup\n");
 #if !defined(WIN32)
- LOAD(XLDCFG, xCfgReg)
+ LOAD(XLDCFG, xCfgReg);
 #endif
 #if WIN32
  fflush(stdout);
