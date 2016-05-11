@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <inttypes.h>
 #include "remvar.h"
+#include "Xilinx.h"
 #include "runctl.h"
 #include "zcontrol.h"
 #include "xcontrol.h"
