@@ -187,6 +187,8 @@ char cmdStop;
 char cmdPause;
 T_MOVEQUE moveQue;
 
+#define clr(x) memset(&x, 0, sizeof(x))
+
 #endif
 
 int tmp(int x)
@@ -255,6 +257,26 @@ void clearAll()
 {
  if (DBG_SETUP)
   printf("\nall clear\n");
+
+ clr(zAxis);
+ clr(xAxis);
+
+ clr(zTA);
+ clr(zPA);
+ clr(zMA);
+ clr(zJA);
+
+ clr(xTA);
+ clr(xPA);
+ clr(xMA);
+ clr(xJA);
+
+ clr(zMoveCtl);
+ clr(xMoveCtl);
+
+ clr(moveCtl);
+ clr(moveQue);
+
 #if WIN32
  fflush(stdout);
 #endif
