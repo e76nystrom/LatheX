@@ -21,6 +21,11 @@
 
 #define DBG_P     1		/* general debug */
 #define DBG_SETUP 1		/* setup */
+#ifdef WIN32
+#define DBG_DETAIL 1
+#else
+#define DBG_DETAIL 0
+#endif
 
 #define JTIMEINITIAL 0.75	/* initial jog time */
 #define JTIMEINC 0.15		/* incremental jog time */
@@ -661,7 +666,7 @@ void accelSetup(P_ACCEL ac)
   ac->dyMax = dyMaxBase << scale;
   int dyMin = dyMinBase << scale;
   int dyDelta = ac->dyMax - dyMin;
-  if (DBG_SETUP)
+  if (DBG_DETAIL)
    printf("\nscale %d dx %d dyMin %d dyMax %d dyDelta %d\n",
 	  scale, ac->dx, dyMin, ac->dyMax, dyDelta);
 
@@ -673,20 +678,27 @@ void accelSetup(P_ACCEL ac)
   int dyDeltaC = intIncPerClock * accelClocks;
   int err = (int) (abs(dyDelta - dyDeltaC)) >> scale;
   ac->dyIni = ac->dyMax - intIncPerClock * accelClocks;
-#if 0
-  if (DBG_SETUP)
+  if (DBG_DETAIL)
    printf("dyIni %d dyMax %d intIncPerClock %d accelClocks %d\n",
 	  ac->dyIni, ac->dyMax, intIncPerClock, accelClocks);
-#endif
 
   int bits = bitSize(ac->dx) + 1;
-  if (DBG_SETUP)
+  if (DBG_DETAIL)
    printf("dyIni %d dyMax %d dyDelta %d incPerClock %6.2f "
 	  "err %d bits %d\n",
 	  ac->dyIni, ac->dyMax, dyDelta, incPerClock, err, bits);
+
   if ((bits >= 30)
   ||  (err == 0))
+  {
+   if (DBG_SETUP)
+    printf("\nscale %d dx %d dyMin %d dyMax %d dyDelta %d\n",
+	   scale, ac->dx, dyMin, ac->dyMax, dyDelta);
+   printf("dyIni %d dyMax %d dyDelta %d incPerClock %6.2f "
+	  "err %d bits %d\n",
+	  ac->dyIni, ac->dyMax, dyDelta, incPerClock, err, bits);
    break;
+  }
  }
  ac->scale = scale;
  ac->incr1 = 2 * ac->dyIni;
