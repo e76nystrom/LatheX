@@ -692,11 +692,13 @@ void accelSetup(P_ACCEL ac)
   ||  (err == 0))
   {
    if (DBG_SETUP)
+   {
     printf("\nscale %d dx %d dyMin %d dyMax %d dyDelta %d\n",
 	   scale, ac->dx, dyMin, ac->dyMax, dyDelta);
-   printf("dyIni %d dyMax %d dyDelta %d incPerClock %6.2f "
-	  "err %d bits %d\n",
-	  ac->dyIni, ac->dyMax, dyDelta, incPerClock, err, bits);
+    printf("dyIni %d dyMax %d dyDelta %d incPerClock %6.2f "
+	   "err %d bits %d\n",
+	   ac->dyIni, ac->dyMax, dyDelta, incPerClock, err, bits);
+   }
    break;
   }
  }
