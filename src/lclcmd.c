@@ -142,10 +142,7 @@ void lclcmd(int ch)
  }
  else if (ch == 'E')		/* clear debug buffer */
  {
-  memset(&dbgdata, 0, sizeof(dbgdata));
-  dbgcnt = 0;
-  dbgfil = 0;
-  dbgemp = 0;
+  clrDebugBuf();
  }
  else if (ch == 'd')		/* dump memory */
  {
