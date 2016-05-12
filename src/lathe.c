@@ -802,7 +802,7 @@ void zTaperInit(P_ACCEL ac, char dir)
 {
  printf("\nztaperInit\n");
 
- LOAD(XLDZCTL, dir)
+ LOAD(XLDZCTL, dir);
  LOAD(XLDZD, ac->sum);
  LOAD(XLDZINCR1, ac->incr1);
  LOAD(XLDZINCR2, ac->incr2);
@@ -817,7 +817,7 @@ void zTaperInit(P_ACCEL ac, char dir)
 void xTaperInit(P_ACCEL ac, char dir)
 {
  printf("\nxtaperInit\n");
- LOAD(XLDXCTL, dir)
+ LOAD(XLDXCTL, dir);
  LOAD(XLDXD, ac->sum);
  LOAD(XLDXINCR1, ac->incr1);
  LOAD(XLDXINCR2, ac->incr2);
