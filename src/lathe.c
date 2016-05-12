@@ -781,7 +781,7 @@ void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper)
  a1->taper = true;
  a1->taperInch = taper;
 
- a1->dx = a1.stepsInch;
+ a1->dx = a1->stepsInch;
  a1->dyMax = (int) (taper * a1->stepsInch);
 
  a1->incr1 = 2 * a1->dyMax;
