@@ -791,9 +791,9 @@ void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper)
  {
   printf("dx %d dy %d",  a1->dx, a1->dyMax);
   printf("incr1 %d incr2 %d sum %d bits %d",
-	 a1->incr1, a1->incr2, a1->sum, bitSize(incr2));
+	 a1->incr1, a1->incr2, a1->sum, bitSize(a1->incr2));
  }
-#ifDEF WIN32
+#ifdef WIN32
  fflush(stdout);
 #endif
 }
