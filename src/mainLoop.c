@@ -50,7 +50,7 @@ void mainLoop(void)
 
    if (xMoveCtl.state != XIDLE)	/* if x axis active */
    {
-    read1(XRDxLOC);		/* read x location */
+    read1(XRDXLOC);		/* read x location */
     xLoc = readval.i;
     read1(XRDSR);		/* read status register */
     if ((readval.i & S_X_DONE_INT) /* if done bit set */
