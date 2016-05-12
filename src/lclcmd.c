@@ -119,7 +119,23 @@ void tmrInfo(TIM_TypeDef *tmr)
 
 void lclcmd(int ch)
 {
- if (ch == 'D')			/* dump dbg buffer */
+ if (ch == 'd')			/* dump memory */
+ {
+  putx(' ');
+  if (gethex())
+  {
+   unsigned char *p;
+
+   p = (unsigned char *) (int) val;
+   if (gethex())
+   {
+    newline();
+    prtbuf(p,val);
+   }
+  }
+ }
+#if DBGMSG
+ else if (ch == 'D')		/* dump dbg buffer */
  {
   newline();
   int empty = dbgemp;
@@ -142,23 +158,9 @@ void lclcmd(int ch)
  }
  else if (ch == 'E')		/* clear debug buffer */
  {
-  clrDebugBuf();
+  clrDbgBuf();
  }
- else if (ch == 'd')		/* dump memory */
- {
-  putx(' ');
-  if (gethex())
-  {
-   unsigned char *p;
-
-   p = (unsigned char *) (int) val;
-   if (gethex())
-   {
-    newline();
-    prtbuf(p,val);
-   }
-  }
- }
+#endif
 #if ENCTEST
  else if (ch == 'e')
  {
