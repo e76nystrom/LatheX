@@ -39,7 +39,7 @@ void putstr1(char *p);
 void dbgmsg(char *str, int32_t val);
 void dbgmsgx(char *str, char reg, int32_t val);
 #endif
-void pollBufChar();
+int pollBufChar();
 void putBufChar(char ch);
 ssize_t _write (int fd, const char* buf, size_t nbyte);
 
@@ -155,7 +155,7 @@ void putBufChar(char ch)
  }
 }
 
-void pollBufChar()
+int pollBufChar()
 {
  if ((DBG_PORT->SR & USART_SR_TXE) != 0)
  {
@@ -167,7 +167,9 @@ void pollBufChar()
     charEmp = 0;
    --charCount;
   }
+  return(charCount);
  }
+ return(-1);
 }
 
 ssize_t _write (int fd, const char* buf, size_t nbyte)
