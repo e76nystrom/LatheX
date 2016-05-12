@@ -38,6 +38,7 @@ void putstr1(char *p);
 #if DBGMSG
 void dbgmsg(char *str, int32_t val);
 void dbgmsgx(char *str, char reg, int32_t val);
+void clrDbgBuf();
 #endif
 int pollBufChar();
 void putBufChar(char ch);
@@ -755,6 +756,14 @@ void dbgmsgx(char *str, char reg, int32_t val)
 
   p->val = val;			/* save value */
  }
+}
+
+void clrDbgBuf()
+{
+ memset(&dbgdata, 0, sizeof(dbgdata));
+ dbgcnt = 0;
+ dbgfil = 0;
+ dbgemp = 0;
 }
 
 #endif
