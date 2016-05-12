@@ -787,7 +787,7 @@ void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper)
  a1->incr1 = 2 * a1->dyMax;
  a1->incr2 = a1->incr1 - 2 * a1->dx;
  a1->sum = a1->incr1 - a1->dx;
- if (DEBUG_SETUP)
+ if (DBG_SETUP)
  {
   printf("dx %d dy %d",  dx, dy);
   printf("incr1 %d incr2 %d sum %d bits %d",
