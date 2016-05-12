@@ -132,8 +132,6 @@ void zJogCmd();
 void zHomeCmd();
 void zLocCmd();
 void zGoHomeCmd();
-void zStart();
-void zStop();
 void zSetup();
 void zMoveSetup();
 void zSynSetup();
@@ -144,8 +142,6 @@ void xJogCmd();
 void xHomeCmd();
 void xLocCmd();
 void xGoHomeCmd();
-void xStart();
-void xStop();
 void xSetup();
 void xMoveSetup();
 void xSynSetup();
@@ -250,6 +246,7 @@ void allStop()
 {
  if (DBG_SETUP)
   printf("\nall stop\n");
+ allStop();
 #if WIN32
  fflush(stdout);
 #endif
@@ -371,14 +368,6 @@ void zGoHomeCmd()
   zMove(0, ZMOV);
 }
 
-void zStart()
-{
-}
-
-void zStop()
-{
-}
-
 void zSetup()
 {
  P_AXIS axis = &zAxis;
@@ -496,14 +485,6 @@ void xGoHomeCmd()
 {
  if (xMoveCtl.state == XIDLE)
   xMove(0, XMOV);
-}
-
-void xStart()
-{
-}
-
-void xStop()
-{
 }
 
 void xSetup()
