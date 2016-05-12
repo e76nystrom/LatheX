@@ -276,8 +276,8 @@ void remcmd()
   sndhex1((unsigned char *) (int32_t) val,sizeof(int16_t));
   break;
 
- case READDBG:
 #if DBGMSG
+ case READDBG:
   if (dbgcnt > 0)		/* if debug messages */
   {
    P_DBGMSG p;
@@ -304,8 +304,12 @@ void remcmd()
    }
    sndhex1((unsigned char *) &p->val,sizeof(p->val)); /* output data */
   }
-#endif
   break;
+
+ case CLRDBG:
+  clrDbgBuf();
+  break;
+#endif
 
  case ENCSTART:
   encStart(true);
