@@ -132,7 +132,6 @@ void zJogCmd();
 void zHomeCmd();
 void zLocCmd();
 void zGoHomeCmd();
-void zStart();
 void zStop();
 void zSetup();
 void zMoveSetup();
