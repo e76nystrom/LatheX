@@ -249,7 +249,7 @@ void allStop()
 {
  if (DBG_SETUP)
   printf("\nall stop\n");
- allStop();
+ stopCmd();
 #if WIN32
  fflush(stdout);
 #endif
