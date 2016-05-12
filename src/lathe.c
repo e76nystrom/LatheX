@@ -681,7 +681,7 @@ void accelSetup(P_ACCEL ac)
 	  scale, ac->dx, dyMin, ac->dyMax, dyDelta);
 
   float incPerClock = (float) dyDelta / accelClocks;
-  intIncPerClock = (int) (incPerClock + 0.5);
+  intIncPerClock = (int) incPerClock;
   if (intIncPerClock == 0)
    continue;
   ac->intIncPerClock = intIncPerClock;
