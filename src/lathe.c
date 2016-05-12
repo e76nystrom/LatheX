@@ -447,7 +447,7 @@ void zMoveSetup()
   printf("\nz jog accel\n");
  accelCalc(ac);
 
- ac = &zPa;
+ ac = &zPA;
  ac->stepsInch = zAxis.stepsInch;
 }
 
@@ -572,7 +572,7 @@ void xMoveSetup()
   printf("\nx jog accel\n");
  accelCalc(ac);
 
- ac = &zPa;
+ ac = &zPA;
  ac->stepsInch = zAxis.stepsInch;
 }
 
