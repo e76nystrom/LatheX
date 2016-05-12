@@ -12,7 +12,6 @@
 #define ZBACKLASH     (1 << 5)  /* 0x020 backlash move no pos upd */
 #define ZWAIT_SYNC    (1 << 6)  /* 0x040 wait for sync to start */
 #define ZPULS_MULT    (1 << 7)  /* 0x080 enable pulse multiplier */
-#define ZENC_DIR      (1 << 8)  /* 0x100 z direction from encoder */
 
 // x control register
 
