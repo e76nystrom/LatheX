@@ -60,6 +60,7 @@ void xJMove(int dir)
 void xMove(long pos, char cmd)
 {
  P_MOVECTL mov = &xMoveCtl;
+ printf("x move %5d\n", pos);
  if (DBGMSG)
   dbgmsg("x mv",  pos);
  read1(XRDXLOC);		/* read x location */
