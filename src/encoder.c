@@ -75,7 +75,9 @@ void encStart(int tEna)
  if (encPreScaler != 0)		/* if prescaler non zero */
   encTmrScl(encPreScaler);	/* load prescaler */
  encTmrMax(encTimer);		/* set timer period */
+#if 0
  tmrInfo(TIM9);
+#endif
  encState = 0;
  encCounter = 0;
  encRevCounter = 0;
