@@ -276,6 +276,12 @@ void clearAll()
  clr(xMoveCtl);
 
 #if !defined(WIN32)
+ LOAD(XLDZCTL, ZRESET);
+ LOAD(XLDZCTL, 0);
+ LOAD(XLDXCTL, XRESET);
+ LOAD(XLDXCTL, 0);
+ LOAD(XLDTCTL, 0);
+ LOAD(XLDDCTL, 0);
  clr(moveCtl);
  clr(moveQue);
 #endif
