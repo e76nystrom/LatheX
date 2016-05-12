@@ -61,7 +61,7 @@ void zMove(int32_t pos, char cmd)
 {
  P_MOVECTL mov = &zMoveCtl;
 
- printf("z move %5d\n", pos);
+ printf("z move %5d\n", (int) pos);
  if (DBGMSG)
   dbgmsg("z mv", pos);
  read1(XRDZLOC);		/* read z location */
