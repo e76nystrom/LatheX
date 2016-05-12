@@ -175,6 +175,7 @@ EXT char xflag;
 
 #ifdef WIN32
 
+#undef LOAD
 #define LOAD(a, b)
 void stopMove(){}
 void zJMove(int dir){}
