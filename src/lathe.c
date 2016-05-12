@@ -175,6 +175,7 @@ EXT char xflag;
 
 #ifdef WIN32
 
+#define LOAD(a, b)
 void stopMove(){}
 void zJMove(int dir){}
 void zMove(int32_t pos, char cmd){}
@@ -291,13 +292,14 @@ void clearAll()
  clr(zMoveCtl);
  clr(xMoveCtl);
 
-#if !defined(WIN32)
  LOAD(XLDZCTL, ZRESET);
  LOAD(XLDZCTL, 0);
  LOAD(XLDXCTL, XRESET);
  LOAD(XLDXCTL, 0);
  LOAD(XLDTCTL, 0);
  LOAD(XLDDCTL, 0);
+
+#if !defined(WIN32)
  clr(moveCtl);
  clr(moveQue);
 #endif
@@ -345,9 +347,7 @@ void spindleSetup()
 {
  if (DBG_SETUP)
   printf("\nspindle setup\n");
-#if !defined(WIN32)
  LOAD(XLDCFG, xCfgReg);
-#endif
 #if WIN32
  fflush(stdout);
 #endif
@@ -394,9 +394,7 @@ void zGoHomeCmd()
 
 void zStop()
 {
-#if !defined(WIN32)
  LOAD(XLDZCTL, 0);		/* stop z */
-#endif
 }
 
 void zSetup()
@@ -523,9 +521,7 @@ void xGoHomeCmd()
 
 void xStop()
 {
-#if !defined(WIN32)
  LOAD(XLDXCTL, 0);		/* stop x */
-#endif
 }
 
 void xSetup()
@@ -796,8 +792,9 @@ void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper)
   printf("incr1 %d incr2 %d sum %d bits %d",
 	 (a1.incr1, a1.incr2, a1.sum, bitSize(incr2)));
  }
-
+#ifDEF WIN32
  fflush(stdout);
+#endif
 }
 
 void zTaperInit(P_ACCEL ac, char dir)
@@ -811,7 +808,9 @@ void zTaperInit(P_ACCEL ac, char dir)
  LOAD(XLDZACCEL, 0);
  LOAD(XLDZACLCNT, 0);
  LOAD(XLDTCTL, TENA | TZ);
+#ifdef WIN32
  fflush(stdout);
+#endif
 }
 
 void xTaperInit(P_ACCEL ac, char dir)
@@ -824,7 +823,9 @@ void xTaperInit(P_ACCEL ac, char dir)
  LOAD(XLDXACCEL, 0);
  LOAD(XLDXACLCNT, 0);
  LOAD(XLDTCTL, TENA | TX);
+#ifdef WIN32
  fflush(stdout);
+#endif
 }
 
 char *i64toa(long long val, char *buf, int buflen)
