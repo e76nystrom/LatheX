@@ -115,6 +115,8 @@ typedef struct
 EXT T_MOVECTL zMoveCtl;
 EXT T_MOVECTL xMoveCtl;
 
+int bitSize(int val);
+
 void pauseCmd();
 void resumeCmd();
 void stopCmd();
@@ -189,11 +191,25 @@ T_MOVEQUE moveQue;
 
 #endif
 
+#define MAX_SCALE 12
 #define clr(x) memset(&x, 0, sizeof(x))
 
 int tmp(int x)
 {
  return(x);
+}
+
+int bitSize(int val)
+{
+ int bits = 0;
+ while (bits < 32)
+ {
+  if (val == 0)
+   break;
+  val >>= 1;
+  bits += 1;
+ }
+ return(bits);
 }
 
 void stopCmd()
@@ -431,6 +447,9 @@ void zMoveSetup()
  if (DBG_SETUP)
   printf("\nz jog accel\n");
  accelCalc(ac);
+
+ ac = &zPa;
+ ac->stepsInch = zAxis.stepsInch;
 }
 
 void zSynSetup()
@@ -555,6 +574,9 @@ void xMoveSetup()
  if (DBG_SETUP)
   printf("\nx jog accel\n");
  accelCalc(ac);
+
+ ac = &zPa;
+ ac->stepsInch = zAxis.stepsInch;
 }
 
 void xSynSetup()
@@ -638,21 +660,6 @@ void turnAccel(P_ACCEL ac, float accel)
  {
   accelSetup(ac);
  }
-}
-
-#define MAX_SCALE 12
-
-int bitSize(int val)
-{
- int bits = 0;
- while (bits < 32)
- {
-  if (val == 0)
-   break;
-  val >>= 1;
-  bits += 1;
- }
- return(bits);
 }
 
 void accelSetup(P_ACCEL ac)
@@ -772,24 +779,51 @@ void accelSetup(P_ACCEL ac)
 
 void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper)
 {
- printf("taperCalc1\n");
-#ifdef WIN32
- FILE *f = fopen("test.txt", "a");
- fprintf(f, "taperCalc1\n");
- fclose(f);
-#endif
-fflush(stdout);
+ printf("\ntaperCalc\n");
+
+ a1->taper = true;
+ a1->taperInch = taper;
+
+ a1.dx = dx = a1.stepsInch;
+ a1.dyMax = dy = (int) (taper * a1.stepsInch);
+
+ a1.incr1 = 2 * dy;
+ a1.incr2 = a1.incr1 - 2 * dx;
+ a1.sum = a1.incr1 - dx;
+ if (DEBUG_SETUP)
+ {
+  printf("dx %d dy %d",  dx, dy);
+  printf("incr1 %d incr2 %d sum %d bits %d",
+	 (a1.incr1, a1.incr2, a1.sum, bitSize(incr2)));
+ }
+
+ fflush(stdout);
 }
 
 void zTaperInit(P_ACCEL ac, char dir)
 {
- printf("ztaperInit\n");
+ printf("\nztaperInit\n");
+
+ LOAD(XLDZCTL, dir)
+ LOAD(XLDZD, ac->sum);
+ LOAD(XLDZINCR1, ac->incr1);
+ LOAD(XLDZINCR2, ac->incr2);
+ LOAD(XLDZACCEL, 0);
+ LOAD(XLDZACLCNT, 0);
+ LOAD(XLDTCTL, TENA | TZ);
  fflush(stdout);
 }
 
 void xTaperInit(P_ACCEL ac, char dir)
 {
- printf("xtaperInit\n");
+ printf("\nxtaperInit\n");
+ LOAD(XLDXCTL, dir)
+ LOAD(XLDXD, ac->sum);
+ LOAD(XLDXINCR1, ac->incr1);
+ LOAD(XLDXINCR2, ac->incr2);
+ LOAD(XLDXACCEL, 0);
+ LOAD(XLDXACLCNT, 0);
+ LOAD(XLDTCTL, TENA | TX);
  fflush(stdout);
 }
 
