@@ -63,9 +63,10 @@ enum COMMANDS
 
  READLOC,                       /* 0x22 read location */
  READDBG,                       /* 0x23 read debug message */
+ CLRDBG,                        /* 0x24 clear debug message buffer */
 
 // encoder commands
 
- ENCSTART,                      /* 0x24 encoder start */
- ENCSTOP,                       /* 0x25 encoder stop */
+ ENCSTART,                      /* 0x25 encoder start */
+ ENCSTOP,                       /* 0x26 encoder stop */
 };
