@@ -781,12 +781,12 @@ void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper)
  a1->taper = true;
  a1->taperInch = taper;
 
- a1.dx = dx = a1.stepsInch;
- a1.dyMax = dy = (int) (taper * a1.stepsInch);
+ a1->dx = a1.stepsInch;
+ a1->dyMax = (int) (taper * a1.stepsInch);
 
- a1.incr1 = 2 * dy;
- a1.incr2 = a1.incr1 - 2 * dx;
- a1.sum = a1.incr1 - dx;
+ a1.incr1 = 2 * a1->dyMax;
+ a1.incr2 = a1.incr1 - 2 * a1->dx;
+ a1.sum = a1.incr1 - a1->dx;
  if (DEBUG_SETUP)
  {
   printf("dx %d dy %d",  dx, dy);
