@@ -67,7 +67,7 @@ void zMove(int32_t pos, char cmd)
  read1(XRDZLOC);		/* read z location */
  mov->loc = readval.i;		/* save result */
  if (DBGMSG)
-  dbgmsg("z lc", mov->loc);
+  dbgmsg("zloc", mov->loc);
  mov->expLoc = pos;		/* save expected location */
  zMoveRel(pos - mov->loc, cmd);	/* calculate move distance */
 }
