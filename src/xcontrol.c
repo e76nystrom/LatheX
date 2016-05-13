@@ -61,7 +61,6 @@ void xMove(long pos, char cmd)
 {
  P_MOVECTL mov = &xMoveCtl;
 
- printf("x move %5d\n", (int) pos);
  if (DBGMSG)
   dbgmsg("x mv",  pos);
  read1(XRDXLOC);		/* read x location */
@@ -69,6 +68,7 @@ void xMove(long pos, char cmd)
  if (DBGMSG)
   dbgmsg("xloc", mov->loc);
  mov->expLoc = pos;		/* save expected location */
+ printf("x move %5d %5d\n", (int) pos, (int) (pos - mov->loc));
  xMoveRel(pos - mov->loc, cmd);	/* calculate move distance */
 }
 
