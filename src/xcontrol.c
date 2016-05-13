@@ -96,6 +96,7 @@ void xMoveRel(long dist, char cmd)
 
   if (mov->state == XWAITBKLS)	/* if backlash move needed */
   {
+   mov->wait = 1;		/* set wait flag */
    xLoad(&xMA);			/* load move parameters */
    mov->ctlreg = XSTART | XBACKLASH; /* initialize ctl reg */
    if (mov->dir == XPOS)	/* if positive direction */
@@ -132,6 +133,7 @@ void xControl()
   if (mov->done)		/* if done */
   {
    mov->done = 0;		/* clear done flag */
+   mov->wait = 0;		/* clear wait flag */
    mov->state = XSTARTMOVE;	/* advance to move state */
   }
   break;
@@ -159,12 +161,16 @@ void xControl()
   LOAD(XLDXCTL,  mov->ctlreg);	/* start move */
   if (DBGMSG)
    dbgmsg("ctlx",  mov->ctlreg);
+  mov->wait = 1;		/* set wait flag */
   mov->state = XWAITMOVE;	/* wait for move to complete */
   break;
 
  case XWAITMOVE:		/* 0x03 wait for an x move to complete */
   if (mov->done)		/* if done */
+  {
+   mov->wait = 0;		/* clear wait flag */
    mov->state = XDONE;		/* clean up everything */
+  }
   break;
 
  case XDONE:			/* 0x04 done state */
