@@ -61,7 +61,6 @@ void zMove(int32_t pos, char cmd)
 {
  P_MOVECTL mov = &zMoveCtl;
 
- printf("z move %5d\n", (int) pos);
  if (DBGMSG)
   dbgmsg("z mv", pos);
  read1(XRDZLOC);		/* read z location */
@@ -69,6 +68,7 @@ void zMove(int32_t pos, char cmd)
  if (DBGMSG)
   dbgmsg("zloc", mov->loc);
  mov->expLoc = pos;		/* save expected location */
+ printf("z move %5d %5d\n", (int) pos, (int) (pos - mov->loc));
  zMoveRel(pos - mov->loc, cmd);	/* calculate move distance */
 }
 
