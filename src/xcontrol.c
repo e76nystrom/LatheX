@@ -66,6 +66,8 @@ void xMove(long pos, char cmd)
   dbgmsg("x mv",  pos);
  read1(XRDXLOC);		/* read x location */
  mov->loc = readval.i;		/* save result */
+ if (DBGMSG)
+  dbgmsg("x lc", mov->loc);
  mov->expLoc = pos;		/* save expected location */
  xMoveRel(pos - mov->loc, cmd);	/* calculate move distance */
 }
