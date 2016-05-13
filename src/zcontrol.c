@@ -94,6 +94,7 @@ void zMoveRel(int32_t dist, char cmd)
 
   if (mov->state == ZWAITBKLS)	/* if backlash move needed */
   {
+   mov->wait = 1;		/* set wait flag */
    zLoad(&zMA);			/* load move parameters */
    mov->ctlreg = ZSTART | ZBACKLASH; /* initialize ctl reg */
    if (mov->dir == ZPOS)	/* if positive direction */
@@ -131,6 +132,7 @@ void zControl()
   if (mov->done)		/* if done */
   {
    mov->done = 0;		/* clear done flag */
+   move->wait = 0;		/* clear wait flag */
    mov->state = ZSTARTMOVE;	/* advance to start move state */
   }
   break;
@@ -159,11 +161,15 @@ void zControl()
   if (DBGMSG)
    dbgmsg("ctlz", mov->ctlreg);
   mov->state = ZWAITMOVE;	/* wait for move to complete */
+  mov->wait = 1;		/* set wait flag */
   break;
 
  case ZWAITMOVE:		/* 3 wait for a z move to complete */
   if (mov->done)		/* if done */
+  {
    mov->state = ZDONE;		/* clean up everything */
+   move->wait = 0;		/* clear wait flag */
+  }
   break;
 
  case ZDONE:			/* 4 done state */
