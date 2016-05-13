@@ -41,6 +41,8 @@ void mainLoop(void)
     if ((readval.i & S_Z_DONE_INT) /* if done bit set */
     ||  (zflag))		/* if z done flag from xilinx set */
     {
+     if (DBGMSG)
+      dbgmsg('z dn', zLoc);
      printf("z done\n");
      LOAD(XLDZCTL,0);		/* clear z control register */
      zMoveCtl.done = 1;		/* signal done */
@@ -57,6 +59,8 @@ void mainLoop(void)
     ||  (xflag))		/* if x done flag from xilinx set */
     {
      printf("x done\n");
+     if (DBGMSG)
+      dbgmsg('z dn', zLoc);
      LOAD(XLDXCTL,0);		/* clear x control register */
      xMoveCtl.done = 1;		/* set done flag */
     }
