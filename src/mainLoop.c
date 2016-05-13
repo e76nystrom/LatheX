@@ -40,7 +40,7 @@ void mainLoop(void)
     read1(XRDSR);		/* read status register */
     if (zMoveCtl.wait)		/* if wait flag set */
     {
-     if ((readVal.i & S_Z_START) == 0) /* if start flag not set */
+     if ((readval.i & S_Z_START) == 0) /* if start flag not set */
      {
       printf("z waiting no start flag\n");
       zMoveCtl.wait = 0;
@@ -65,7 +65,7 @@ void mainLoop(void)
     read1(XRDSR);		/* read status register */
     if (xMoveCtl.wait)		/* if wait flag set */
     {
-     if ((readVal.i & S_X_START) == 0) /* if start flag not set */
+     if ((readval.i & S_X_START) == 0) /* if start flag not set */
      {
       printf("x waiting no start flag\n");
       xMoveCtl.wait = 0;
