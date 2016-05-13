@@ -103,6 +103,9 @@ void xMoveRel(long dist, char cmd)
     mov->ctlreg |= XDIR_POS;	/* set direction flag */
    LOAD(XLDXDIST,  xAxis.backlashSteps); /* load backlash */
    LOAD(XLDXCTL,  mov->ctlreg);	/* start move */
+   read1(XRDSR);
+   if ((readval.i & S_X_START) == 0)
+    printf("x start not set\n");
   }
   mov->done = 0;		/* clear done flag */
   mov->stop = 0;		/* clear stop flag */
@@ -159,8 +162,9 @@ void xControl()
    mov->ctlreg |= XDIR_POS;	/* set direction flag */
   LOAD(XLDXDIST,  mov->dist);	/* set distance to move */
   LOAD(XLDXCTL,  mov->ctlreg);	/* start move */
-  if (DBGMSG)
-   dbgmsg("ctlx",  mov->ctlreg);
+  read1(XRDSR);
+  if ((readval.i & S_X_START) == 0)
+   printf("x start not set\n");
   mov->wait = 1;		/* set wait flag */
   mov->state = XWAITMOVE;	/* wait for move to complete */
   break;
