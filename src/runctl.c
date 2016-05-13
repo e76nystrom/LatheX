@@ -205,6 +205,13 @@ void procMove()
    case TAPER_XZ:
     if (DBG_QUE)
      printf("taper xz %7.4f\n", cmd->val);
+    taperCalc(&xTA, &zPA, mv->taper);
+    int dir = XPOS;
+    if (cmd->flag)
+     dir = XNEG;
+    xTaperInit(&zPA, dir);
+    val = (int) (cmd->val * xAxis.stepsInch);
+    xMove(val, XSYN | X_SYN_START | Z_SYN_TAPER);
     mv->state = M_WAIT_X;
     break;
 
