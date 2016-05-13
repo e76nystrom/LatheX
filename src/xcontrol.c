@@ -66,6 +66,7 @@ void xMove(long pos, char cmd)
   dbgmsg("x mv",  pos);
  read1(XRDXLOC);		/* read x location */
  mov->loc = readval.i;		/* save result */
+ mov->expLoc = pos;		/* save expected location */
  xMoveRel(pos - mov->loc, cmd);	/* calculate move distance */
 }
 
@@ -187,6 +188,12 @@ void xControl()
   mov->cmd = 0;			/* clear command */
   read1(XRDXLOC);		/* read current location */
   mov->loc = readval.i;		/* save it */
+  if (mov->loc != mov->expLoc)	/* if not at expected location */
+  {
+   printf("x move error actual %d expected %d\n", mov->loc, mov->expLoc);
+   if (DBGMSG)
+    dbgmsg("xExp",  mov->expLoc);
+  }
   if (DBGMSG)
    dbgmsg("xloc",  mov->loc);
   mov->state = XIDLE;		/* set state to idle */
