@@ -130,6 +130,7 @@ void procMove()
   P_MOVEQUE que = &moveQue;
   while (que->count != 0)
   {
+   int dir;
    --que->count;
    P_MOVECMD cmd = &que->cmd[que->emp];
    que->emp++;
@@ -194,7 +195,7 @@ void procMove()
     if (DBG_QUE)
      printf("taper zx %7.4f\n", cmd->val);
     taperCalc(&zTA, &xPA, mv->taper);
-    int dir = ZPOS;
+    dir = ZPOS;
     if (cmd->flag)
      dir = ZNEG;
     xTaperInit(&xPA, dir);
@@ -207,7 +208,7 @@ void procMove()
     if (DBG_QUE)
      printf("taper xz %7.4f\n", cmd->val);
     taperCalc(&xTA, &zPA, mv->taper);
-    int dir = XPOS;
+    dir = XPOS;
     if (cmd->flag)
      dir = XNEG;
     xTaperInit(&zPA, dir);
