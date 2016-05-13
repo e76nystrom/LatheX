@@ -132,7 +132,7 @@ void zControl()
   if (mov->done)		/* if done */
   {
    mov->done = 0;		/* clear done flag */
-   move->wait = 0;		/* clear wait flag */
+   mov->wait = 0;		/* clear wait flag */
    mov->state = ZSTARTMOVE;	/* advance to start move state */
   }
   break;
@@ -167,7 +167,7 @@ void zControl()
  case ZWAITMOVE:		/* 3 wait for a z move to complete */
   if (mov->done)		/* if done */
   {
-   move->wait = 0;		/* clear wait flag */
+   mov->wait = 0;		/* clear wait flag */
    mov->state = ZDONE;		/* clean up everything */
   }
   break;
