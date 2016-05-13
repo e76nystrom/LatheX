@@ -108,6 +108,7 @@ typedef struct
  int dirChange;			/* direction */
  int dist;			/* distance to move */
  int loc;			/* current location */
+ int expLoc;			/* expected location */
  int iniDist;			/* initial jog distance */
  int maxDist;			/* maximum jog distance */
  int jogInc;			/* jog increment */
