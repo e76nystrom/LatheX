@@ -200,7 +200,7 @@ void procMove()
      dir = ZNEG;
     xTaperInit(&xPA, dir);
     val = (int) (cmd->val * zAxis.stepsInch);
-    zMove(val, ZSYN | Z_SYN_START | X_SYN_TAPER);
+    zMove(val, ZSYN | X_SYN_TAPER);
     mv->state = M_WAIT_Z;
     break;
 
@@ -213,7 +213,7 @@ void procMove()
      dir = XNEG;
     xTaperInit(&zPA, dir);
     val = (int) (cmd->val * xAxis.stepsInch);
-    xMove(val, XSYN | X_SYN_START | Z_SYN_TAPER);
+    xMove(val, XSYN | Z_SYN_TAPER);
     mv->state = M_WAIT_X;
     break;
 
