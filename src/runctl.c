@@ -11,6 +11,7 @@
 #include "lathe.h"
 #include "zcontrol.h"
 #include "xcontrol.h"
+#include "serialio.h"
 #define EXT
 
 #define DBG_MOVE  1		/* move operation */
