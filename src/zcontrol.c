@@ -160,15 +160,15 @@ void zControl()
   LOAD(XLDZCTL, mov->ctlreg);	/* start move */
   if (DBGMSG)
    dbgmsg("ctlz", mov->ctlreg);
-  mov->state = ZWAITMOVE;	/* wait for move to complete */
   mov->wait = 1;		/* set wait flag */
+  mov->state = ZWAITMOVE;	/* wait for move to complete */
   break;
 
  case ZWAITMOVE:		/* 3 wait for a z move to complete */
   if (mov->done)		/* if done */
   {
-   mov->state = ZDONE;		/* clean up everything */
    move->wait = 0;		/* clear wait flag */
+   mov->state = ZDONE;		/* clean up everything */
   }
   break;
 
