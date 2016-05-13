@@ -66,6 +66,7 @@ void zMove(int32_t pos, char cmd)
   dbgmsg("z mv", pos);
  read1(XRDZLOC);		/* read z location */
  mov->loc = readval.i;		/* save result */
+ mov->expLoc = pos;		/* save expected location */
  zMoveRel(pos - mov->loc, cmd);	/* calculate move distance */
 }
 
@@ -186,6 +187,12 @@ void zControl()
   mov->cmd = 0;			/* clear command */
   read1(XRDZLOC);		/* read current location */
   mov->loc = readval.i;		/* save it */
+  if (mov->loc != mov->expLoc)	/* if not at expected location */
+  {
+   printf("z move error actual %d expected %d\n", mov->loc, mov->expLoc);
+   if (DBGMSG)
+    dbgmsg("zExp",  mov->expLoc);
+  }
   if (DBGMSG)
    dbgmsg("zloc", mov->loc);
   mov->state = ZIDLE;		/* set state to idle */
