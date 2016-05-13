@@ -42,6 +42,8 @@ void mainLoop(void)
     {
      if ((readval.i & S_Z_START) == 0) /* if start flag not set */
      {
+      if (DBGMSG)
+       dbgmsg("z wt", readval.i);
       printf("z waiting no start flag\n");
       zMoveCtl.wait = 0;
      }
@@ -67,6 +69,8 @@ void mainLoop(void)
     {
      if ((readval.i & S_X_START) == 0) /* if start flag not set */
      {
+      if (DBGMSG)
+       dbgmsg("x wt", readval.i);
       printf("x waiting no start flag\n");
       xMoveCtl.wait = 0;
      }
