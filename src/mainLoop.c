@@ -38,6 +38,14 @@ void mainLoop(void)
     read1(XRDZLOC);		/* read z location */
     zLoc = readval.i;
     read1(XRDSR);		/* read status register */
+    if (zMoveCtl.wait)		/* if wait flag set */
+    {
+     if ((readVal.i & S_Z_START) == 0) /* if start flag not set */
+     {
+      printf("z waiting no start flag\n");
+      zMoveCtl.wait = 0;
+     }
+    }
     if ((readval.i & S_Z_DONE_INT) /* if done bit set */
     ||  (zflag))		/* if z done flag from xilinx set */
     {
@@ -55,12 +63,20 @@ void mainLoop(void)
     read1(XRDXLOC);		/* read x location */
     xLoc = readval.i;
     read1(XRDSR);		/* read status register */
+    if (xMoveCtl.wait)		/* if wait flag set */
+    {
+     if ((readVal.i & S_X_START) == 0) /* if start flag not set */
+     {
+      printf("x waiting no start flag\n");
+      xMoveCtl.wait = 0;
+     }
+    }
     if ((readval.i & S_X_DONE_INT) /* if done bit set */
     ||  (xflag))		/* if x done flag from xilinx set */
     {
      printf("x done\n");
      if (DBGMSG)
-      dbgmsg("x dn", zLoc);
+      dbgmsg("x dn", xLoc);
      LOAD(XLDXCTL,0);		/* clear x control register */
      xMoveCtl.done = 1;		/* set done flag */
     }
