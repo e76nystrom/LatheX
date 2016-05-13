@@ -102,6 +102,7 @@ typedef struct
  char cmd;			/* move command */
  char stop;			/* stop flag */
  char done;			/* done flag */
+ char wait;			/* waiting for done */
  char ctlreg;			/* control register */
  int dir;			/* direction -1 neg, 0 backlash, 1 pos */
  int dirChange;			/* direction */
