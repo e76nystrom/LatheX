@@ -42,7 +42,7 @@ void mainLoop(void)
     ||  (zflag))		/* if z done flag from xilinx set */
     {
      if (DBGMSG)
-      dbgmsg('z dn', zLoc);
+      dbgmsg("z dn", zLoc);
      printf("z done\n");
      LOAD(XLDZCTL,0);		/* clear z control register */
      zMoveCtl.done = 1;		/* signal done */
@@ -60,7 +60,7 @@ void mainLoop(void)
     {
      printf("x done\n");
      if (DBGMSG)
-      dbgmsg('z dn', zLoc);
+      dbgmsg("x dn", zLoc);
      LOAD(XLDXCTL,0);		/* clear x control register */
      xMoveCtl.done = 1;		/* set done flag */
     }
