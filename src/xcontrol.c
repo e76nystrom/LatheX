@@ -103,6 +103,7 @@ void xMoveRel(long dist, char cmd)
     mov->ctlreg |= XDIR_POS;	/* set direction flag */
    LOAD(XLDXDIST,  xAxis.backlashSteps); /* load backlash */
    LOAD(XLDXCTL,  mov->ctlreg);	/* start move */
+   LOAD(XLDXCTL,  mov->ctlreg);	/* start move */
    read1(XRDSR);
    if ((readval.i & S_X_START) == 0)
     printf("x start not set\n");
@@ -161,6 +162,7 @@ void xControl()
   if (mov->dir == XPOS)		/* if moving positive */
    mov->ctlreg |= XDIR_POS;	/* set direction flag */
   LOAD(XLDXDIST,  mov->dist);	/* set distance to move */
+  LOAD(XLDXCTL,  mov->ctlreg);	/* start move */
   LOAD(XLDXCTL,  mov->ctlreg);	/* start move */
   read1(XRDSR);
   if ((readval.i & S_X_START) == 0)
