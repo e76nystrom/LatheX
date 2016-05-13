@@ -227,9 +227,11 @@ void procMove()
     break;
 
    case PASS_NUM:
-    if (DBG_QUE)
-     printf("pass %2d\n", cmd->iVal);
     int tmp = cmd->iVal;
+    if (DBG_QUE)
+     printf("pass %2d\n", tmp);
+    if (DBGMSG)
+     dbgmsg("pass", tmp);
     currentPass = tmp;
     mv->pass = tmp;
     done = 0;
