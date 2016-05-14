@@ -195,9 +195,7 @@ void lclcmd(int ch)
    for (i = 0; i < val; i++)
    {
     LOAD(XLDZCTL, j);
-    PUTX(0);
     read1(XRDZCTL);
-    PUTX(0);
     int testVal = j & ((1 << (zCtl_size)) - 1);
     if (readval.i != testVal)
     {
@@ -208,9 +206,7 @@ void lclcmd(int ch)
     }
 
     LOAD(XLDXCTL, j);
-    PUTX(0);
     read1(XRDXCTL);
-    PUTX(0);
     testVal = j & ((1 << (xCtl_size)) - 1);
     if (readval.i != testVal)
     {
