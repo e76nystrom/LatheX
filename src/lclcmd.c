@@ -197,13 +197,13 @@ void lclcmd(int ch)
     int readVal = read1(XRDZCTL);
     int testVal = j & ((1 << (zCtl_size)) - 1);
     if (readVal != testVal)
-     printf("testVal %8x readVal %8x\n", testVal, readVal);
+     printf("%4d z testVal %8x readVal %8x\n", i, testVal, readVal);
 
     LOAD(XLDXCTL, j);
-    int readVal = read1(XRDXCTL);
-    int testVal = j & ((1 << (xCtl_size)) - 1);
+    readVal = read1(XRDXCTL);
+    testVal = j & ((1 << (xCtl_size)) - 1);
     if (readVal != testVal)
-     printf("testVal %8x readVal %8x\n", testVal, readVal);
+     printf("%4d x testVal %8x readVal %8x\n", i, testVal, readVal);
     j += 1;
    }
   }
