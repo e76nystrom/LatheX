@@ -76,6 +76,8 @@ void load(char addr, byte_long val)
  spisend(val.b[2]);
  spisend(val.b[1]);
  spisend(val.b[0]);
+ while ((SPI1->SR & SPI_SR_BSY) == 0)
+  ;
  spirel();
 }
 
@@ -97,6 +99,8 @@ void read1(char addr)
  readval.b[2] = spiread();
  readval.b[1] = spiread();
  readval.b[0] = spiread();
+ while ((SPI1->SR & SPI_SR_BSY) == 0)
+  ;
  spirel();			/* and release */
  if (print & 8)
   printf("read %x %lx\n\r",addr,readval.i);
