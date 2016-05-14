@@ -38,12 +38,16 @@ EXT byte_long readval;
 EXT int16_t spiw0;
 EXT int16_t spiw1;
 
+void spirel();
+
 #define SPI_SEL_BIT (1 << 7)
 #define SPI_SEL_REG GPIOC->BSRR
 #define spisel()  SPI1->CR1 |= SPI_CR1_SPE; \
  SPI_SEL_REG = (SPI_SEL_BIT << 16)
+#if 0
 #define spirel() SPI_SEL_REG = SPI_SEL_BIT; \
  SPI1->CR1 &= ~SPI_CR1_SPE
+#endif
 
 #if !defined(INCLUDE)
 
@@ -54,12 +58,16 @@ void spisel()
  spi1sel = 0;
 }
 
+#endif
+
 void spirel()
 {
- spi1sel = 1;
+ SPI_SEL_REG = SPI_SEL_BIT;
+ SPI1->CR1 &= ~SPI_CR1_SPE;
+ int i;
+ for (i = 0; i < 100; i++)
+  ;
 }
-
-#endif
 
 void load(char addr, byte_long val)
 {
