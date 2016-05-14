@@ -19,8 +19,6 @@ void encInit();
 void encStart(int tEna);
 void encStop();
 
-#if !defined(INCLUDE)
-
 #if ENCTEST
 
 #define encTmrISR(x)  TIM1_BRK_TIM9_IRQHandler(x)
@@ -51,6 +49,8 @@ void encStop();
 #define initSync()
 #define setSync() GPIOB->BSRR = SYNC_BIT
 #define clrSync() GPIOB->BSRR = (SYNC_BIT << 16)
+
+#if !defined(INCLUDE)
 
 void encInit()
 {
