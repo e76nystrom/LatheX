@@ -11,7 +11,6 @@
 #define ZSET_LOC      (1 << 4)  /* 0x010 set z location */
 #define ZBACKLASH     (1 << 5)  /* 0x020 backlash move no pos upd */
 #define ZWAIT_SYNC    (1 << 6)  /* 0x040 wait for sync to start */
-#define ZPULS_MULT    (1 << 7)  /* 0x080 enable pulse multiplier */
 
 // x control register
 
@@ -44,6 +43,7 @@
 #define XSTEP_POL     (1 << 2)  /* 0x004 x step pulse polarity */
 #define XDIR_POL      (1 << 3)  /* 0x008 x direction polarity */
 #define ENC_POL       (1 << 4)  /* 0x010 encoder dir polarity */
+#define ZPULSE_MULT   (1 << 5)  /* 0x020 enable pulse multiplier */
 
 // debug control register
 
