@@ -76,7 +76,7 @@ void load(char addr, byte_long val)
  spisend(val.b[2]);
  spisend(val.b[1]);
  spisend(val.b[0]);
- while ((SPI1->SR & SPI_SR_BSY) == 0)
+ while ((SPI1->SR & SPI_SR_BSY) != 0)
   ;
  spirel();
 }
