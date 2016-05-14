@@ -184,6 +184,30 @@ void lclcmd(int ch)
   }
  }
 #endif
+ else if (ch == 't')
+ {
+  putx(' ');
+  if (getnum())
+  {
+   int i;
+   int j = 0;
+   for (i = 0; i < val; i++)
+   {
+    LOAD(XLDZCTL, j);
+    int readVal = read1(XRDZCTL);
+    int testVal = j & ((1 << (zCtl_size)) - 1);
+    if (readVal != testVal)
+     printf("testVal %8x readVal %8x\n", testVal, readVal);
+
+    LOAD(XLDXCTL, j);
+    int readVal = read1(XRDXCTL);
+    int testVal = j & ((1 << (xCtl_size)) - 1);
+    if (readVal != testVal)
+     printf("testVal %8x readVal %8x\n", testVal, readVal);
+    j += 1;
+   }
+  }
+ }
  else if (ch == 'q')
  {
   gpioInfo(GPIOA);
