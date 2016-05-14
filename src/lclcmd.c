@@ -189,6 +189,7 @@ void lclcmd(int ch)
   putx(' ');
   if (getnum())
   {
+   newline();
    int i;
    int j = 0;
    for (i = 0; i < val; i++)
@@ -208,10 +209,12 @@ void lclcmd(int ch)
     read1(XRDXCTL);
     testVal = j & ((1 << (xCtl_size)) - 1);
     if (readval.i != testVal)
+    {
      setSync();
      printf("%4d x testVal %8x readVal %8x\n",
 	    i, (unsigned int) testVal, (unsigned int) readval.i);
      clrSync();
+    }
     j += 1;
     while (pollBufChar() != 0)
      ;
