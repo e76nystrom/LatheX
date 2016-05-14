@@ -19,6 +19,7 @@ void mainLoop(void)
 {
  unsigned char ch;
 
+ spirel();
 // printf("s %x m %x b %x\n\r",U1STA,U1MODE,U1BRG);
 
  printf("start main loop\n");
