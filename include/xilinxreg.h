@@ -92,4 +92,8 @@ enum XILINX
 
  XLDTFREQ,                      /* 0x30 load test freq */
  XLDTCOUNT,                     /* 0x31 load test count */
+
+// read control regs
+
+ XRDCTL,                        /* 0x32 read control regiisters */
 };
