@@ -194,21 +194,21 @@ void lclcmd(int ch)
    for (i = 0; i < val; i++)
    {
     LOAD(XLDZCTL, j);
-    int readVal = read1(XRDZCTL);
+    read1(XRDZCTL);
     int testVal = j & ((1 << (zCtl_size)) - 1);
-    if (readVal != testVal)
+    if (readval.i != testVal)
     {
      setSync();
-     printf("%4d z testVal %8x readVal %8x\n", i, testVal, readVal);
+     printf("%4d z testVal %8x readVal %8x\n", i, testVal, readval.i);
      clrSync();
     }
 
     LOAD(XLDXCTL, j);
-    readVal = read1(XRDXCTL);
+    read1(XRDXCTL);
     testVal = j & ((1 << (xCtl_size)) - 1);
-    if (readVal != testVal)
+    if (readval.i != testVal)
      setSync();
-     printf("%4d x testVal %8x readVal %8x\n", i, testVal, readVal);
+     printf("%4d x testVal %8x readVal %8x\n", i, testVal, readval.i);
      clrSync();
     j += 1;
     while (pollBufChar() != 0)
