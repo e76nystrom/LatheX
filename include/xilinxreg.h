@@ -95,5 +95,6 @@ enum XILINX
 
 // read control regs
 
- XRDCTL,                        /* 0x32 read control regiisters */
+ XRDZCTL,                       /* 0x32 read control regiisters */
+ XRDXCTL,                       /* 0x33 read control regiisters */
 };
