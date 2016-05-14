@@ -77,7 +77,7 @@ void load(char addr, byte_long val)
  while ((SPI1->SR & SPI_SR_BSY) != 0)
   ;
  int time = HAL_GetTick() + 2;	/* save time */
- while (time != HAL_GetTICK())
+ while (time != HAL_GetTick())
   ;
  spirel();
 }
@@ -103,7 +103,7 @@ void read1(char addr)
  while ((SPI1->SR & SPI_SR_BSY) != 0)
   ;
  int time = HAL_GetTick() + 2;	/* save time */
- while (time != HAL_GetTICK())
+ while (time != HAL_GetTick())
   ;
  spirel();			/* and release */
  if (print & 8)
