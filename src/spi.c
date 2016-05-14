@@ -20,7 +20,7 @@ typedef union
 typedef union
 {
  char b[4];			/* char array */
-  int32_t i;			/* long interger */
+ int32_t i;			/* long interger */
 } byte_long;
 
 #define LOAD(a,b) load(a,(byte_long) ((int32_t) b))
