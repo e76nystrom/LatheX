@@ -199,7 +199,8 @@ void lclcmd(int ch)
     if (readval.i != testVal)
     {
      setSync();
-     printf("%4d z testVal %8x readVal %8x\n", i, testVal, readval.i);
+     printf("%4d z testVal %8x readVal %8x\n",
+	    i, (unsigned int) testVal, (unsigned int) readval.i);
      clrSync();
     }
 
@@ -208,7 +209,8 @@ void lclcmd(int ch)
     testVal = j & ((1 << (xCtl_size)) - 1);
     if (readval.i != testVal)
      setSync();
-     printf("%4d x testVal %8x readVal %8x\n", i, testVal, readval.i);
+     printf("%4d x testVal %8x readVal %8x\n",
+	    i, (unsigned int) testVal, (unsigned int) readval.i);
      clrSync();
     j += 1;
     while (pollBufChar() != 0)
