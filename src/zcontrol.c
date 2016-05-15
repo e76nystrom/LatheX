@@ -104,7 +104,6 @@ void zMoveRel(int32_t dist, char cmd)
     mov->ctlreg |= ZDIR_POS;	/* set direction flag */
    LOAD(XLDXDIST,  zAxis.backlashSteps); /* load backlash */
    LOAD(XLDZCTL, mov->ctlreg);	/* start move */
-   LOAD(XLDZCTL, mov->ctlreg);	/* start move */
    read1(XRDSR);
    if ((readval.i & S_Z_START) == 0)
     printf("z start not set\n");
@@ -164,7 +163,6 @@ void zControl()
   if (mov->dir == ZPOS)		/* if moving positive */
    mov->ctlreg |= ZDIR_POS;	/* set direction flag */
   LOAD(XLDZDIST, mov->dist);	/* set distance to move */
-  LOAD(XLDZCTL, mov->ctlreg);	/* start move */
   LOAD(XLDZCTL, mov->ctlreg);	/* start move */
   read1(XRDSR);
   if ((readval.i & S_Z_START) == 0)
