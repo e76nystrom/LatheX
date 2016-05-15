@@ -108,12 +108,13 @@ void read1(char addr)
  readval.b[2] = spiread();
  readval.b[1] = spiread();
  readval.b[0] = spiread();
-
+#if 0
  while ((SPI1->SR & SPI_SR_BSY) != 0)
   ;
  unsigned int time = HAL_GetTick() + 2;	/* save time */
-while (time != HAL_GetTick())
+ while (time != HAL_GetTick())
   ;
+#endif
  spirel();			/* and release */
  if (print & 8)
   printf("read %x %lx\n\r",addr,readval.i);
