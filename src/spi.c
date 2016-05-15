@@ -44,10 +44,8 @@ void spirel();
 #define SPI_SEL_REG GPIOC->BSRR
 #define spisel()  SPI1->CR1 |= SPI_CR1_SPE; \
  SPI_SEL_REG = (SPI_SEL_BIT << 16)
-#if 0
 #define spirel() SPI_SEL_REG = SPI_SEL_BIT; \
  SPI1->CR1 &= ~SPI_CR1_SPE
-#endif
 
 #if !defined(INCLUDE)
 
@@ -58,7 +56,6 @@ void spisel()
  spi1sel = 0;
 }
 
-#endif
 
 void spirel()
 {
@@ -68,6 +65,7 @@ void spirel()
  for (i = 0; i < 100; i++)
   ;
 }
+#endif
 
 void load(char addr, byte_long val)
 {
@@ -82,11 +80,13 @@ void load(char addr, byte_long val)
  spisend(val.b[2]);
  spisend(val.b[1]);
  spisend(val.b[0]);
+#if 0
  while ((SPI1->SR & SPI_SR_BSY) != 0)
   ;
-// unsigned int time = HAL_GetTick() + 2;	/* save time */
-// while (time != HAL_GetTick())
-//  ;
+ unsigned int time = HAL_GetTick() + 2;	/* save time */
+ while (time != HAL_GetTick())
+  ;
+#endif
  spirel();
 }
 
@@ -108,11 +108,12 @@ void read1(char addr)
  readval.b[2] = spiread();
  readval.b[1] = spiread();
  readval.b[0] = spiread();
+
  while ((SPI1->SR & SPI_SR_BSY) != 0)
   ;
-// unsigned int time = HAL_GetTick() + 2;	/* save time */
-// while (time != HAL_GetTick())
-//  ;
+ unsigned int time = HAL_GetTick() + 2;	/* save time */
+while (time != HAL_GetTick())
+  ;
  spirel();			/* and release */
  if (print & 8)
   printf("read %x %lx\n\r",addr,readval.i);
