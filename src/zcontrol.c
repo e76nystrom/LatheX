@@ -149,7 +149,9 @@ void zControl()
   if (ch == ZSYN)		/* if synchronized move */
   {
    zLoad(&zTA);			/* load turn parameters */
-   mov->ctlreg |= ZWAIT_SYNC | ZSRC_SYN; /* set sync flags */
+   mov->ctlreg |= ZSRC_SYN;	/* set sync flags */
+   if (mov->cmd & Z_SYN_START)	/* if wait for sync */
+    mov->ctlreg |= ZWIAT_SYNC;	/* set to wait for sync */
   }
   else
   {
