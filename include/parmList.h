@@ -57,81 +57,51 @@ enum PARM
 // axis move values
 
  Z_MOVE_DIST,                   /* 0x1d z move distance */
- Z_JOG_DIR,                     /* 0x1e x jog direction */
- Z_SET_LOC,                     /* 0x1f z location to set */
- Z_LOC,                         /* 0x20 z location */
- X_MOVE_DIST,                   /* 0x21 x move distance */
- X_JOG_DIR,                     /* 0x22 x jog direction */
- X_SET_LOC,                     /* 0x23 x location to set */
- X_LOC,                         /* 0x24 x location */
-
-// z turn/face parameters
-
- Z_START_LOC,                   /* 0x25 z start */
- Z_END_LOC,                     /* 0x26 z end */
- Z_RETRACT,                     /* 0x27 z retract */
- Z_FEED_PASS,                   /* 0x28 z feed per pass */
-
-// x turn/face parameters
-
- X_START_LOC,                   /* 0x29 x start */
- X_END_LOC,                     /* 0x2a x end */
- X_RETRACT,                     /* 0x2b x retract */
- X_FEED_PASS,                   /* 0x2c x feed per pass */
-
-// feed parameters
-
- FEED_DIR,                      /* 0x2d feed direction */
- FEED_TYPE,                     /* 0x2e feed parameter type */
- FEED,                          /* 0x2f feed parameter */
-
-// taper parameters
-
- TAPER_Z,                       /* 0x30 z distance for taper */
- TAPER_X,                       /* 0x31 x distance for taper */
- TAPER_FLAG,                    /* 0x32 taper flag */
-
-// general turn thread parameters
-
- TURN_FLAG,                     /* 0x33 turn flag */
- THREAD_DEPTH,                  /* 0x34 thread depth */
- THREAD_LAST_FEED,              /* 0x35 thread last feed depth */
- THREAD_H_FACTOR,               /* 0x36 height Factor */
- THREAD_ANGLE,                  /* 0x37 thread angle */
- INDEX_PRE_SCALER,              /* 0x38 index prescaler */
- INDEX_PERIOD,                  /* 0x39 index period */
+ Z_MOVE_POS,                    /* 0x1e z move position */
+ Z_JOG_DIR,                     /* 0x1f x jog direction */
+ Z_SET_LOC,                     /* 0x20 z location to set */
+ Z_LOC,                         /* 0x21 z location */
+ Z_Flag,                        /* 0x22 z move flag */
+ X_MOVE_DIST,                   /* 0x23 x move distance */
+ X_MOVE_POS,                    /* 0x24 x move position */
+ X_JOG_DIR,                     /* 0x25 x jog direction */
+ X_SET_LOC,                     /* 0x26 x location to set */
+ X_LOC,                         /* 0x27 x location */
+ X_Flag,                        /* 0x28 x move flag */
+ INDEX_PRE_SCALER,              /* 0x29 index prescaler */
+ INDEX_PERIOD,                  /* 0x2a index period */
 
 // encoder counts per revolution
 
- ENC_MAX,                       /* 0x3a encoder counts per revolution */
+ ENC_MAX,                       /* 0x2b encoder counts per revolution */
 
 // test encoder setup variables
 
- ENC_ENABLE,                    /* 0x3b encoder enable flag */
- ENC_PRE_SCALER,                /* 0x3c encoder prescaler */
- ENC_TIMER,                     /* 0x3d encoder timer counts */
- ENC_RUN_COUNT,                 /* 0x3e encoder run count */
+ ENC_ENABLE,                    /* 0x2c encoder enable flag */
+ ENC_PRE_SCALER,                /* 0x2d encoder prescaler */
+ ENC_TIMER,                     /* 0x2e encoder timer counts */
+ ENC_RUN_COUNT,                 /* 0x2f encoder run count */
 
 // test encoder status variables
 
- ENC_RUN,                       /* 0x3f encoder running flag */
- ENC_COUNTER,                   /* 0x40 encoder count in rev */
- ENC_REV_COUNTER,               /* 0x41 encoder revolution counter */
+ ENC_RUN,                       /* 0x30 encoder running flag */
+ ENC_COUNTER,                   /* 0x31 encoder count in rev */
+ ENC_REV_COUNTER,               /* 0x32 encoder revolution counter */
 
 // measured spindle speed
 
- RPM,                           /* 0x42 current rpm */
+ RPM,                           /* 0x33 current rpm */
 
 // xilinx frequency variables
 
- X_FREQUENCY,                   /* 0x43 xilinx clock frequency */
- FREQ_MULT,                     /* 0x44 frequency multiplier */
+ X_FREQUENCY,                   /* 0x34 xilinx clock frequency */
+ FREQ_MULT,                     /* 0x35 frequency multiplier */
 
 // xilinx configuration register
 
- X_CFG_REG,                     /* 0x45 xilinx configuration register */
+ X_CFG_REG,                     /* 0x36 xilinx configuration register */
 
 // max parameter number
 
- MAX_PARM,                      /* 0x46 maximum parameter */
+ MAX_PARM,                      /* 0x37 maximum parameter */
 };
