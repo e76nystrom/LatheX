@@ -68,40 +68,42 @@ T_PARM remparm[] =
  PARM(xSetLoc),                 /* 0x26 x location to set */
  PARM(xLoc),                    /* 0x27 x location */
  PARM(xFlag),                   /* 0x28 x move flag */
- PARM(indexPreScaler),          /* 0x29 index prescaler */
- PARM(indexPeriod),             /* 0x2a index period */
+ PARM(feedType),                /* 0x29 feed parameter type */
+ PARM(feed),                    /* 0x2a feed parameter */
+ PARM(indexPreScaler),          /* 0x2b index prescaler */
+ PARM(indexPeriod),             /* 0x2c index period */
 
 // encoder counts per revolution
 
- PARM(encMax),                  /* 0x2b encoder counts per revolution */
+ PARM(encMax),                  /* 0x2d encoder counts per revolution */
 
 // test encoder setup variables
 
- PARM(encEnable),               /* 0x2c encoder enable flag */
- PARM(encPreScaler),            /* 0x2d encoder prescaler */
- PARM(encTimer),                /* 0x2e encoder timer counts */
- PARM(encRunCount),             /* 0x2f encoder run count */
+ PARM(encEnable),               /* 0x2e encoder enable flag */
+ PARM(encPreScaler),            /* 0x2f encoder prescaler */
+ PARM(encTimer),                /* 0x30 encoder timer counts */
+ PARM(encRunCount),             /* 0x31 encoder run count */
 
 // test encoder status variables
 
- PARM(encRun),                  /* 0x30 encoder running flag */
- PARM(encCounter),              /* 0x31 encoder count in rev */
- PARM(encRevCounter),           /* 0x32 encoder revolution counter */
+ PARM(encRun),                  /* 0x32 encoder running flag */
+ PARM(encCounter),              /* 0x33 encoder count in rev */
+ PARM(encRevCounter),           /* 0x34 encoder revolution counter */
 
 // measured spindle speed
 
- PARM(rpm),                     /* 0x33 current rpm */
+ PARM(rpm),                     /* 0x35 current rpm */
 
 // xilinx frequency variables
 
- PARM(xFrequency),              /* 0x34 xilinx clock frequency */
- PARM(freqMult),                /* 0x35 frequency multiplier */
+ PARM(xFrequency),              /* 0x36 xilinx clock frequency */
+ PARM(freqMult),                /* 0x37 frequency multiplier */
 
 // xilinx configuration register
 
- PARM(xCfgReg),                 /* 0x36 xilinx configuration register */
+ PARM(xCfgReg),                 /* 0x38 xilinx configuration register */
 
 // max parameter number
 
- PARM(maxParm),                 /* 0x37 maximum parameter */
+ PARM(maxParm),                 /* 0x39 maximum parameter */
 };
