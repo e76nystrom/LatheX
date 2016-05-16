@@ -55,80 +55,50 @@
 // axis move values
 
  EXT float zMoveDist;           /* 0x1d z move distance */
- EXT int zJogDir;               /* 0x1e x jog direction */
- EXT float zSetLoc;             /* 0x1f z location to set */
- EXT int zLoc;                  /* 0x20 z location */
- EXT float xMoveDist;           /* 0x21 x move distance */
- EXT int xJogDir;               /* 0x22 x jog direction */
- EXT float xSetLoc;             /* 0x23 x location to set */
- EXT int xLoc;                  /* 0x24 x location */
-
-// z turn/face parameters
-
- EXT float zStartLoc;           /* 0x25 z start */
- EXT float zEndLoc;             /* 0x26 z end */
- EXT float zRetract;            /* 0x27 z retract */
- EXT float zFeedPass;           /* 0x28 z feed per pass */
-
-// x turn/face parameters
-
- EXT float xStartLoc;           /* 0x29 x start */
- EXT float xEndLoc;             /* 0x2a x end */
- EXT float xRetract;            /* 0x2b x retract */
- EXT float xFeedPass;           /* 0x2c x feed per pass */
-
-// feed parameters
-
- EXT int16_t feedDir;           /* 0x2d feed direction */
- EXT int16_t feedType;          /* 0x2e feed parameter type */
- EXT float feed;                /* 0x2f feed parameter */
-
-// taper parameters
-
- EXT float taperZ;              /* 0x30 z distance for taper */
- EXT float taperX;              /* 0x31 x distance for taper */
- EXT int16_t taperFlag;         /* 0x32 taper flag */
-
-// general turn thread parameters
-
- EXT int16_t turnFlag;          /* 0x33 turn flag */
- EXT float threadDepth;         /* 0x34 thread depth */
- EXT float threadLastFeed;      /* 0x35 thread last feed depth */
- EXT float threadHFactor;       /* 0x36 height Factor */
- EXT float threadAngle;         /* 0x37 thread angle */
- EXT int indexPreScaler;        /* 0x38 index prescaler */
- EXT int indexPeriod;           /* 0x39 index period */
+ EXT float zMovePos;            /* 0x1e z move position */
+ EXT int zJogDir;               /* 0x1f x jog direction */
+ EXT float zSetLoc;             /* 0x20 z location to set */
+ EXT int zLoc;                  /* 0x21 z location */
+ EXT int zFlag;                 /* 0x22 z move flag */
+ EXT float xMoveDist;           /* 0x23 x move distance */
+ EXT float xMovePos;            /* 0x24 x move position */
+ EXT int xJogDir;               /* 0x25 x jog direction */
+ EXT float xSetLoc;             /* 0x26 x location to set */
+ EXT int xLoc;                  /* 0x27 x location */
+ EXT int xFlag;                 /* 0x28 x move flag */
+ EXT int indexPreScaler;        /* 0x29 index prescaler */
+ EXT int indexPeriod;           /* 0x2a index period */
 
 // encoder counts per revolution
 
- EXT uint16_t encMax;           /* 0x3a encoder counts per revolution */
+ EXT uint16_t encMax;           /* 0x2b encoder counts per revolution */
 
 // test encoder setup variables
 
- EXT char encEnable;            /* 0x3b encoder enable flag */
- EXT uint16_t encPreScaler;     /* 0x3c encoder prescaler */
- EXT uint16_t encTimer;         /* 0x3d encoder timer counts */
- EXT int encRunCount;           /* 0x3e encoder run count */
+ EXT char encEnable;            /* 0x2c encoder enable flag */
+ EXT uint16_t encPreScaler;     /* 0x2d encoder prescaler */
+ EXT uint16_t encTimer;         /* 0x2e encoder timer counts */
+ EXT int encRunCount;           /* 0x2f encoder run count */
 
 // test encoder status variables
 
- EXT char encRun;               /* 0x3f encoder running flag */
- EXT int16_t encCounter;        /* 0x40 encoder count in rev */
- EXT int32_t encRevCounter;     /* 0x41 encoder revolution counter */
+ EXT char encRun;               /* 0x30 encoder running flag */
+ EXT int16_t encCounter;        /* 0x31 encoder count in rev */
+ EXT int32_t encRevCounter;     /* 0x32 encoder revolution counter */
 
 // measured spindle speed
 
- EXT int16_t rpm;               /* 0x42 current rpm */
+ EXT int16_t rpm;               /* 0x33 current rpm */
 
 // xilinx frequency variables
 
- EXT int32_t xFrequency;        /* 0x43 xilinx clock frequency */
- EXT int16_t freqMult;          /* 0x44 frequency multiplier */
+ EXT int32_t xFrequency;        /* 0x34 xilinx clock frequency */
+ EXT int16_t freqMult;          /* 0x35 frequency multiplier */
 
 // xilinx configuration register
 
- EXT int16_t xCfgReg;           /* 0x45 xilinx configuration register */
+ EXT int16_t xCfgReg;           /* 0x36 xilinx configuration register */
 
 // max parameter number
 
- EXT int16_t maxParm;           /* 0x46 maximum parameter */
+ EXT int16_t maxParm;           /* 0x37 maximum parameter */
