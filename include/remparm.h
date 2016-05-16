@@ -57,81 +57,51 @@ T_PARM remparm[] =
 // axis move values
 
  PARM(zMoveDist),               /* 0x1d z move distance */
- PARM(zJogDir),                 /* 0x1e x jog direction */
- PARM(zSetLoc),                 /* 0x1f z location to set */
- PARM(zLoc),                    /* 0x20 z location */
- PARM(xMoveDist),               /* 0x21 x move distance */
- PARM(xJogDir),                 /* 0x22 x jog direction */
- PARM(xSetLoc),                 /* 0x23 x location to set */
- PARM(xLoc),                    /* 0x24 x location */
-
-// z turn/face parameters
-
- PARM(zStartLoc),               /* 0x25 z start */
- PARM(zEndLoc),                 /* 0x26 z end */
- PARM(zRetract),                /* 0x27 z retract */
- PARM(zFeedPass),               /* 0x28 z feed per pass */
-
-// x turn/face parameters
-
- PARM(xStartLoc),               /* 0x29 x start */
- PARM(xEndLoc),                 /* 0x2a x end */
- PARM(xRetract),                /* 0x2b x retract */
- PARM(xFeedPass),               /* 0x2c x feed per pass */
-
-// feed parameters
-
- PARM(feedDir),                 /* 0x2d feed direction */
- PARM(feedType),                /* 0x2e feed parameter type */
- PARM(feed),                    /* 0x2f feed parameter */
-
-// taper parameters
-
- PARM(taperZ),                  /* 0x30 z distance for taper */
- PARM(taperX),                  /* 0x31 x distance for taper */
- PARM(taperFlag),               /* 0x32 taper flag */
-
-// general turn thread parameters
-
- PARM(turnFlag),                /* 0x33 turn flag */
- PARM(threadDepth),             /* 0x34 thread depth */
- PARM(threadLastFeed),          /* 0x35 thread last feed depth */
- PARM(threadHFactor),           /* 0x36 height Factor */
- PARM(threadAngle),             /* 0x37 thread angle */
- PARM(indexPreScaler),          /* 0x38 index prescaler */
- PARM(indexPeriod),             /* 0x39 index period */
+ PARM(zMovePos),                /* 0x1e z move position */
+ PARM(zJogDir),                 /* 0x1f x jog direction */
+ PARM(zSetLoc),                 /* 0x20 z location to set */
+ PARM(zLoc),                    /* 0x21 z location */
+ PARM(zFlag),                   /* 0x22 z move flag */
+ PARM(xMoveDist),               /* 0x23 x move distance */
+ PARM(xMovePos),                /* 0x24 x move position */
+ PARM(xJogDir),                 /* 0x25 x jog direction */
+ PARM(xSetLoc),                 /* 0x26 x location to set */
+ PARM(xLoc),                    /* 0x27 x location */
+ PARM(xFlag),                   /* 0x28 x move flag */
+ PARM(indexPreScaler),          /* 0x29 index prescaler */
+ PARM(indexPeriod),             /* 0x2a index period */
 
 // encoder counts per revolution
 
- PARM(encMax),                  /* 0x3a encoder counts per revolution */
+ PARM(encMax),                  /* 0x2b encoder counts per revolution */
 
 // test encoder setup variables
 
- PARM(encEnable),               /* 0x3b encoder enable flag */
- PARM(encPreScaler),            /* 0x3c encoder prescaler */
- PARM(encTimer),                /* 0x3d encoder timer counts */
- PARM(encRunCount),             /* 0x3e encoder run count */
+ PARM(encEnable),               /* 0x2c encoder enable flag */
+ PARM(encPreScaler),            /* 0x2d encoder prescaler */
+ PARM(encTimer),                /* 0x2e encoder timer counts */
+ PARM(encRunCount),             /* 0x2f encoder run count */
 
 // test encoder status variables
 
- PARM(encRun),                  /* 0x3f encoder running flag */
- PARM(encCounter),              /* 0x40 encoder count in rev */
- PARM(encRevCounter),           /* 0x41 encoder revolution counter */
+ PARM(encRun),                  /* 0x30 encoder running flag */
+ PARM(encCounter),              /* 0x31 encoder count in rev */
+ PARM(encRevCounter),           /* 0x32 encoder revolution counter */
 
 // measured spindle speed
 
- PARM(rpm),                     /* 0x42 current rpm */
+ PARM(rpm),                     /* 0x33 current rpm */
 
 // xilinx frequency variables
 
- PARM(xFrequency),              /* 0x43 xilinx clock frequency */
- PARM(freqMult),                /* 0x44 frequency multiplier */
+ PARM(xFrequency),              /* 0x34 xilinx clock frequency */
+ PARM(freqMult),                /* 0x35 frequency multiplier */
 
 // xilinx configuration register
 
- PARM(xCfgReg),                 /* 0x45 xilinx configuration register */
+ PARM(xCfgReg),                 /* 0x36 xilinx configuration register */
 
 // max parameter number
 
- PARM(maxParm),                 /* 0x46 maximum parameter */
+ PARM(maxParm),                 /* 0x37 maximum parameter */
 };
