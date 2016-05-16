@@ -132,6 +132,7 @@ void spindleStop();		/* stop spindle */
 void spindleSetup();
 
 void zMoveCmd();
+void zMoveRelCmd();
 void zJogCmd();
 void zHomeCmd();
 void zLocCmd();
@@ -143,6 +144,7 @@ void zSynSetup();
 void zTaperSetup();
 
 void xMoveCmd();
+void xMoveRelCmd();
 void xJogCmd();
 void xHomeCmd();
 void xLocCmd();
@@ -360,8 +362,17 @@ void zMoveCmd()
 {
  if (zMoveCtl.state == ZIDLE)
  {
+  int pos = (int) (zMovePos * zAxis.stepsInch);
+  zMove(pos, zFlag);
+ }
+}
+
+void zMoveRelCmd()
+{
+ if (zMoveCtl.state == ZIDLE)
+ {
   int dist = (int) (zMoveDist * zAxis.stepsInch);
-  zMoveRel(dist, ZJOG);
+  zMoveRel(dist, zFlag);
  }
 }
 
@@ -487,8 +498,17 @@ void xMoveCmd()
 {
  if (xMoveCtl.state == XIDLE)
  {
+  int pos = (int) (xMovePos * xAxis.stepsInch);
+  xMove(pos, xFlag);
+ }
+}
+
+void xMoveRelCmd()
+{
+ if (xMoveCtl.state == XIDLE)
+ {
   int dist = (int) (xMoveDist * xAxis.stepsInch);
-  xMoveRel(dist, XJOG);
+  xMoveRel(dist, xFlag);
  }
 }
 
