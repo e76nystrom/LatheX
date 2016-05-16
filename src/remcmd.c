@@ -93,6 +93,10 @@ void remcmd()
   zMoveCmd();
   break;
 
+ case ZMOVEREL:
+  zMoveRelCmd();
+  break;
+
  case ZJMOV:
   zJogCmd();
   break;
@@ -115,6 +119,10 @@ void remcmd()
 
  case XMOVE:
   xMoveCmd();
+  break;
+
+ case XMOVEREL:
+  xMoveRelCmd();
   break;
 
  case XJMOV:
