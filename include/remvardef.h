@@ -66,39 +66,41 @@
  EXT float xSetLoc;             /* 0x26 x location to set */
  EXT int xLoc;                  /* 0x27 x location */
  EXT int xFlag;                 /* 0x28 x move flag */
- EXT int indexPreScaler;        /* 0x29 index prescaler */
- EXT int indexPeriod;           /* 0x2a index period */
+ EXT int16_t feedType;          /* 0x29 feed parameter type */
+ EXT float feed;                /* 0x2a feed parameter */
+ EXT int indexPreScaler;        /* 0x2b index prescaler */
+ EXT int indexPeriod;           /* 0x2c index period */
 
 // encoder counts per revolution
 
- EXT uint16_t encMax;           /* 0x2b encoder counts per revolution */
+ EXT uint16_t encMax;           /* 0x2d encoder counts per revolution */
 
 // test encoder setup variables
 
- EXT char encEnable;            /* 0x2c encoder enable flag */
- EXT uint16_t encPreScaler;     /* 0x2d encoder prescaler */
- EXT uint16_t encTimer;         /* 0x2e encoder timer counts */
- EXT int encRunCount;           /* 0x2f encoder run count */
+ EXT char encEnable;            /* 0x2e encoder enable flag */
+ EXT uint16_t encPreScaler;     /* 0x2f encoder prescaler */
+ EXT uint16_t encTimer;         /* 0x30 encoder timer counts */
+ EXT int encRunCount;           /* 0x31 encoder run count */
 
 // test encoder status variables
 
- EXT char encRun;               /* 0x30 encoder running flag */
- EXT int16_t encCounter;        /* 0x31 encoder count in rev */
- EXT int32_t encRevCounter;     /* 0x32 encoder revolution counter */
+ EXT char encRun;               /* 0x32 encoder running flag */
+ EXT int16_t encCounter;        /* 0x33 encoder count in rev */
+ EXT int32_t encRevCounter;     /* 0x34 encoder revolution counter */
 
 // measured spindle speed
 
- EXT int16_t rpm;               /* 0x33 current rpm */
+ EXT int16_t rpm;               /* 0x35 current rpm */
 
 // xilinx frequency variables
 
- EXT int32_t xFrequency;        /* 0x34 xilinx clock frequency */
- EXT int16_t freqMult;          /* 0x35 frequency multiplier */
+ EXT int32_t xFrequency;        /* 0x36 xilinx clock frequency */
+ EXT int16_t freqMult;          /* 0x37 frequency multiplier */
 
 // xilinx configuration register
 
- EXT int16_t xCfgReg;           /* 0x36 xilinx configuration register */
+ EXT int16_t xCfgReg;           /* 0x38 xilinx configuration register */
 
 // max parameter number
 
- EXT int16_t maxParm;           /* 0x37 maximum parameter */
+ EXT int16_t maxParm;           /* 0x39 maximum parameter */
