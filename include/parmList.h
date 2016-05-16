@@ -68,40 +68,42 @@ enum PARM
  X_SET_LOC,                     /* 0x26 x location to set */
  X_LOC,                         /* 0x27 x location */
  X_Flag,                        /* 0x28 x move flag */
- INDEX_PRE_SCALER,              /* 0x29 index prescaler */
- INDEX_PERIOD,                  /* 0x2a index period */
+ FEED_TYPE,                     /* 0x29 feed parameter type */
+ FEED,                          /* 0x2a feed parameter */
+ INDEX_PRE_SCALER,              /* 0x2b index prescaler */
+ INDEX_PERIOD,                  /* 0x2c index period */
 
 // encoder counts per revolution
 
- ENC_MAX,                       /* 0x2b encoder counts per revolution */
+ ENC_MAX,                       /* 0x2d encoder counts per revolution */
 
 // test encoder setup variables
 
- ENC_ENABLE,                    /* 0x2c encoder enable flag */
- ENC_PRE_SCALER,                /* 0x2d encoder prescaler */
- ENC_TIMER,                     /* 0x2e encoder timer counts */
- ENC_RUN_COUNT,                 /* 0x2f encoder run count */
+ ENC_ENABLE,                    /* 0x2e encoder enable flag */
+ ENC_PRE_SCALER,                /* 0x2f encoder prescaler */
+ ENC_TIMER,                     /* 0x30 encoder timer counts */
+ ENC_RUN_COUNT,                 /* 0x31 encoder run count */
 
 // test encoder status variables
 
- ENC_RUN,                       /* 0x30 encoder running flag */
- ENC_COUNTER,                   /* 0x31 encoder count in rev */
- ENC_REV_COUNTER,               /* 0x32 encoder revolution counter */
+ ENC_RUN,                       /* 0x32 encoder running flag */
+ ENC_COUNTER,                   /* 0x33 encoder count in rev */
+ ENC_REV_COUNTER,               /* 0x34 encoder revolution counter */
 
 // measured spindle speed
 
- RPM,                           /* 0x33 current rpm */
+ RPM,                           /* 0x35 current rpm */
 
 // xilinx frequency variables
 
- X_FREQUENCY,                   /* 0x34 xilinx clock frequency */
- FREQ_MULT,                     /* 0x35 frequency multiplier */
+ X_FREQUENCY,                   /* 0x36 xilinx clock frequency */
+ FREQ_MULT,                     /* 0x37 frequency multiplier */
 
 // xilinx configuration register
 
- X_CFG_REG,                     /* 0x36 xilinx configuration register */
+ X_CFG_REG,                     /* 0x38 xilinx configuration register */
 
 // max parameter number
 
- MAX_PARM,                      /* 0x37 maximum parameter */
+ MAX_PARM,                      /* 0x39 maximum parameter */
 };
