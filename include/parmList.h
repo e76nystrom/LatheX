@@ -61,13 +61,13 @@ enum PARM
  Z_JOG_DIR,                     /* 0x1f x jog direction */
  Z_SET_LOC,                     /* 0x20 z location to set */
  Z_LOC,                         /* 0x21 z location */
- Z_Flag,                        /* 0x22 z move flag */
+ Z_FLAG,                        /* 0x22 z move flag */
  X_MOVE_DIST,                   /* 0x23 x move distance */
  X_MOVE_POS,                    /* 0x24 x move position */
  X_JOG_DIR,                     /* 0x25 x jog direction */
  X_SET_LOC,                     /* 0x26 x location to set */
  X_LOC,                         /* 0x27 x location */
- X_Flag,                        /* 0x28 x move flag */
+ X_FLAG,                        /* 0x28 x move flag */
  FEED_TYPE,                     /* 0x29 feed parameter type */
  FEED,                          /* 0x2a feed parameter */
  INDEX_PRE_SCALER,              /* 0x2b index prescaler */
