@@ -797,6 +797,7 @@ void accelSetup(P_ACCEL ac)
 }
 
 
+
 void taperCalc(P_ACCEL a0, P_ACCEL a1, float taper)
 {
  printf("\ntaperCalc\n");
