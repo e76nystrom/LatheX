@@ -296,6 +296,7 @@ void remcmd()
   }
   else
    putstr1("# ");
+#if 0
   int clocksRev = indexPreScaler * indexPeriod;
   if (clocksRev != 0)
   {
@@ -303,6 +304,7 @@ void remcmd()
    putstr1(buf);
   }
   else
+#endif
    putstr1("#");
  }
  break;
