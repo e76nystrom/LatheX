@@ -280,9 +280,32 @@ void remcmd()
   break;
 
  case READLOC:
-  getnum1();
-  sndhex1((unsigned char *) (int32_t) val,sizeof(int16_t));
-  break;
+ {
+  char buf[10];
+  if (zAxis.stepsInch != 0)
+  {
+   sprintf(buf, "%0.4 ", ((float) zLoc) / zAxis.stepsInch);
+   putstr1(buf);
+  }
+  else
+   putstr1("# ");
+  if (xAxis.stespInch != 0)
+  {
+   sprintf(buf, "%0.4 ", ((float) xLoc) / xAxis.stepsInch);
+   putstr1(buf);
+  }
+  else
+   putstr1("# ");
+  int clocksRev = indexPreScaler * indexPeriod;
+  if (clocksRev != 0)
+  {
+   sprintf(buf, "%0.4", ((float) FCY / clocksRev) * 60);
+   putstr1(buf);
+  }
+  else
+   putstr1("#");
+ }
+ break;
 
 #if DBGMSG
  case READDBG:
