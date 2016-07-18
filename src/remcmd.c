@@ -284,7 +284,7 @@ void remcmd()
   char buf[10];
   if (zAxis.stepsInch != 0)
   {
-   sprintf(buf, "%0.4 ", ((float) zLoc) / zAxis.stepsInch);
+   sprintf(buf, "%0.4f ", ((float) zLoc) / zAxis.stepsInch);
    putstr1(buf);
   }
   else
@@ -300,7 +300,7 @@ void remcmd()
   int clocksRev = indexPreScaler * indexPeriod;
   if (clocksRev != 0)
   {
-   sprintf(buf, "%0.4", ((float) FCY / clocksRev) * 60);
+   sprintf(buf, "%0.4f", ((float) FCY / clocksRev) * 60);
    putstr1(buf);
   }
   else
