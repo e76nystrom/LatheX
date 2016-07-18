@@ -291,7 +291,7 @@ void remcmd()
    putstr1("# ");
   if (xAxis.stespInch != 0)
   {
-   sprintf(buf, "%0.4 ", ((float) xLoc) / xAxis.stepsInch);
+   sprintf(buf, "%0.4f ", ((float) xLoc) / xAxis.stepsInch);
    putstr1(buf);
   }
   else
